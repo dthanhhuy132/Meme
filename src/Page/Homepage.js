@@ -14,6 +14,7 @@ export default function Homepage() {
     dispatch(actFetchPostsAsync())
     console.log('chay auto dang nhap')
     const userId = localStorage.getItem(USER_ID);
+    console.log('userid trong homepage', userId)
     if (userId && userId !== '') dispatch(actFechMeInfoAsync(userId));
 
 
