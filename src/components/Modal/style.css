@@ -1,0 +1,33 @@
+.modal-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.modal-wrapper .dth-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-wrapper .dth-modal-content {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  min-width: 600px;
+  background-color: red;
+  transform: translateX(-50%);
+}
+
+/* .dth-modal-content .dth-modal-header {
+  position: relative;
+  padding: 5px 20px 5px 20px;
+
+  border-bottom: 1px solid #ccc;
+} */

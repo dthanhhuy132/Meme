@@ -1,0 +1,71 @@
+button:focus {
+  outline: none;
+}
+
+.ass1-btn {
+  cursor: pointer;
+}
+
+/* .btn-header {
+  margin-right: 10px;
+}
+
+.ass1-login__form {
+  margin-top: 0px;
+}
+
+.ass1-login {
+  max-width: 432px;
+  margin: 20px auto 100px;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 5px;
+} */
+
+.ass1-login__content {
+  padding-bottom: 10px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.form-checkbox {
+  border: none;
+  position: relative;
+}
+
+.form-checkbox input,
+.form-checkbox label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.form-checkbox input {
+  padding: 20px;
+  left: 0;
+  margin-right: 20px;
+}
+
+.form-checkbox label {
+  left: 20px;
+}
+
+.ass1-login__form form > input,
+.ass1-login__form form > *:not(div),
+.ass1-login__form form .ass1-input-copy {
+  margin-bottom: 20px;
+}
+
+.ass1-header__search form {
+  position: relative;
+}
+.ass1-header__search i {
+  position: absolute;
+  right: 10px;
+  top: 40%;
+  transform: translateY(-50%);
+  color: grey;
+  margin-top: auto;
+}
