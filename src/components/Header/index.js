@@ -5,17 +5,14 @@ import HeaderSearch from './HeaderSearch';
 
 export default function Header() {
   const currentUser = useSelector(state => state.Auth.currentUser);
-  const userName = currentUser?.user?.fullname
-
+  const userName = currentUser?.fullname
 
   return (
     <>
       <header>
         <div className="ass1-header">
           <div className="container">
-            <Link to="/" className="ass1-logo">
-              TCL Meme
-          </Link>
+            <Link to="/" className="ass1-logo">TCL Meme</Link>
             <nav>
               <ul className="ass1-header__menu">
                 <li>

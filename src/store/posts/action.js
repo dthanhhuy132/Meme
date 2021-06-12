@@ -3,7 +3,7 @@ import postsService from '../../service/posts'
 export const ACT_FETCH_POSTS = 'ACT_FETCH_POSTS';
 export const ACT_FETCH_POSTS_BY_USERID = 'ACT_FETCH_POSTS_BY_USERID'
 
-// Get post for HomePage
+///////////////////// Get post for HomePage
 function actFetchPosts({ posts, pagesize, currPage }) {
   return {
     type: ACT_FETCH_POSTS,
@@ -40,11 +40,13 @@ export function actFetchPostsAsync({
 
 
 
-// Get Posts by UserID
+//////////////////// Get Posts by UserID
 function actFetchPostsByUserId(posts) {
   return {
     type: ACT_FETCH_POSTS_BY_USERID,
-    payload: posts
+    payload: {
+      posts
+    }
   }
 }
 
@@ -54,9 +56,14 @@ export function actFetchPostsByUserIdAsync(userId) {
       const res = await postsService.getPostsByUserId(userId)
 
       console.log('res trong get posts by userid', res)
-      dispatch(actFetchPostsByUserId(res.data))
+      dispatch(actFetchPostsByUserId(res.data.posts))
+      return {
+        ok: true
+      }
     } catch (e) {
-
+      return {
+        ok: false
+      }
     }
   }
 }

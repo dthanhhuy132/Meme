@@ -7,7 +7,7 @@ import Homepage from './Page/Homepage';
 import Login from './Page/Login';
 import Upload from './Page/Upload';
 import Register from './Page/Register';
-import UserPosts from "./Page/HistoryPosts";
+import UserPosts from "./Page/UserPosts";
 
 
 function App() {

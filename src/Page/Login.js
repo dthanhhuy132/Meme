@@ -29,13 +29,11 @@ export default function Login() {
         if (res.ok) {
           if (saveLogin) {
             const data = res.data;
-            const token = res.data.token
             const userId = data.user.USERID
             localStorage.setItem(USER_ID, userId)
-            localStorage.setItem(TOKEN_KEY, token)
           }
 
-          history.goBack()
+          history.goBack()  
           setIsLoading(false)
         }
 

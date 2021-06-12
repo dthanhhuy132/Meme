@@ -9,36 +9,14 @@ export const ACT_LOGIN = 'ACT_LOGIN';
 // export const ACT_REGISTER = 'ACT_REGISTER'
 
 
-export function actFetchMeInfo(currentUser) {
-  return {
-    type: ACT_FETCH_ME_INFO,
-    payload: {
-      currentUser
-    }
-  }
-}
+//////////////// Login function
 
 export function actLogin(currentUser) {
+  console.log('currentUser trong login', currentUser)
   return {
     type: ACT_LOGIN,
     payload: {
       currentUser
-    }
-  }
-}
-
-
-
-/////////// Async function
-
-
-export function actFechMeInfoAsync(userId) {
-  return async dispatch => {
-    try {
-      const res = await AuthService.getMeInfo(userId)
-
-    } catch (err) {
-      console.log('that cmnr bai')
     }
   }
 }
@@ -53,10 +31,10 @@ export function actLoginAsync({
         email,
         password
       })
+      const token = res.data.token
 
-      const userId = res.data.user.USERID
-
-      dispatch(actLogin(res.data))
+      dispatch(actLogin(res.data.user))
+      localStorage.setItem(TOKEN_KEY, token)
       return {
         ok: true,
         data: res.data
@@ -69,6 +47,30 @@ export function actLoginAsync({
   }
 }
 
+/////////// Auto login function
+export function actFetchMeInfo(currentUser) {
+  return {
+    type: ACT_FETCH_ME_INFO,
+    payload: {
+      currentUser
+    }
+  }
+}
+
+export function actFechMeInfoAsync(userId) {
+  return async dispatch => {
+    try {
+      const res = await AuthService.getMeInfo(userId);
+
+      dispatch(actFetchMeInfo(res.data.user))
+    } catch (err) {
+      console.log('that cmnr bai')
+    }
+  }
+}
+
+
+//////////////////// Register function
 export function actRegisterAsync({
   email,
   fullname,

@@ -27,17 +27,8 @@ const AuthService = {
   },
 
   getMeInfo(userid) {
-    console.log('userid getMeinfo', userid)
-    console.log(api.callWithToken().get('/member/member.php', {
-      userid: userid,
-    }))
-    return api.callWithToken().get('/member/member.php', {
-      userid: userid,
-    })
+    return api.callWithToken().get('/member/member.php?userid=' + userid)
   }
 }
-
-
-
 
 export default AuthService;

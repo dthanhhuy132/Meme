@@ -16,9 +16,7 @@ const postsService = {
     })
   },
   getPostsByUserId(userId) {
-    return api.callWithToken().get('/post/getListPostUserID.php', {
-      userid: userId
-    })
+    return api.callWithToken().get('/post/getListPostUserID.php?userid=' + userId)
   }
 }
 

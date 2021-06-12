@@ -9,7 +9,7 @@ const api = {
       baseURL
     })
   },
-  
+
   callWithToken() {
     return axios.create({
       baseURL,

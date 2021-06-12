@@ -6,29 +6,14 @@ button:focus {
   cursor: pointer;
 }
 
-/* .btn-header {
-  margin-right: 10px;
-}
-
-.ass1-login__form {
-  margin-top: 0px;
-}
-
-.ass1-login {
-  max-width: 432px;
-  margin: 20px auto 100px;
-  text-align: center;
-  overflow: hidden;
-  margin-bottom: 5px;
-} */
 
 .ass1-login__content {
   padding-bottom: 10px;
 }
 
-.form-control {
+/* .form-control {
   margin-bottom: 10px;
-}
+} */
 
 .form-checkbox {
   border: none;
@@ -64,7 +49,7 @@ button:focus {
 .ass1-header__search i {
   position: absolute;
   right: 10px;
-  top: 40%;
+  top: 50%;
   transform: translateY(-50%);
   color: grey;
   margin-top: auto;
