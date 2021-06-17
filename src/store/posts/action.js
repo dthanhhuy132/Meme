@@ -1,7 +1,9 @@
 import postsService from '../../service/posts'
 
 export const ACT_FETCH_POSTS = 'ACT_FETCH_POSTS';
-export const ACT_FETCH_POSTS_BY_USERID = 'ACT_FETCH_POSTS_BY_USERID'
+export const ACT_FETCH_POSTS_BY_USERID = 'ACT_FETCH_POSTS_BY_USERID';
+export const ACT_FETCH_POSTS_BY_POSTID = 'ACT_FETCH_POSTS_BY_POSTID';
+
 
 ///////////////////// Get post for HomePage
 function actFetchPosts({ posts, pagesize, currPage }) {
@@ -16,7 +18,7 @@ function actFetchPosts({ posts, pagesize, currPage }) {
 }
 
 export function actFetchPostsAsync({
-  pagesize = 3,
+  pagesize = 5,
   currPage = 1,
   ...restParams
 } = {}) {
@@ -29,7 +31,7 @@ export function actFetchPostsAsync({
       })
 
       dispatch(actFetchPosts({
-        posts: res.data,
+        posts: res.data.posts,
         pagesize: pagesize,
         currPage: currPage
       }))
@@ -55,7 +57,6 @@ export function actFetchPostsByUserIdAsync(userId) {
     try {
       const res = await postsService.getPostsByUserId(userId)
 
-      console.log('res trong get posts by userid', res)
       dispatch(actFetchPostsByUserId(res.data.posts))
       return {
         ok: true
@@ -64,6 +65,30 @@ export function actFetchPostsByUserIdAsync(userId) {
       return {
         ok: false
       }
+    }
+  }
+}
+
+
+////////////////////////////////// Get post by postId 
+export function actFetchPostByPostId(post_category) {
+  return {
+    type: ACT_FETCH_POSTS_BY_POSTID,
+    payload: {
+      post_category
+    }
+  }
+}
+
+export function actFetchPostByPostIdAsync(postid) {
+  return async dispatch => {
+    try {
+      const res = await postsService.getPostByPostId(postid)
+      const post_category = res.data.data;
+      // console.log('post trong action', post)
+      dispatch(actFetchPostByPostId(post_category))
+    } catch (er) {
+
     }
   }
 }

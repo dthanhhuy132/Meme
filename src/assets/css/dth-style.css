@@ -6,6 +6,10 @@ button:focus {
   cursor: pointer;
 }
 
+.btn-header {
+margin-right: 10px;
+}
+
 
 .ass1-login__content {
   padding-bottom: 10px;
@@ -53,4 +57,131 @@ button:focus {
   transform: translateY(-50%);
   color: grey;
   margin-top: auto;
+}
+
+
+.col-lg-4 .ass1-section__content{
+  word-wrap: break-word
+}
+
+.ass1-content-head__t{
+  text-align: center;
+}
+
+.col-lg-4 .center {
+  text-align: center;
+}
+
+
+
+
+
+/* Masonry css - GridLayout */
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  /* margin-left: -30px;  */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  margin-bottom: 15px;
+}
+
+/* .ass1-comments {
+  padding-bottom: 20px;
+} */
+/* ---------------------------COMMENT_SECTION----------------------- */
+.ass1-comments {
+  margin-bottom: 15px;
+}
+
+.ass1-comments__section {
+  margin-top: 20px;
+}
+
+.ass1-section__footer {
+  padding-bottom: 20px;
+}
+
+.ass1-comments__head {
+  padding-bottom: 0px;
+}
+
+
+.ass1-comments__content p {
+  margin-top: 5px;
+}
+
+.comment-login {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.comment-footer-space {
+  padding-bottom: 10px;
+}
+
+.dotLoading-cmt{
+  position: relative;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.dotLoading-cmt .dotLoading-svg {
+  position: absolute;
+  overflow: hidden;
+}
+
+/*  Comment form:  */
+.ass1-add-comment{
+  margin-bottom: 20px;
+  padding-top: 10px;
+}
+
+.ass1-add-comment__content{
+  margin-top: 10px;
+}
+
+.warning-text-none {
+  display: none
+}
+
+.color-red {
+  color:red !important;
+  display: inline-block
+}
+
+.color-green{
+  color:rgb(39, 173, 39) !important;
+}
+
+.dth-btn-comment {
+  color: #fff !important;
+  border: 1px solid #3482e2;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: #3482e2;
+}
+
+.dth-btn-comment:hover {
+  background: transparent;
+  color: #3482e2 !important;
+}
+
+.dth-btn-comment-none{
+  display: none;
+}
+
+.ass1-add-comment__btn-save {
+  pointer-events: none;
 }

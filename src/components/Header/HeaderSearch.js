@@ -9,6 +9,8 @@ export default function HeaderSearch() {
     history.push('/search?q=' + searchStr)
   }
 
+  
+
   return (
     <div className="ass1-header__search">
       <form action="#">

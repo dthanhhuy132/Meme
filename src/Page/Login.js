@@ -33,7 +33,7 @@ export default function Login() {
             localStorage.setItem(USER_ID, userId)
           }
 
-          history.goBack()  
+          history.goBack()
           setIsLoading(false)
         }
 

@@ -1,4 +1,4 @@
-import { ACT_FETCH_POSTS, ACT_FETCH_POSTS_BY_USERID } from './action';
+import { ACT_FETCH_POSTS, ACT_FETCH_POSTS_BY_USERID, ACT_FETCH_POSTS_BY_POSTID } from './action';
 
 const initState = {
   postPaging: {
@@ -8,7 +8,8 @@ const initState = {
   },
   userPosts: {
     posts: []
-  }
+  },
+  postByPostid: {}
 }
 
 export default function postsReducer(state = initState, action) {
@@ -35,6 +36,12 @@ export default function postsReducer(state = initState, action) {
         userPosts: {
           posts: action.payload.posts
         }
+      }
+
+    case ACT_FETCH_POSTS_BY_POSTID:
+      return {
+        ...state,
+        postByPostid: action.payload.post_category
       }
 
     default:

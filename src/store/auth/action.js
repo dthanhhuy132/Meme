@@ -6,13 +6,13 @@ export const USER_ID = 'id'
 
 export const ACT_FETCH_ME_INFO = 'ACT_FETCH_ME_INFO';
 export const ACT_LOGIN = 'ACT_LOGIN';
+export const GET_USER_INFO = 'GET_USER_INFO'
 // export const ACT_REGISTER = 'ACT_REGISTER'
 
 
 //////////////// Login function
 
 export function actLogin(currentUser) {
-  console.log('currentUser trong login', currentUser)
   return {
     type: ACT_LOGIN,
     payload: {
@@ -25,16 +25,21 @@ export function actLoginAsync({
   email,
   password
 }) {
+  console.log('chay vao actLogin')
   return async dispatch => {
     try {
       const res = await AuthService.login({
         email,
         password
       })
-      const token = res.data.token
+      const token = res.data.token;
 
       dispatch(actLogin(res.data.user))
       localStorage.setItem(TOKEN_KEY, token)
+
+
+
+
       return {
         ok: true,
         data: res.data
@@ -86,7 +91,7 @@ export function actRegisterAsync({
         repassword
       })
 
-      console.log('res trong register', res)
+      // console.log('res trong register', res)
       const token = res.data.token;
       const userId = res.data.user.USERID
       localStorage.setItem(TOKEN_KEY, token);
@@ -102,12 +107,36 @@ export function actRegisterAsync({
       return {
         ok: 'true'
       }
-
-
     } catch (e) {
       return {
         ok: false
       }
     }
+  }
+}
+
+////// Get userInfor
+export function actGetUserInfo(userData) {
+  // console.log('userData moi', userData)
+  return {
+    type: GET_USER_INFO,
+    payload: {
+      userData
+    }
+  }
+}
+
+export function actGetUserInfoAsync(userid) {
+  return async dispatch => {
+    // console.log('userid for postDetail', userid)
+    try {
+      const res = await AuthService.getMeInfo(userid);
+      const userData = res.data.user;
+      // console.log('action fetch user post info run', userid)
+      dispatch(actGetUserInfo(userData))
+    } catch (er) {
+
+    }
+
   }
 }

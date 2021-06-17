@@ -27,8 +27,10 @@ const AuthService = {
   },
 
   getMeInfo(userid) {
+    // console.log('userid trong get me info', userid)
     return api.callWithToken().get('/member/member.php?userid=' + userid)
-  }
+  },
+
 }
 
 export default AuthService;

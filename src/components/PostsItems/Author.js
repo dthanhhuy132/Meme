@@ -5,8 +5,9 @@ export default function Author({
   userid,
   ...restProps
 }) {
-  const slugUserID = `user/${userid}`
+  const slugUserID = `/user/${userid}`
+
   return (
-    <Link to={slugUserID} className="ass1-section__name" >{children}</Link>
+    <Link to={slugUserID} className="ass1-section__name" > {children}</Link >
   )
 }
