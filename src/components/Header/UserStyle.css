@@ -1,0 +1,80 @@
+.dth-user-login {
+  display: flex;
+  align-items: center;
+
+  height: 40px;
+  padding: 2px;
+  border-radius: 30px;
+
+  margin-left: 33px;
+  cursor: pointer;
+
+  transition: "margin-left" 0.5s ease;
+}
+
+.dth-user-login-active {
+  background: #3482e2;
+  margin-left: 0px;
+}
+
+.dth-user-profile-page {
+  background: #3482e2;
+  padding-right: 10px;
+}
+
+.dth-user-login:hover {
+  background: #3482e2;
+  margin-left: 0px;
+}
+
+.dth-user-login__img img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px dotted #3482e2;
+}
+
+.dth-user-login__text {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dth-user-login__text > p {
+  padding: 20px 0px 20px 4px;
+}
+.dth-user-login__text-in-profile {
+  color: rgb(12, 237, 245);
+  font-weight: 400;
+}
+
+.dth-fa-user__icon {
+  font-size: 13px;
+  padding: 10px;
+  padding-left: 15px;
+  transition: all 0.2s ease-in-out;
+  display: none;
+}
+
+.dth-user-login:hover .dth-fa-user__icon {
+  display: block;
+}
+
+.dth-fa-user__icon:hover {
+  color: rgb(12, 237, 245);
+  transform: rotate(90deg) translateX(-5px) scale(1.5);
+}
+.userSettingOpen {
+  color: rgb(12, 237, 245);
+  transform: rotate(90deg) translateX(-5px) scale(1.5);
+  display: block;
+}
+
+.dth-user-login__setting {
+  right: -6px;
+  top: 65px;
+}
+
+.dth-user-login__setting > li {
+  border-bottom: 1px solid rgb(182, 182, 182);
+}

@@ -1,19 +1,27 @@
-import { useState } from "react";
-import { useHistory } from "react-router";
+import { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router";
 
 export default function HeaderSearch() {
   const history = useHistory();
-  const [searchStr, setSearchStr] = useState()
+  const location = useLocation();
+  const [searchStr, setSearchStr] = useState('')
 
-  if (searchStr) {
-    history.push('/search?q=' + searchStr)
+  function handleSubmit(e) {
+    e.preventDefault();
   }
 
-  
+  useEffect(() => {
+    if (searchStr) history.push('/search?q=' + searchStr)
+    if (searchStr === '' & location.pathname.indexOf('/search') !== -1) history.push('/');
+
+    return () => { }
+    // eslint-disable-next-line
+  }, [searchStr])
+
 
   return (
     <div className="ass1-header__search">
-      <form action="#">
+      <form action="/" onSubmit={handleSubmit}>
         <label>
           <input
             type="search"

@@ -1,8 +1,3 @@
-
-
-import { actFechMeInfoAsync, USER_ID } from '../../store/auth/action';
-import { actFetchPostsAsync } from '../../store/posts/action';
-
 import Button from '../../components/common/Button'
 import UsePaging from '../../hooks/usePaging';
 import Post from '../../components/PostsItems';

@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
 import './assets/css/style.css';
 import './assets/css/dth-style.css';
 

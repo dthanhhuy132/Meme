@@ -1,3 +1,23 @@
+/* HEADER */
+.ass1-logo {
+  font-size: 25px;
+  font-family: "Press Start 2P", cursive;
+}
+
+/* LOGIN - REGISTER FORM */
+.ass1-login {
+  margin: 20px auto 20px;
+}
+
+.ass1-login__content {
+  padding: 0px;
+  box-shadow: none;
+}
+
+.ass1-login__form {
+  margin-top: 20px;
+}
+
 button:focus {
   outline: none;
 }
@@ -7,21 +27,81 @@ button:focus {
 }
 
 .btn-header {
-margin-right: 10px;
+  margin-right: 10px;
 }
 
-
-.ass1-login__content {
-  padding-bottom: 10px;
+.dth-register-btn {
+  margin-top: 20px;
+}
+.btn-login-register {
+  min-width: 90px;
+  font-weight: 300;
+  font-size: 18px;
+  color: #007bff !important;
+  cursor: pointer;
+  transition: all 0s ease-in-out;
+}
+.btn-login-register:hover {
+  color: #063b74 !important;
 }
 
-/* .form-control {
+/* Notification */
+.dth-background-notification {
+  background-color: black;
+  opacity: 0.8;
+  color: rgb(255, 255, 255);
+  border-radius: 4px;
+}
+
+.ant-notification {
+  z-index: 999999000 !important;
+}
+
+.ant-notification-notice-message {
+  color: #fff;
+  font-weight: 500;
+  padding-top: 2px;
+}
+
+.ant-notification-close-x {
+  color: white;
+}
+
+.dth-text-danger {
+  margin-bottom: 0 !important;
+  text-align: left !important;
+  background: none !important;
+  font-size: 13px !important;
+}
+
+/* Password display */
+.form-control-wrapper {
+  position: relative;
   margin-bottom: 10px;
-} */
+}
+
+.dth-fa-password {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+
+  color: rgb(153, 145, 145);
+  cursor: pointer;
+}
+.dth-fa-password:hover {
+  color: black;
+}
+/* password display end */
 
 .form-checkbox {
   border: none;
   position: relative;
+  cursor: pointer;
 }
 
 .form-checkbox input,
@@ -29,6 +109,7 @@ margin-right: 10px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .form-checkbox input {
@@ -59,22 +140,17 @@ margin-right: 10px;
   margin-top: auto;
 }
 
-
-.col-lg-4 .ass1-section__content{
-  word-wrap: break-word
+.col-lg-4 .ass1-section__content {
+  word-wrap: break-word;
 }
 
-.ass1-content-head__t{
+.ass1-content-head__t {
   text-align: center;
 }
 
 .col-lg-4 .center {
   text-align: center;
 }
-
-
-
-
 
 /* Masonry css - GridLayout */
 .my-masonry-grid {
@@ -90,7 +166,8 @@ margin-right: 10px;
 }
 
 /* Style your items */
-.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+.my-masonry-grid_column > div {
+  /* change div to reference your elements you put in <Masonry> */
   margin-bottom: 15px;
 }
 
@@ -114,7 +191,6 @@ margin-right: 10px;
   padding-bottom: 0px;
 }
 
-
 .ass1-comments__content p {
   margin-top: 5px;
 }
@@ -128,7 +204,7 @@ margin-right: 10px;
   padding-bottom: 10px;
 }
 
-.dotLoading-cmt{
+.dotLoading-cmt {
   position: relative;
   height: 20px;
   display: flex;
@@ -143,26 +219,26 @@ margin-right: 10px;
 }
 
 /*  Comment form:  */
-.ass1-add-comment{
+.ass1-add-comment {
   margin-bottom: 20px;
   padding-top: 10px;
 }
 
-.ass1-add-comment__content{
+.ass1-add-comment__content {
   margin-top: 10px;
 }
 
 .warning-text-none {
-  display: none
+  display: none;
 }
 
 .color-red {
-  color:red !important;
-  display: inline-block
+  color: red !important;
+  display: inline-block;
 }
 
-.color-green{
-  color:rgb(39, 173, 39) !important;
+.color-green {
+  color: rgb(39, 173, 39) !important;
 }
 
 .dth-btn-comment {
@@ -178,10 +254,285 @@ margin-right: 10px;
   color: #3482e2 !important;
 }
 
-.dth-btn-comment-none{
+.dth-btn-comment-none {
   display: none;
 }
 
 .ass1-add-comment__btn-save {
   pointer-events: none;
+}
+
+/* --------------SEARCH-PAGE--------------- */
+.search-page .ass1-section__list {
+  margin-top: 0px;
+}
+
+.search-page .count-posts {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 17px;
+  font-weight: 1000;
+}
+
+/* ----------------------USER PAGE----------------------- */
+
+.head-user-for-author {
+  position: relative;
+}
+
+.ass1-head-user__info-head {
+  margin-bottom: 5px;
+  display: block;
+}
+.ass1-head-user__name {
+  font-weight: 900;
+}
+
+.ass1-section__head-user-setting {
+  position: absolute;
+  top: 0;
+  right: -14px;
+
+  padding: 4px 12px;
+  border-radius: 50%;
+
+  color: #858687;
+  font-weight: 200;
+
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.ass1-section__head-user-setting:hover {
+  color: #080808;
+  transform: scale(1.5);
+  background-color: rgb(155, 146, 146);
+}
+
+.ass1-head-user__desc {
+  display: block;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.ass1-head-user__info-statistic {
+  margin-bottom: 5px;
+}
+
+.ass1-head-user__info-statistic .ass1-btn-icon {
+  margin-left: -15px;
+}
+
+.ass1-head-user__btn-follow-wrapper {
+  display: flex;
+}
+
+.ass1-head-user__btn-follow {
+  border-radius: 7px;
+  padding: 0px 10px;
+}
+
+/* -------------LOADING-------------- */
+.dotLoading-cmt-large {
+  width: 100%;
+}
+
+/* -------------USER_MENU_SETTING------------ */
+
+.user-setting__items {
+  position: absolute;
+  right: -20px;
+  top: 45px;
+
+  width: 202px;
+  border: 1px solid grey;
+  border-radius: 5px;
+
+  background-color: rgba(230, 227, 227, 0.9);
+  box-shadow: 2px 2px 5px #817f7f;
+
+  z-index: 100;
+
+  transform-origin: top right;
+  animation-name: zoom;
+  animation-duration: 0.2s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.user-setting__items li:first-child {
+  position: relative;
+}
+
+.user-setting__items li:first-child::before {
+  content: "";
+
+  position: absolute;
+  right: 10px;
+  top: -11px;
+
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+
+  border-bottom: 10px solid #474646;
+}
+
+.user-setting__items li:not(:first-child):not(:last-child) {
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+.user-setting__items li {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 8px 11px 8px 20px;
+  cursor: pointer;
+}
+
+.user-setting__items li:hover {
+  background-color: #3482e2;
+  color: #fff;
+}
+
+.user-setting__items li div {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 10px;
+  margin-right: 20px;
+  pointer-events: none;
+}
+
+.user-setting__items li p {
+  word-wrap: keep-all;
+  pointer-events: none;
+}
+
+/* --------------UPLOAD PAGE--------------- */
+.ass1-section__edit-post .ass1-section__image {
+  position: relative;
+
+  display: flex;
+
+  min-width: 100%;
+  min-height: 200px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+.form-group .dth-input-linkMeme {
+  width: 73%;
+}
+
+.btn-meme-link-warapper {
+  position: relative;
+  display: flex;
+}
+
+.btn-meme-link-warapper .ass1-btn-meme {
+  position: absolute;
+  right: 0;
+
+  margin-top: 0px;
+}
+
+.dth-form-group_upload {
+  margin-top: 20px;
+}
+
+
+
+/* BtnUpload */
+.ass1-section__image__subClass {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  cursor: pointer;
+}
+
+.dth-fa-plus {
+  font-size: 40px;
+  transition: all 0.2s ease-out;
+}
+.ass1-section__image__subClass p,
+.ass1-section__image__subClass i {
+  padding-top: 5px;
+}
+
+.ass1-section__image__subClass:hover .dth-fa-plus {
+  color: #3482e2;
+  transform: scale(1.5);
+  margin-top: 10px;
+}
+
+.dth-upload-img:hover:before {
+  opacity: 0;
+}
+
+/* Close btn */
+.dth-upload-img_close {
+  margin: auto;
+  width: 100%;
+  height: auto;
+}
+.dth-fa-times__upload {
+  position: absolute;
+  right: 24px;
+  top: 12px;
+
+  font-size: 40px;
+  color: #5c5858;
+
+  width: 20px;
+  height: 40px;
+
+  transition: all 0.1s ease-in-out;
+  z-index: 1;
+}
+
+.close-btn-background {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  width: 80px;
+  height: 80px;
+  background-color: none;
+
+  border-bottom-left-radius: 100%;
+  border-top-right-radius: 6px;
+
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.dth-upload-img_close:hover .close-btn-background {
+  background-color: rgba(231, 231, 231, 0.5);
+}
+.close-btn-background:hover {
+  width: 100px;
+  height: 100px;
+}
+.close-btn-background:hover .dth-fa-times__upload {
+  transform: scale(1.4);
+  right: 30px;
+  top: 15px;
+  color: rgb(180, 21, 21);
 }

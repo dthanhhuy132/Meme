@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import Header from './components/Header'
-import Login from './Page/Login';
-import Upload from './Page/Upload';
-import Register from './Page/Register';
 import UserPosts from "./Page/UserPosts";
 import CategoriesPage from './Page/Category';
 import PostDetail from './Page/PostDetail';
+import SearchPage from './Page/Search';
+import Upload from './Page/Upload';
+import Profile from './Page/Profile';
 import HomePage from './Page/HomePage';
 
 
@@ -20,50 +20,51 @@ import { actFechMeInfoAsync, USER_ID } from "./store/auth/action";
 function App() {
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(actFetchCategoriesAsync());
     const userId = localStorage.getItem(USER_ID);
     if (userId && userId !== '') dispatch(actFechMeInfoAsync(userId));
+    // eslint-disable-next-line
   }, [])
 
 
   return (
     <BrowserRouter>
-      <div>
-        <Header />
 
-        <Switch>
-          <Route path="/upload">
-            <Upload />
-          </Route>
+      <Header />
+
+      <Switch>
+        <Route path="/upload">
+          <Upload />
+        </Route>
+
+        <Route path="/user/:slug">
+          <UserPosts />
+        </Route>
+
+        <Route path="/profile">
+          <Profile />
+        </Route>
+
+        <Route path="/category/:tagIndex">
+          <CategoriesPage />
+        </Route>
+
+        <Route path="/post/:postid">
+          <PostDetail />
+        </Route>
+
+        <Route path="/search">
+          <SearchPage />
+        </Route>
 
 
-          <Route path="/login">
-            <Login />
-          </Route>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
 
-          <Route path="/register">
-            <Register />
-          </Route>
-
-          <Route path="/user/:slug">
-            <UserPosts />
-          </Route>
-
-          <Route path="/category/:tagIndex">
-            <CategoriesPage />
-          </Route>
-
-          <Route path="/post/:postid">
-            <PostDetail />
-          </Route>
-
-          <Route path="/">
-            <HomePage />
-          </Route>
-
-        </Switch>
-      </div>
+      </Switch>
     </BrowserRouter >
   )
 }

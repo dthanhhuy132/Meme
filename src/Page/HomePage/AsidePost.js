@@ -21,7 +21,7 @@ export default function AsidePost() {
 
   useEffect(() => {
     dispatch(actFetchPostsByUserIdAsync(currUserId))
-  }, [currUserId])
+  }, [currUserId, dispatch])
 
 
 

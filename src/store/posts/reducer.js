@@ -1,4 +1,4 @@
-import { ACT_FETCH_POSTS, ACT_FETCH_POSTS_BY_USERID, ACT_FETCH_POSTS_BY_POSTID } from './action';
+import { ACT_FETCH_POSTS, ACT_FETCH_POSTS_BY_USERID, ACT_FETCH_POSTS_BY_POSTID, ACT_FETCH_POSTS_BY_SEARCH, ACT_CREATE_NEW_POST, ACT_DELETE_POSTS } from './action';
 
 const initState = {
   postPaging: {
@@ -9,12 +9,14 @@ const initState = {
   userPosts: {
     posts: []
   },
-  postByPostid: {}
+  postByPostid: {},
+  searchPosts: []
 }
 
 export default function postsReducer(state = initState, action) {
   switch (action.type) {
     case ACT_FETCH_POSTS:
+      console.log('action.payload.posts trong fetchPost', action.payload.posts)
       return {
         ...state,
         postPaging: {
@@ -42,6 +44,34 @@ export default function postsReducer(state = initState, action) {
       return {
         ...state,
         postByPostid: action.payload.post_category
+      }
+
+    case ACT_FETCH_POSTS_BY_SEARCH:
+      return {
+        ...state,
+        searchPosts: action.payload.searchPosts
+      }
+    case ACT_CREATE_NEW_POST:
+      return {
+        ...state
+      }
+
+    case ACT_DELETE_POSTS:
+
+      const postDeleteId = action.payload.postid;
+      console.log('postDeleteId', postDeleteId)
+
+      return {
+        ...state,
+        postPaging: {
+          ...state.postPaging,
+          posts: [...state.postPaging.posts.filter(post => post.PID !== postDeleteId)],
+        },
+        userPosts: {
+          ...state.userPosts,
+          posts: [...state.userPosts.posts.filter(post => post.PID !== postDeleteId)]
+        },
+        searchPosts: [...state.searchPosts.filter(post => post.PID !== postDeleteId)]
       }
 
     default:

@@ -4,7 +4,9 @@
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 9000000 !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .modal-wrapper .dth-mask {
@@ -13,21 +15,120 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+
+  /* overflow: hidden; */
+}
+.dth-dialogue {
+  position: relative;
 }
 
 .modal-wrapper .dth-modal-content {
   position: absolute;
-  top: 50px;
+  top: 60px;
   left: 50%;
+
   min-width: 600px;
-  background-color: red;
-  transform: translateX(-50%);
+  min-height: 120px;
+
+  background-color: white;
+  border-radius: 5px;
+
+  transform: translateX(-50%) scale(0.7);
+  transition: all 0.2s ease-out;
 }
 
-/* .dth-modal-content .dth-modal-header {
-  position: relative;
-  padding: 5px 20px 5px 20px;
+/* Modal open */
+.dth-modal-open .dth-modal-content {
+  top: 80px;
+  transform: translateX(-50%) scale(1);
+} /* Modal Open */
 
-  border-bottom: 1px solid #ccc;
-} */
+/* ------------------MODEAL HEADER --------------- */
+.dth-modal-content .dth-modal-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  height: 60px;
+  border-bottom: 1px solid #dedbdb;
+  padding-left: 15px;
+
+  font-weight: 400;
+}
+
+.dth-modal-header i {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  font-size: 35px;
+  color: rgb(155, 142, 142);
+  padding: 20px;
+  padding-right: 15px;
+
+  cursor: pointer;
+}
+
+.dth-modal-header i:hover {
+  color: #e90f0f;
+}
+
+/*  ------------ MODAL BODY -------------- */
+.dth-modal-body {
+  border-bottom: 1px solid #dedbdb;
+  min-height: 0px;
+}
+
+/*  ------------ MODAL FOOTER -------------- */
+.dth-modal-footer {
+  position: relative;
+  height: 60px;
+}
+
+.dth-modal-footer__btn {
+  position: absolute;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+
+  margin-right: 15px;
+  height: 100%;
+}
+
+.dth-modal-footer__btn .modal-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 10px;
+  padding: 7px;
+  min-width: 90px;
+
+  border: none;
+  border-radius: 7px;
+
+  font-weight: 400;
+  font-size: 18px;
+  color: #007bff;
+  cursor: pointer;
+}
+.modal-btn:hover {
+  background-color: rgb(214 214 214);
+}
+
+.modal-btn-active {
+  color: #fff !important;
+  background-color: #007bff !important;
+}
+
+.modal-btn-active:hover {
+  background-color: #268efd !important;
+}

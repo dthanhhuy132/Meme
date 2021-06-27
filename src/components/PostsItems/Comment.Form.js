@@ -45,11 +45,11 @@ export default function CommentForm() {
 
       <div className="ass1-add-comment__content">
 
-        <a>
+        <p>
           <span className={`warning-text-none ${color_red}`}>Vượt quá nội dung cho phép</span>
           <a href='/' className={`dth-btn-comment ${displayNone}`}>Thêm bình luận</a>
-        </a>
-        <a href="#" className="ass1-add-comment__btn-save ass1-btn-icon ">
+        </p>
+        <a href="/" className="ass1-add-comment__btn-save ass1-btn-icon ">
           <span className={color_red}>{countChar}</span>
           <i className={`far fa-check-circle ${color_red} ${color_green}`} ></i>
         </a>

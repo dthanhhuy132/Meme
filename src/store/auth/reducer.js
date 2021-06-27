@@ -1,6 +1,4 @@
-import { ACT_FETCH_ME_INFO, ACT_LOGIN, GET_USER_INFO, TOKEN_KEY } from "./action";
-
-
+import { ACT_FETCH_ME_INFO, ACT_LOGIN, ACT_LOGOUT, GET_USER_INFO } from "./action";
 
 const initState = {
   currentUser: null,
@@ -26,6 +24,11 @@ export default function authReducer(state = initState, action) {
       return {
         ...state,
         userData: action.payload.userData
+      }
+    case ACT_LOGOUT:
+      return {
+        currentUser: null,
+        userData: null
       }
 
     default:

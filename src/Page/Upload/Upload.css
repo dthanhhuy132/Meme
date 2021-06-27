@@ -1,0 +1,109 @@
+.dth-margin-bottom-description {
+  margin-bottom: 7px;
+}
+
+.warning-description {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.warning-description p {
+  color: red;
+  margin-right: 3px;
+}
+
+.warning-description a {
+  padding: 3px 10px;
+}
+
+.warning-description a:hover {
+  background-color: rgb(190, 190, 190);
+  border-radius: 5px;
+  font-weight: bolder;
+}
+
+.warning-img {
+  color: red;
+  margin-right: 3px;
+  font-size: 12px !important;
+  margin-top: 5px;
+}
+
+.ass1-aside__edit-post > div {
+  display: flex;
+}
+.warnign-category {
+  color: red;
+  margin-right: 3px;
+  font-size: 12px !important;
+  margin-bottom: 5px;
+}
+
+.warning-link-img {
+  color: red;
+  font-size: 13px;
+  margin-bottom: -18px;
+  margin-top: -10px;
+}
+
+.warning-link-img > span {
+  font-weight: 600;
+}
+
+.ass1-checkbox p {
+  cursor: pointer;
+}
+
+/* FOOTER FOR EDITTING */
+.dth-modal-footer-editInUpload {
+  position: relative;
+  height: 60px;
+}
+
+.dth-modal-footer__btn-editInUpload {
+  position: absolute;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+
+  margin-right: 15px;
+  height: 100%;
+}
+
+.dth-modal-footer__btn-editInUpload .modal-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 10px;
+  padding: 7px;
+  min-width: 90px;
+
+  border: none;
+  border-radius: 7px;
+
+  font-weight: 400;
+  font-size: 18px;
+  color: #007bff;
+  cursor: pointer;
+}
+.modal-btn:hover {
+  background-color: rgb(214 214 214);
+}
+
+.modal-btn-active {
+  color: #fff !important;
+  background-color: #007bff !important;
+}
+
+.modal-btn-active:hover {
+  background-color: #268efd !important;
+}
+
+.dth-btn-disable {
+  background: #aea8a8 !important;
+  pointer-events: none;
+}

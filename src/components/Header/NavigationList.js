@@ -1,10 +1,8 @@
 import { useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
 
-
+import { Link } from 'react-router-dom'
 
 export default function NavigationList() {
-  const history = useHistory();
   const categories = useSelector(state => state.Categories.categories);
 
   const newCategories = [];
@@ -21,15 +19,10 @@ export default function NavigationList() {
     e.preventDefault()
   }
 
-  function clickOnCategory(e, category) {
+  function clickOnCategory(e) {
     e.preventDefault();
-
-    const tagIndex = category.id
-    history.push(`/category/${tagIndex}`)
-
     const navEl = document.querySelector('.ass1-header__menu .ass1-header__nav')
     navEl.style.display = 'none';
-
   }
 
   if (!categories) return;
@@ -47,10 +40,11 @@ export default function NavigationList() {
                       categories.map(category => {
                         const key = category.id;
                         const name = category.id;
+                        const tagIndex = category.id
                         return (
                           <li key={key}
-                            onClick={(e) => clickOnCategory(e, category)}>
-                            <a href="/" key={name} >{category.text}</a>
+                            onClick={clickOnCategory}>
+                            <Link to={`/category/${tagIndex}`} key={name} >{category.text}</Link>
                           </li>
                         )
                       })

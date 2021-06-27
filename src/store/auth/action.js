@@ -8,6 +8,7 @@ export const ACT_FETCH_ME_INFO = 'ACT_FETCH_ME_INFO';
 export const ACT_LOGIN = 'ACT_LOGIN';
 export const GET_USER_INFO = 'GET_USER_INFO'
 // export const ACT_REGISTER = 'ACT_REGISTER'
+export const ACT_LOGOUT = 'ACT_LOGOUT'
 
 
 //////////////// Login function
@@ -25,29 +26,23 @@ export function actLoginAsync({
   email,
   password
 }) {
-  console.log('chay vao actLogin')
   return async dispatch => {
     try {
       const res = await AuthService.login({
         email,
         password
       })
+      console.log('res trong auth', res)
       const token = res.data.token;
-
       dispatch(actLogin(res.data.user))
       localStorage.setItem(TOKEN_KEY, token)
-
-
-
 
       return {
         ok: true,
         data: res.data
       }
     } catch (e) {
-      return {
-        ok: false
-      }
+      console.log('run auth catch')
     }
   }
 }
@@ -133,10 +128,24 @@ export function actGetUserInfoAsync(userid) {
       const res = await AuthService.getMeInfo(userid);
       const userData = res.data.user;
       // console.log('action fetch user post info run', userid)
-      dispatch(actGetUserInfo(userData))
-    } catch (er) {
+      dispatch(actGetUserInfo(userData));
 
+      return {
+        ok: true
+      }
+    } catch (er) {
+      return {
+        ok: false
+      }
     }
 
+  }
+}
+
+
+// -------------LOGOUT-------
+export function actLogout() {
+  return {
+    type: ACT_LOGOUT
   }
 }

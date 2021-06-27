@@ -1,9 +1,7 @@
 import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { actFetchCategoryPostsAsync } from "../../store/categories/actions";
-
 
 import Post from '../../components/PostsItems';
 import Button from '../../components/common/Button';
@@ -11,8 +9,8 @@ import UsePaging from "../../hooks/usePaging";
 
 export default function CategoriesPage() {
   const param = useParams();
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
 
   const tagIndex = param.tagIndex;
 
@@ -20,6 +18,7 @@ export default function CategoriesPage() {
     dispatch(actFetchCategoryPostsAsync({
       tagIndex
     })) // Test thu cho nay cho xoa
+    // eslint-disable-next-line
   }, [tagIndex])
 
   const {
@@ -33,6 +32,8 @@ export default function CategoriesPage() {
     funcSelector: state => state.Categories.categoryPosts,
     actAsync: actFetchCategoryPostsAsync,
   })
+
+
 
 
   // if (!posts) return null;

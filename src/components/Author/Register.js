@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
@@ -8,7 +7,7 @@ import { actRegisterAsync } from "../store/auth/action";
 
 
 
-export default function Register() {
+export default function Register({ handleRegister }) {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [registerData, setRegisterData] = useState({
@@ -17,7 +16,6 @@ export default function Register() {
     password: 'Meme@132',
     repassword: 'Meme@132',
   })
-
 
 
   function handleClick() {
@@ -41,7 +39,6 @@ export default function Register() {
         <div className="ass1-login__content ">
           <div className="ass1-login__form">
             <form >
-              <h1>Đăng ký</h1>
               <Input
                 className="form-control"
                 type="email"
@@ -86,8 +83,8 @@ export default function Register() {
                 })}
               />
 
-              <div className="ass1-login__send">
-                <Link to='/login'>Đăng nhập</Link>
+              <div className="ass1-login__send dth-register-btn">
+                <a href='/' onClick={handleRegister} className='btn-login-register'>Đăng nhập</a>
                 <Button isLoading={isLoading} onClick={handleClick}>Đăng ký</Button>
               </div>
             </form>

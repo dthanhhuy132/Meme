@@ -1,8 +1,14 @@
+import classNames from "classnames"
 
 
-export default function DotLoading() {
+export default function DotLoading({ size }) {
+
+  const classes = classNames('dotLoading-cmt', {
+    'dotLoading-cmt-large': size === 'large',
+  })
+
   return (
-    <div className='dotLoading-cmt'>
+    <div className={classes}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"

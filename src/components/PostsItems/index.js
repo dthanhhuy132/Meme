@@ -1,28 +1,39 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import classNames from "classnames";
+
+import { actFechCommentsAsync } from "../../store/comments/action";
 
 import ContentImage from "./ContentImage";
 import PostTime from "./PostTime";
 import Author from "./Author";
+import UserSetting from './UserSetting'
 import Avatar from "./Avartar";
 import CmtStas from "./CmtStas";
 import Comment from "./Comment";
-import classNames from "classnames";
-import { actFechCommentsAsync } from "../../store/comments/action";
 
-export default function PostItem({ post,
+
+export default function PostItem({
+  post,
   classCol,
   comment = true,
   authorInfo,
-  commentForPostDetail = false
+  
+  commentForPostDetail = false,
+
 }) {
+
 
   const dispatch = useDispatch();
   const [commentCommon, setCommentCommon] = useState(false);
-  const [isLoadingComment, setIsLoadingComment] = useState(false)
+  const [isLoadingComment, setIsLoadingComment] = useState(false);
 
-  // console.log('post chi tiet', post);
-  // console.log('authorInfo', authorInfo)
+  const currentUser = useSelector(state => state.Auth.currentUser);
+
+  let displayUserSetting = false;
+  if (currentUser?.USERID === post?.USERID || currentUser?.fullname === post?.fullname) {
+    displayUserSetting = true;
+  }
 
   const classes = classNames('ass1-section__item', {
     'col-lg-6': classCol === '6'
@@ -52,8 +63,10 @@ export default function PostItem({ post,
   return (
     <div className={classes}>
       <div className="ass1-section" >
-        <div className="ass1-section__head">
+        <div className="ass1-section__head head-user-for-author">
           <Avatar AvatarURL={post?.profilepicture || authorInfo?.profilepicture} userid={post?.USERID} ></Avatar>
+          {displayUserSetting && < UserSetting postid={post?.PID} post={post} />}
+
           <div>
             <Author userid={post?.USERID}>{post.fullname || authorInfo?.fullname}</Author>
             <PostTime>{post?.time_added}</PostTime>
