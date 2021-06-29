@@ -31,6 +31,22 @@ const AuthService = {
     return api.callWithToken().get('/member/member.php?userid=' + userid)
   },
 
+  updateProfile(formData) {
+    return api.callWithToken().post('/member/update.php', formData)
+  },
+
+  changePassword({
+    oldPassword,
+    newPassword,
+    reNewPassword
+  }) {
+    return api.callWithToken().post('/member/password.php', {
+      oldPassword,
+      newPassword,
+      reNewPassword
+    })
+  }
+
 }
 
 export default AuthService;

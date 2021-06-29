@@ -6,9 +6,10 @@ export const USER_ID = 'id'
 
 export const ACT_FETCH_ME_INFO = 'ACT_FETCH_ME_INFO';
 export const ACT_LOGIN = 'ACT_LOGIN';
-export const GET_USER_INFO = 'GET_USER_INFO'
+export const GET_USER_INFO = 'GET_USER_INFO';
 // export const ACT_REGISTER = 'ACT_REGISTER'
-export const ACT_LOGOUT = 'ACT_LOGOUT'
+export const ACT_LOGOUT = 'ACT_LOGOUT';
+export const ACT_UPDATE_USER_INFO = 'ACT_UPDATE_USER_INFO';
 
 
 //////////////// Login function
@@ -138,7 +139,6 @@ export function actGetUserInfoAsync(userid) {
         ok: false
       }
     }
-
   }
 }
 
@@ -146,6 +146,63 @@ export function actGetUserInfoAsync(userid) {
 // -------------LOGOUT-------
 export function actLogout() {
   return {
-    type: ACT_LOGOUT
+    type: ACT_LOGOUT,
   }
 }
+
+
+
+// ______________________________________________________ Edit and update userInfo
+export function actUpdateUserInfo(currentUserUpdate) {
+  return {
+    type: ACT_UPDATE_USER_INFO,
+    payload: {
+      currentUserUpdate
+    }
+  }
+}
+
+export function actUpdateUserInfoAsync(formData) {
+  return async dispatch => {
+    try {
+      const res = await AuthService.updateProfile(formData);
+      const currentUserUpdate = res.data.user;
+
+      dispatch(actUpdateUserInfo(currentUserUpdate))
+      return {
+        ok: true,
+      }
+    } catch (er) {
+      return {
+        ok: false,
+      }
+    }
+  }
+}
+
+// ______________________________________________________ Change password
+export function actChangePasswordAsync({
+  oldPassword,
+  newPassword,
+  reNewPassword
+}) {
+  return async dispatch => {
+    try {
+      const res = await AuthService.changePassword({
+        oldPassword,
+        newPassword,
+        reNewPassword
+      })
+      console.log('res trong change password', res)
+      return {
+        ok: true
+      }
+
+    } catch (err) {
+      return {
+        ok: false
+      }
+    }
+  }
+}
+

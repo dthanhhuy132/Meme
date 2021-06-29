@@ -43,35 +43,50 @@ export function actFechCommentsAsync(postid) {
 
 ////////////////////////////////////// Post new comments
 
-export function actPostNewComment(newComment) {
+export function actPostNewComment({ newComment, postid }) {
   return {
     type: ACT_POST_NEW_COMMENT,
     payload: {
-      newComment
+      newComment,
+      postid
     }
   }
 }
 
 export function actPostNewCommentAsync({
-  comments,
+  comment,
   postid
 }) {
+  console.log('before action return')
   return async dispatch => {
     try {
       const res = await commentsService.postNewComment({
-        comments,
+        comment,
         postid
       });
+      // console.log('res trong new comment', res);
+      const newComment = res.data.body;
+      // console.log('newComment', newComment)
+      dispatch(actPostNewComment({
+        newComment,
+        postid
+      }))
+      console.log('try')
 
-      console.log('res', res)
-
+      return {
+        ok: true
+      }
     } catch (er) {
+      console.log('catch')
 
+      return {
+        ok: false
+      }
     }
   }
 }
 
-///////////////////////////////////                       ACTION RESET COMMENTS
+/////////////////////////////////// ____________________________ACTION RESET COMMENTS
 export function actResetComment() {
   return {
     type: ACT_RESET_COMMENT

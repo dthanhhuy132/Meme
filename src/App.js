@@ -9,7 +9,7 @@ import CategoriesPage from './Page/Category';
 import PostDetail from './Page/PostDetail';
 import SearchPage from './Page/Search';
 import Upload from './Page/Upload';
-import Profile from './Page/Profile';
+import Profile from './Page/ProfilePage';
 import HomePage from './Page/HomePage';
 
 

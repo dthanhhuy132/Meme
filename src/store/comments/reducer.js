@@ -1,4 +1,4 @@
-import { ACT_FETCH_COMMENTS, ACT_RESET_COMMENT } from "./action";
+import { ACT_FETCH_COMMENTS, ACT_POST_NEW_COMMENT, ACT_RESET_COMMENT } from "./action";
 
 
 const initState = {
@@ -14,7 +14,6 @@ export default function CommentsReducer(state = initState, action) {
       // key - 1: [{},{}]
       // key - 2: [{},{}]
       // }
-
       const comments = action.payload.comments;
       const postid = action.payload.postid;
 
@@ -22,9 +21,6 @@ export default function CommentsReducer(state = initState, action) {
       const postCmtById = {};
 
       postCmtById[key] = comments;
-
-      // console.log('postCmtById', postCmtById)
-
 
       return {
         ...state,
@@ -39,6 +35,25 @@ export default function CommentsReducer(state = initState, action) {
       return {
         ...state,
         comments: {}
+      }
+
+    case ACT_POST_NEW_COMMENT:
+      let copyCmtState = { ...state.comments }
+
+      const newComment = action.payload.newComment;
+      const postidNewComment = action.payload.postid;
+      console.log('newComment trong reducer', newComment)
+      console.log('copyCmtState', copyCmtState)
+
+      const postCmtUpdate = copyCmtState[`postCmt-${postidNewComment}`].push(newComment)
+      console.log('postCmtUpdate', postCmtUpdate)
+
+      return {
+        ...state,
+        comments: {
+          ...state.comments,
+          ...postCmtUpdate
+        }
       }
 
     default:

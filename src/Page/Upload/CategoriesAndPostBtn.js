@@ -27,7 +27,7 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
     //Props for edit
     isEdited,
     setIsEdited
-  } = propsPassflogin
+  } = propsPass
   //_______________________________________________________________________________ for editData start
   useEffect(() => {
     if (categories_index) setCategoryValue(categories_index);

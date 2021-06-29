@@ -18,9 +18,7 @@ export default function PostItem({
   classCol,
   comment = true,
   authorInfo,
-  
   commentForPostDetail = false,
-
 }) {
 
 

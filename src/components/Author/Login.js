@@ -1,11 +1,11 @@
-import Input from '../components/common/Input';
+import Input from '../common/Input';
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { actLoginAsync, USER_ID } from '../store/auth/action';
+import { actLoginAsync, USER_ID } from '../../store/auth/action';
 
-import ButtonDth from '../components/common/Button';
-import LoginAndRegisterHeader from '../components/LoginAndRegisterHeader'
+import ButtonDth from '../common/Button';
+import LoginAndRegisterHeader from '../LoginAndRegisterHeader'
 import Register from './Register';
 
 // antdesign:

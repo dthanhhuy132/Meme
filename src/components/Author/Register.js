@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import Button from "../components/common/Button";
-import Input from "../components/common/Input";
-import { actRegisterAsync } from "../store/auth/action";
+import Button from "../common/Button";
+import Input from "../common/Input";
+import { actRegisterAsync } from "../../store/auth/action";
 
 
 

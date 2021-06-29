@@ -1,10 +1,13 @@
 import './UserStyle.css'
 import classNames from 'classnames';
+
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
 import { actLogout, TOKEN_KEY, USER_ID } from '../../store/auth/action';
 
+import Modal from '../Modal';
+import ChangePassword from '../Author/ChangePassword'
 // antdesign:
 import { notification } from 'antd';
 
@@ -14,7 +17,11 @@ export default function User({ currentUser }) {
   const dispatch = useDispatch();
 
   const [isOpenSetting, setIsOpenSetting] = useState(false);
-  const defaultAvatar = currentUser?.profilepicture !== '' ? currentUser?.profilepicture : 'https://i.kym-cdn.com/entries/icons/facebook/000/017/666/avatar_default_big.jpg'
+  const defaultAvatar = currentUser.profilepicture !== '' ? currentUser.profilepicture : 'https://i.kym-cdn.com/entries/icons/facebook/000/017/666/avatar_default_big.jpg'
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModalChangePassword, setIsPOpenModalChangePassword] = useState(false)
+
 
   function handleClickShowSetting(e) {
     setIsOpenSetting(!isOpenSetting)
@@ -68,14 +75,25 @@ export default function User({ currentUser }) {
         closeIcon: <i className="fas fa-times"></i>,
         placement,
       })
-    })(`Đăng xuất rồi à. Bái bai ${currentUser.fullname} `)
+    })(`Bái bai ${currentUser.fullname}`)
+  }
+
+  function handleClickChangePassWord(e) {
+    e.preventDefault();
+    setIsOpenModal(true);
+    setIsPOpenModalChangePassword(true)
+  }
+
+  let modalProps = {
+    isOpenModal,
+    setIsOpenModal
   }
 
 
   return (
     <div className={classLogin}>
       <div className='dth-user-login__img' onClick={handleClickProfile}>
-        <img src={defaultAvatar} alt=' hinh ne' />
+        <img src={defaultAvatar} alt='' />
       </div>
       <div className='dth-user-login__text' >
         <p className={userNameInProfile} onClick={handleClickProfile}>{currentUser?.fullname}</p>
@@ -88,11 +106,23 @@ export default function User({ currentUser }) {
               <div><i className="far dth-far fa-trash-alt"></i></div>
               <p>Giao diện tối</p>
             </li>
+
+            <li onClick={handleClickChangePassWord}>
+              <div><i className="far dth-far fa-trash-alt" ></i></div>
+              <p>Đổi mật khẩu</p>
+            </li>
+
             <li onClick={handleLogout}>
               <div><i className="far dth-far fa-eye-slash"></i></div>
               <p>Đăng xuất</p>
             </li >
           </ul >
+        }
+        {
+          isOpenModal && isOpenModalChangePassword &&
+          <Modal modalProps={modalProps} isRenderFooter={false} header='Thay đổi mật khẩu'>
+            <ChangePassword setIsPOpenModalChangePassword={setIsPOpenModalChangePassword} />
+          </Modal>
         }
       </div>
     </div>

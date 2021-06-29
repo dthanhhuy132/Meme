@@ -3,11 +3,9 @@ import DotLoading from '../common/Loading/DotLoading';
 
 
 
-export default function CommentItems({ postid, loadingComment }) {
+export default function CommentItems({ postid, loadingComment, currentUser }) {
   const comments = useSelector(state => state.Comments.comments);
   // console.log('loadingComment truyen toi', loadingComment)
-
-
 
   const key = `postCmt-${postid}`
   const commentsForPostId = comments[key];
@@ -23,7 +21,9 @@ export default function CommentItems({ postid, loadingComment }) {
           ? <DotLoading />
           : hasComment
             ? commentsForPostId?.map((comment, index) => {
-              const avatar = comment.profilepicture || 'http://img.thehobbyblogger.com/2012/08/custom-avatar.png'
+              let avatar = comment.profilepicture !== '' ? comment.profilepicture : 'https://i.kym-cdn.com/entries/icons/facebook/000/017/666/avatar_default_big.jpg'
+              if (!avatar) avatar = currentUser.profilepicture
+              console.log('avatar', avatar)
               return (
                 < div className="ass1-comments__section" key={index} >
                   <a href="/" className="ass1-comments__avatar ass1-avatar"><img src={avatar} alt="" /></a>

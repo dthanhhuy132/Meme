@@ -1,0 +1,41 @@
+/* Upload avatar */
+.avatar {
+  position: relative;
+}
+
+.dth-input-Profile {
+  display: none;
+}
+
+.avatar-loading {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.dth-upload-editProfile {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  padding: 30px;
+  cursor: pointer;
+}
+
+.avatar:hover .dth-upload-editProfile {
+  display: block;
+  color: black !important;
+  background: rgb(158, 152, 152);
+  opacity: 0.6;
+}
+
+.dth-profile-desc {
+  height: 80px !important;
+}
+
+.dth-editProfile-disable {
+  background-color: rgb(179, 179, 179);
+  pointer-events: none;
+}

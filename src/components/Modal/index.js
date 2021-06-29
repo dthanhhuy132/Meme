@@ -4,19 +4,18 @@ import { useEffect } from "react";
 
 import Button from '../common/Button';
 export default function Modal({
-  modalProps,
+  modalProps = {},
   children,
-  header,
+  header = '',
   isRenderFooter = true,
   renderFooter,
   // isEditing = false,
   isEdit = false,
+  isLoading = false
 }) {
 
   let {
     // postid,
-    isLoading,
-
     isOpenModal,
     setIsOpenModal,
 

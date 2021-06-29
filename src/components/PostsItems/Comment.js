@@ -1,17 +1,32 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
 
 import CommentForm from './Comment.Form';
 import CommentItems from './Comment.Items';
+import Modal from '../Modal';
+import Login from '../Author/Login';
+import { useState } from 'react';
 
 export default function Comment({ postid, loadingComment }) {
   const currentUser = useSelector(state => state.Auth.currentUser);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
+
+  function handClickOpenLogin(e) {
+    e.preventDefault()
+    setIsOpenModal(true)
+  }
+
+  let modalProps = {
+    isOpenModal,
+    setIsOpenModal
+  }
+
+  function closeModal() {
+    setIsOpenModal(false)
+  }
   const LoginComponet = () => (
     <div className='comment-login'>Vui lòng
-      <Link to='/login'> Đăng nhập </Link>
-      hoặc
-      <Link to='/register'> Đăng ký </Link>
+      <a href='/' onClick={handClickOpenLogin}> Đăng nhập/Đăng ký </a>
       để bình luận
     </div>
   )
@@ -20,11 +35,17 @@ export default function Comment({ postid, loadingComment }) {
     <>
       {!currentUser
         ? <LoginComponet />
-        : <CommentForm />
+        : <CommentForm currentUser={currentUser} postid={postid} />
       }
 
-      <CommentItems postid={postid} loadingComment={loadingComment} />
+      <CommentItems postid={postid} loadingComment={loadingComment} currentUser={currentUser} />
       <div className='comment-footer-space'></div>
+      {
+        isOpenModal &&
+        <Modal modalProps={modalProps} isRenderFooter={false} closeModal={closeModal}>
+          <Login closeModal={closeModal} setIsOpenModal={setIsOpenModal} currentUser={currentUser} />
+        </Modal >
+      }
     </>
   )
 }

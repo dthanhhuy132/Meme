@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import HeaderSearch from './HeaderSearch';
 import NavigationList from './NavigationList';
 import Modal from '../Modal';
-import Login from '../../Page/Login';
+import Login from '../Author/Login';
 import User from './User'
 
 export default function Header() {
@@ -16,7 +16,6 @@ export default function Header() {
     setIsOpenModal(true)
   }
   function closeModal() {
-    console.log('chay uoc ne')
     setIsOpenModal(false)
   }
 

@@ -167,8 +167,6 @@ export default function UserSetting({ postid, post }) {
   let modalProp = {
     postid,
 
-    isLoading,
-
     isOpenModal,
     setIsOpenModal,
 
@@ -209,6 +207,7 @@ export default function UserSetting({ postid, post }) {
           header={header} isEditting={true}
           isEdit={isEdit}
           isRenderFooter={isRenderFooter}
+          isLoading={isLoading}
         >
           {isEdit
             ?
