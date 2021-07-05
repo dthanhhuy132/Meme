@@ -82,7 +82,7 @@
 
 /*  ------------ MODAL BODY -------------- */
 .dth-modal-body {
-  border-bottom: 1px solid #dedbdb;
+  /* border-bottom: 1px solid #dedbdb; */
   min-height: 0px;
 }
 

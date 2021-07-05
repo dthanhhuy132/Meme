@@ -20,9 +20,10 @@ export default function HeaderSearch() {
 
 
   return (
-    <div className="ass1-header__search">
+    <div className="ass1-header__search header-search-responsive-mobile">
       <form action="/" onSubmit={handleSubmit}>
         <label>
+          <i className="fas fa-search icon-Search"></i>
           <input
             type="search"
             name="search-text"
@@ -31,7 +32,6 @@ export default function HeaderSearch() {
             value={searchStr}
             onChange={(e) => setSearchStr(e.target.value)}
           />
-
           <i className="fas fa-search icon-Search"></i>
         </label>
       </form>

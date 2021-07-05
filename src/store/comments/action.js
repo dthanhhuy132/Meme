@@ -57,7 +57,6 @@ export function actPostNewCommentAsync({
   comment,
   postid
 }) {
-  console.log('before action return')
   return async dispatch => {
     try {
       const res = await commentsService.postNewComment({
@@ -71,13 +70,11 @@ export function actPostNewCommentAsync({
         newComment,
         postid
       }))
-      console.log('try')
 
       return {
         ok: true
       }
     } catch (er) {
-      console.log('catch')
 
       return {
         ok: false

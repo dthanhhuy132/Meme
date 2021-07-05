@@ -5,7 +5,7 @@
   height: 40px;
   padding: 2px;
   border-radius: 30px;
-
+  border: 1px solid #3482e2;
   margin-left: 33px;
   cursor: pointer;
 
@@ -14,17 +14,16 @@
 
 .dth-user-login-active {
   background: #3482e2;
-  margin-left: 0px;
+  /* margin-left: 0px; */
 }
 
 .dth-user-profile-page {
   background: #3482e2;
-  padding-right: 10px;
 }
 
 .dth-user-login:hover {
   background: #3482e2;
-  margin-left: 0px;
+  /* margin-left: 0px; */
 }
 
 .dth-user-login__img img {
@@ -41,7 +40,7 @@
 }
 
 .dth-user-login__text > p {
-  padding: 20px 0px 20px 4px;
+  padding: 20px 0px 20px 5px;
 }
 .dth-user-login__text-in-profile {
   color: rgb(12, 237, 245);
@@ -51,9 +50,9 @@
 .dth-fa-user__icon {
   font-size: 13px;
   padding: 10px;
-  padding-left: 15px;
+  padding-left: 10px;
   transition: all 0.2s ease-in-out;
-  display: none;
+  /* display: none; */
 }
 
 .dth-user-login:hover .dth-fa-user__icon {
@@ -62,11 +61,11 @@
 
 .dth-fa-user__icon:hover {
   color: rgb(12, 237, 245);
-  transform: rotate(90deg) translateX(-5px) scale(1.5);
+  /* transform: rotate(90deg) translateX(-5px) scale(1.5); */
 }
 .userSettingOpen {
   color: rgb(12, 237, 245);
-  transform: rotate(90deg) translateX(-5px) scale(1.5);
+  transform: rotate(90deg) translate(-2px, 1px) scale(1.5);
   display: block;
 }
 
@@ -75,6 +74,11 @@
   top: 65px;
 }
 
-.dth-user-login__setting > li {
+.dth-user-login__setting li:nth-child(2) {
   border-bottom: 1px solid rgb(182, 182, 182);
+}
+
+/* Button */
+.ass1-header__btn-upload:hover {
+  color: #3482e2 !important;
 }

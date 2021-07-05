@@ -3,7 +3,7 @@ import './Upload.css'
 import { useState, useEffect } from 'react';
 import { actPostNewPostAsync, editPostAsync } from '../../store/posts/action';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 
 // antdesign:
 import { notification } from 'antd';
@@ -11,9 +11,17 @@ import { notification } from 'antd';
 import CategoriesAndPostBtn from './CategoriesAndPostBtn'
 
 let editData = {}
-export default function Upload({ isEdit = false, post, categories_index, handleCloseModal }) {
-  const dispatch = useDispatch();
+export default function Upload({
+  isEdit = false,
+  post,
+  categories_index,
+  handleCloseModal,
+  closeModal = () => { },
+  setIsOpenModal = () => { },
+  goBack = () => { }
+}) {
 
+  const dispatch = useDispatch();
   const [warningPicture, setWarningPicture] = useState(false);
   const [warningDesc, setWarningDesc] = useState(false);
   const [waningLinkImg, setWarningLinkImg] = useState(false);
@@ -25,6 +33,7 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
     post_content: '',
     category: '',
   })
+  const history = useHistory();
 
   useEffect(() => {
     if (isEdit) {
@@ -39,9 +48,14 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
 
     editData['url_image'] = post?.url_image;
     editData['post_content'] = post?.post_content;
+    // eslint-disable-next-line
   }, [isEdit])
 
-
+  /// ________________________________________________________________________________________ Clear Memory leak
+  // useEffect(() => {
+  //   let unmount = true;
+  //   return () => unmount = false;
+  // })
   /// ________________________________________________________________________________________ FUNCTION PREPARE DATA
   function handleChange_url_image(e) {
     setFormData({
@@ -104,7 +118,6 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
 
   /// ________________________________________________________________________________________ FUNCTION POST A NEW POST
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
 
   const [isEdited, setIsEdited] = useState(true) //________________ Props for edit
 
@@ -114,8 +127,13 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
   formDataFinal.append('url_image', formData.url_image)
   formDataFinal.append('post_content', formData.post_content)
   formDataFinal.append('category', formData.category)
+  isEdit && formDataFinal.append('postid', post.PID)
 
-  // ____________________ POST A NEW POST FOR EDIT
+  // ____________________________________________________________ EDIT POST A NEW POST FOR EDIT
+  const location = useLocation();
+  const searchPage = location.pathname.indexOf('/search') !== -1;
+  console.log('searchPage laf chuan', searchPage)
+
   function postEditPost() {
     console.log('run ham dispatch edit')
     setIsLoading(true)
@@ -124,7 +142,7 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
     ).then(res => {
       if (res.ok) {
         setIsLoading(false);
-        handleCloseModal();
+        setIsOpenModal();
         (function openNotification(placement) {
           notification.success({
             message: `${placement}`,
@@ -134,8 +152,9 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
             closeIcon: <i className="fas fa-times"></i>,
             placement,
           });
+          searchPage && history.push('/profile');
+          goBack();
         })('Yeah, Bài viết đã thay đổi thành công')
-        history.push('/')
       } else {
         setIsLoading(false);
         (function openNotification(placement) {
@@ -153,8 +172,6 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
     })
   }
 
-
-
   // ___________________ POST A NEW POST FOR UPLOAD
   function postANewPost() {
     setIsLoading(true)
@@ -163,6 +180,7 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
     ).then(res => {
       if (res.ok) {
         setIsLoading(false);
+        closeModal();
         setFormData({
           obj_image: '',
           url_image: post?.url_image || '',
@@ -220,10 +238,10 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
 
   return (
     <main>
-      <div className="container">
+      <div className="container dth-upload">
         {/*sections*/}
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-lg-12">
             {/*section*/}
             <div className="ass1-section ass1-section__edit-post">
               <div className="ass1-section__content" style={{
@@ -243,7 +261,7 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
                       target='_blank'
                       rel="noreferrer"
                       className="ass1-btn ass1-btn-meme"
-                    >Ảnh từ GRIPHY</a>
+                    >GRIPHY.net</a>
                   </div>
                   {waningLinkImg &&
                     <p className='warning-link-img'>Đường dẫn phải kết thúc bằng ký tự <span>'.gif ', '.png', 'jpg'</span></p>
@@ -290,7 +308,7 @@ export default function Upload({ isEdit = false, post, categories_index, handleC
                 {
                   warningDesc &&
                   <div className='warning-description'>
-                    <p>Nhập mô tả không nè bạn hiền?</p>
+                    <p>Nhập mô tả nè bạn hiền?</p>
                   </div>
                 }
               </div>

@@ -11,7 +11,8 @@ export default function Modal({
   renderFooter,
   // isEditing = false,
   isEdit = false,
-  isLoading = false
+  isLoading = false,
+  handleOnClickOKButton,
 }) {
 
   let {
@@ -22,7 +23,6 @@ export default function Modal({
     actAsyncName,
     dispatchDelete,
 
-    dispatchEdit,
     dispatchActivDeactive,
     setEditOff,
   } = modalProps;
@@ -30,6 +30,7 @@ export default function Modal({
   function handleClickOK() {
     if (actAsyncName === 'active/deactie') dispatchActivDeactive();
     if (actAsyncName === 'delete') dispatchDelete();
+    if (handleOnClickOKButton && typeof handleOnClickOKButton === 'function') handleOnClickOKButton();
   }
 
   useEffect(() => {

@@ -48,7 +48,7 @@ const postsService = {
   },
 
   editPost(formData) {
-    return api.callWithToken().post('post/edit.php', formData)
+    return api.callWithToken().post('/post/edit.php', formData)
   },
 
 

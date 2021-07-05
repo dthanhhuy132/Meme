@@ -1,4 +1,12 @@
-import { ACT_FETCH_POSTS, ACT_FETCH_POSTS_BY_USERID, ACT_FETCH_POSTS_BY_POSTID, ACT_FETCH_POSTS_BY_SEARCH, ACT_CREATE_NEW_POST, ACT_DELETE_POSTS } from './action';
+import {
+  ACT_FETCH_POSTS,
+  ACT_FETCH_POSTS_BY_USERID,
+  ACT_FETCH_POSTS_BY_POSTID,
+  ACT_FETCH_POSTS_BY_SEARCH,
+  ACT_CREATE_NEW_POST,
+  ACT_DELETE_POSTS,
+  ACT_EDIT_POSTS
+} from './action';
 
 const initState = {
   postPaging: {
@@ -16,7 +24,7 @@ const initState = {
 export default function postsReducer(state = initState, action) {
   switch (action.type) {
     case ACT_FETCH_POSTS:
-      console.log('action.payload.posts trong fetchPost', action.payload.posts)
+      // console.log('action.payload.posts trong fetchPost', action.payload.posts)
       return {
         ...state,
         postPaging: {
@@ -51,16 +59,85 @@ export default function postsReducer(state = initState, action) {
         ...state,
         searchPosts: action.payload.searchPosts
       }
+
     case ACT_CREATE_NEW_POST:
+
       return {
-        ...state
+        ...state,
+        postPaging: {
+          ...state.postPaging,
+          posts: [
+            action.payload.newPost,
+            ...state.postPaging.posts,
+          ],
+        },
+        userPosts: {
+          ...state.userPosts,
+          posts: [
+            action.payload.newPost,
+            ...state.userPosts.posts,
+          ]
+        },
+        searchPosts: [
+          action.payload.newPost,
+          ...state.searchPosts,
+        ],
       }
 
+    case ACT_EDIT_POSTS:
+      let postid = action.payload.editPost.PID;
+      let editPost = action.payload.editPost;
+      console.log('editPost trong reducer', editPost)
+
+      let copyState = { ...state };
+      console.log('copyState', copyState)
+      console.log('state', state)
+
+
+      let indexPostsInPostPaging;
+      copyState.postPaging.posts && copyState.postPaging.posts.forEach((post, index) => {
+        if (post.PID === postid) {
+          indexPostsInPostPaging = index
+        }
+      })
+      copyState.postPaging.posts.splice(indexPostsInPostPaging, 1, editPost);
+
+
+      let indexSearchPosts;
+      copyState.searchPosts && copyState.searchPosts.forEach((post, index) => {
+        if (post.PID === postid) {
+          indexSearchPosts = index
+        }
+      })
+      copyState.searchPosts.splice(indexSearchPosts, 1, editPost)
+
+      let indexUserPost;
+      copyState.userPosts.posts && copyState.userPosts.posts.forEach((post, index) => {
+        if (post.PID === postid) {
+          indexUserPost = index
+        }
+      })
+      copyState.userPosts.posts.splice(indexUserPost, 1, editPost)
+
+
+      return {
+        ...state,
+        postPaging: {
+          ...state.postPaging,
+          posts: [...copyState.postPaging.posts],
+        },
+        userPosts: {
+          ...state.userPosts,
+          posts: [...copyState.userPosts.posts]
+        },
+        searchPosts: [...copyState.searchPosts],
+
+      }
+
+
+
     case ACT_DELETE_POSTS:
-
       const postDeleteId = action.payload.postid;
-      console.log('postDeleteId', postDeleteId)
-
       return {
         ...state,
         postPaging: {
@@ -71,7 +148,7 @@ export default function postsReducer(state = initState, action) {
           ...state.userPosts,
           posts: [...state.userPosts.posts.filter(post => post.PID !== postDeleteId)]
         },
-        searchPosts: [...state.searchPosts.filter(post => post.PID !== postDeleteId)]
+        searchPosts: [...state.searchPosts.filter(post => post.PID !== postDeleteId)],
       }
 
     default:

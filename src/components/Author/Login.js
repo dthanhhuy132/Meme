@@ -5,16 +5,16 @@ import { useDispatch } from 'react-redux';
 import { actLoginAsync, USER_ID } from '../../store/auth/action';
 
 import ButtonDth from '../common/Button';
-import LoginAndRegisterHeader from '../LoginAndRegisterHeader'
+import LoginAndRegisterHeader from '../Header/LoginAndRegisterHeader'
 import Register from './Register';
 
 // antdesign:
 import { notification } from 'antd';
 
-export default function Login({ setIsOpenModal }) {
+export default function Login({ setIsOpenModal, refreshPage = () => { } }) {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false);
-  const [saveLogin, setSaveLogin] = useState(false);
+  const [saveLogin, setSaveLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
   const [isWarnText, setIsWarnText] = useState(false);
 
@@ -46,7 +46,6 @@ export default function Login({ setIsOpenModal }) {
             userName = data.user.fullname
             localStorage.setItem(USER_ID, userId)
           };
-          console.log('userName', userName)
           handleCloseModal();
           (function openNotification(placement) {
             notification.success({
@@ -57,7 +56,8 @@ export default function Login({ setIsOpenModal }) {
               closeIcon: <i className="fas fa-times"></i>,
               placement,
             })
-          })(`Ố, Hello ${userName} nhé!`)
+          })(`Ố, Hello ${userName} nhé!`);
+          refreshPage()
         }
 
         else {
@@ -78,8 +78,8 @@ export default function Login({ setIsOpenModal }) {
 
   }
 
-  function handleRegister(e) {
-    e.preventDefault();
+  function handleRegister() {
+    // e.preventDefault();
     setIsRegister(!isRegister)
     let lineEl = document.querySelector('.tab-UI__line');
     let loginEl = document.querySelector('.login');
@@ -96,6 +96,11 @@ export default function Login({ setIsOpenModal }) {
       registerEl.classList.add('tab-UI-active');
       setIsRegister(!isRegister)
     }
+  }
+
+  function handleClickToRegister(e) {
+    e.preventDefault();
+    handleRegister()
   }
 
   return (
@@ -139,7 +144,7 @@ export default function Login({ setIsOpenModal }) {
                     </div>
 
                     <div className="ass1-login__send">
-                      <a href='/' onClick={handleRegister} className='btn-login-register'>Đăng ký tài khoản mới</a>
+                      <a href='/' onClick={handleClickToRegister} className='btn-login-register'>Đăng ký tài khoản mới</a>
                       <ButtonDth onClick={handleSubmit} isLoading={isLoading}>Đăng nhập</ButtonDth>
                     </div>
 

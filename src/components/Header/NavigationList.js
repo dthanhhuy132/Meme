@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Link } from 'react-router-dom'
@@ -19,19 +20,16 @@ export default function NavigationList() {
     e.preventDefault()
   }
 
-  function clickOnCategory(e) {
-    e.preventDefault();
-    const navEl = document.querySelector('.ass1-header__menu .ass1-header__nav')
-    navEl.style.display = 'none';
-  }
-
   if (!categories) return;
   return (
     <nav>
       <ul className="ass1-header__menu">
         <li>
-          <a href="/" onClick={defaultClick}>Danh mục</a>
-          <div className="ass1-header__nav" style={{ display: 'none' }}>
+          <a href="/" onClick={defaultClick}>
+            <i className="fas fa-bars dth-header-btn-category dth-header-btn-category-icon"></i>
+            <span className='dth-header-btn-category dth-header-btn-category-text'> Danh mục</span>
+          </a>
+          <div className='ass1-header__nav' style={{ display: 'none' }}>
             <div className="container">
               {
                 newCategories.map((categories, index) => (
@@ -43,8 +41,9 @@ export default function NavigationList() {
                         const tagIndex = category.id
                         return (
                           <li key={key}
-                            onClick={clickOnCategory}>
-                            <Link to={`/category/${tagIndex}`} key={name} >{category.text}</Link>
+                            onClick={defaultClick}
+                          >
+                            <Link to={`/category/${tagIndex}`} key={name}>{category.text}</Link>
                           </li>
                         )
                       })

@@ -31,9 +31,10 @@ export default function authReducer(state = initState, action) {
         userData: null
       }
     case ACT_UPDATE_USER_INFO:
+      console.log('action.payload.currentUserUpdate', action.payload.currentUserUpdate)
       return {
         ...state,
-        currentUser: action.payload.currentUserUpdate,
+        currentUser: action.payload.currentUserUpdate
       }
 
     default:

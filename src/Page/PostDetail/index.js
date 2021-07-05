@@ -25,7 +25,7 @@ export default function PostDetail() {
   // const key = `postCmt-${postid}`
 
   const post = post_category?.post;
-  // console.log('post trong postDetail', post)
+  console.log('post trong postDetail', post)
 
   const category = post_category?.categories;
   // const comments = rootComments[key];
@@ -35,8 +35,6 @@ export default function PostDetail() {
   const postUserId = post?.USERID;
   // console.log('postUserId', postUserId);
 
-
-
   useEffect(() => {
     dispatch(actFetchPostByPostIdAsync(postid));
     dispatch(actResetComment());
@@ -45,24 +43,23 @@ export default function PostDetail() {
   }, [postid, postUserId, dispatch])
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-8">
-          <div className="ass1-section__list">
-            <Post
+    <main className='dth-post-detail'>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-8">
+            <div className="ass1-section__list">
+              <Post
 
-              post={post}
-              authorInfo={authorInfo}
-              comment={false}
-              commentForPostDetail={true} />
+                post={post}
+                authorInfo={authorInfo}
+                comment={false}
+                commentForPostDetail={true} />
+            </div>
           </div>
+          <PostDetailAside postAside={category} />
         </div>
-
-        <PostDetailAside postAside={category} />
-
-
       </div>
-    </div>
+    </main>
 
   )
 }

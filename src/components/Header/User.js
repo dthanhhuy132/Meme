@@ -6,22 +6,17 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
 import { actLogout, TOKEN_KEY, USER_ID } from '../../store/auth/action';
 
-import Modal from '../Modal';
-import ChangePassword from '../Author/ChangePassword'
+
 // antdesign:
 import { notification } from 'antd';
 
-export default function User({ currentUser }) {
+export default function User({ currentUser, handleClickChangePassWord }) {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
 
   const [isOpenSetting, setIsOpenSetting] = useState(false);
   const defaultAvatar = currentUser.profilepicture !== '' ? currentUser.profilepicture : 'https://i.kym-cdn.com/entries/icons/facebook/000/017/666/avatar_default_big.jpg'
-
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [isOpenModalChangePassword, setIsPOpenModalChangePassword] = useState(false)
-
 
   function handleClickShowSetting(e) {
     setIsOpenSetting(!isOpenSetting)
@@ -31,22 +26,8 @@ export default function User({ currentUser }) {
     history.push('/profile')
   }
 
-  let classLogin = classNames('dth-user-login', {
-    'dth-user-login-active': isOpenSetting === true,
-    'dth-user-profile-page': location.pathname === '/profile'
-  })
-  let classLoginIcon = classNames('fas dth-fa-user__icon fa-chevron-right', {
-    'userSettingOpen': isOpenSetting === true
-  })
-  let userNameInProfile = classNames({
-    'dth-user-login__text-in-profile': location.pathname === '/profile'
-  })
-
   useEffect(() => {
     function handleClickOutside(e) {
-      // console.log(e.target.className)
-
-
       if (
         e.target.className !== 'dth-user-login__setting'
         && e.target.className !== ''
@@ -78,16 +59,25 @@ export default function User({ currentUser }) {
     })(`Bái bai ${currentUser.fullname}`)
   }
 
-  function handleClickChangePassWord(e) {
-    e.preventDefault();
-    setIsOpenModal(true);
-    setIsPOpenModalChangePassword(true)
+  function clickChangePassword() {
+    handleClickChangePassWord();
+    setIsOpenSetting()
   }
 
-  let modalProps = {
-    isOpenModal,
-    setIsOpenModal
-  }
+  let classLogin = classNames('dth-user-login', {
+    'dth-user-login-active': isOpenSetting === true,
+    'dth-user-profile-page': location.pathname === '/profile'
+  })
+  let classLoginIcon = classNames('fas dth-fa-user__icon fa-chevron-right', {
+    'userSettingOpen': isOpenSetting === true
+  })
+  let userNameInProfile = classNames({
+    'dth-user-login__text-in-profile': location.pathname === '/profile'
+  })
+
+  // str.substr(0,str.indexOf(' '));
+  let currUserName = currentUser?.fullname;
+  let curruserNameDisplay = currUserName.substring(0, currUserName.indexOf(' '));
 
 
   return (
@@ -96,34 +86,29 @@ export default function User({ currentUser }) {
         <img src={defaultAvatar} alt='' />
       </div>
       <div className='dth-user-login__text' >
-        <p className={userNameInProfile} onClick={handleClickProfile}>{currentUser?.fullname}</p>
+        <p className={userNameInProfile} onClick={handleClickProfile}>{curruserNameDisplay}</p>
         <i className={classLoginIcon} onClick={handleClickShowSetting} />
 
         {
           isOpenSetting &&
           <ul className='user-setting__items dth-user-login__setting'>
             <li>
-              <div><i className="far dth-far fa-trash-alt"></i></div>
+              <div><i className="fas dth-far fa-adjust"></i></div>
               <p>Giao diện tối</p>
             </li>
 
-            <li onClick={handleClickChangePassWord}>
-              <div><i className="far dth-far fa-trash-alt" ></i></div>
+            <li onClick={clickChangePassword}>
+              <div><i className="fas dth-far fa-exchange-alt" ></i></div>
               <p>Đổi mật khẩu</p>
             </li>
 
             <li onClick={handleLogout}>
-              <div><i className="far dth-far fa-eye-slash"></i></div>
+              <div><i class="fas fa-sign-out-alt"></i></div>
               <p>Đăng xuất</p>
             </li >
           </ul >
         }
-        {
-          isOpenModal && isOpenModalChangePassword &&
-          <Modal modalProps={modalProps} isRenderFooter={false} header='Thay đổi mật khẩu'>
-            <ChangePassword setIsPOpenModalChangePassword={setIsPOpenModalChangePassword} />
-          </Modal>
-        }
+
       </div>
     </div>
   )

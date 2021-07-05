@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { actPostNewCommentAsync } from "../../store/comments/action";
+import Loading from '../common/Loading'
 
-export default function CommentForm({ currentUser, postid }) {
+// antdesign:
+import { notification } from 'antd';
+
+export default function CommentForm({ currentUser, postid, countCmtAddNew }) {
   const [cmtStr, setCmtStr] = useState('');
   let avatar = currentUser.profilepicture || 'https://i.kym-cdn.com/entries/icons/facebook/000/017/666/avatar_default_big.jpg'
 
@@ -27,13 +31,33 @@ export default function CommentForm({ currentUser, postid }) {
 
   // ___________________________________________________________________ Post New Comment
   const dispatch = useDispatch();
-
+  const [isLoading, setIsLoading] = useState(false)
   function handleAddNewComment(e) {
     e.preventDefault();
+    setIsLoading(true)
+
     dispatch(actPostNewCommentAsync({
       comment: cmtStr,
       postid,
-    }))
+    })).then(res => {
+      if (res.ok) {
+        countCmtAddNew();
+        setIsLoading(false);
+        setCmtStr('')
+      } else {
+        setIsLoading(false);
+        (function openNotification(placement) {
+          notification.error({
+            message: `${placement}`,
+            description: "Vui lòng không bình luận nữa=))!!!",
+            className: 'dth-background-notification',
+            duration: 4.5,
+            closeIcon: <i className="fas fa-times"></i>,
+            placement,
+          });
+        })('Bình luận thất bại')
+      }
+    })
   }
 
 
@@ -53,7 +77,10 @@ export default function CommentForm({ currentUser, postid }) {
       <div className="ass1-add-comment__content">
         <p>
           <span className={`warning-text-none ${color_red}`}>Vượt quá nội dung cho phép</span>
-          <a href='/' className={`dth-btn-comment ${displayNone} ${btn_disable}`} onClick={handleAddNewComment}>Thêm bình luận</a>
+          <a href='/' className={`dth-btn-comment ${displayNone} ${btn_disable}`} onClick={handleAddNewComment}>
+            {isLoading && <Loading />}
+            Thêm bình luận
+          </a>
         </p>
         <a href="/" className="ass1-add-comment__btn-save ass1-btn-icon ">
           <span className={color_red}>{countChar}</span>

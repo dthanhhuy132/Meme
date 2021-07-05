@@ -20,7 +20,6 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
     setWarningPicture,
 
     isLoading,
-    setIsLoading,
 
     postANewPost,
     postEditPost,
@@ -38,6 +37,7 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
         inputEl.checked = true;
       })
     })
+    // eslint-disable-next-line
   }, [isEdit])
   //_______________________________________________________________________________ for editData end
 
@@ -68,9 +68,9 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
       })
       setIsEdited(editOrNot)
     }
-
-    //_______________________________________________________________________________ for editData end
+    // eslint-disable-next-line
   }, [categoryValue.length]);
+  //_______________________________________________________________________________ for editData end
 
 
 
@@ -84,17 +84,16 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
     let hasImg = formData.obj_image !== '' || formData.url_image !== '';
     const isDataOK = formData.post_content !== '' && formData.category !== '' && hasImg
 
-    console.log('isDataOK', isDataOK)
     if (!isDataOK) return;
 
     if (!warningDesc && !warningPicture && !warningCategory && !isEdit) postANewPost();
-    console.log('chay xuong toi day')
     if (!warningDesc && !warningPicture && !warningCategory && isEdit) postEditPost()
   }
 
   return (
     <>
-      <div className="col-lg-4">
+      <div className="col-lg-2"></div>
+      <div className="col-lg-8">
         <aside className="ass1-aside ass1-aside__edit-post">
           <span style={{ display: 'block', width: '100%', marginBottom: '7px', fontWeight: '600' }}>Chọn danh mục</span>
           {
@@ -126,15 +125,18 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
           </div>
         </aside>
       </div>
-      {isEdit &&
+      <div className="col-lg-3"></div>
+      {
+        isEdit &&
         <div className='col-lg-12' style={{ paddingRight: '2px' }}>
           <div className='dth-modal-footer-editInUpload'>
             <div className='dth-modal-footer__btn-editInUpload'>
               <Button type='modal-btn' onClick={handleCloseModal}>Cancel</Button>
-              <Button type='modal-btn' active={true} onClick={handleClickPost} disable={isEdited}>Lưu thay đổi</Button>
+              <Button type='modal-btn' active={true} onClick={handleClickPost} disable={isEdited} isLoading={isLoading}>Lưu thay đổi</Button>
             </div>
           </div>
-        </div>}
+        </div>
+      }
     </>
   )
 }

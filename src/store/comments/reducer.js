@@ -39,14 +39,10 @@ export default function CommentsReducer(state = initState, action) {
 
     case ACT_POST_NEW_COMMENT:
       let copyCmtState = { ...state.comments }
-
       const newComment = action.payload.newComment;
       const postidNewComment = action.payload.postid;
-      console.log('newComment trong reducer', newComment)
-      console.log('copyCmtState', copyCmtState)
 
       const postCmtUpdate = copyCmtState[`postCmt-${postidNewComment}`].push(newComment)
-      console.log('postCmtUpdate', postCmtUpdate)
 
       return {
         ...state,

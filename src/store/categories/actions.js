@@ -28,7 +28,7 @@ export function actFetchCategoriesAsync() {
 }
 
 
-///////////// Get category posts list
+/////////////_______________________________________________________ Get category posts list
 export function actFetchCategoryPosts({
   posts,
   pagesize,
@@ -58,7 +58,6 @@ export function actFetchCategoryPostsAsync({
         tagIndex,
       });
 
-      console.log('res trong action', res.data.posts.length)
       const posts = res.data.posts;
       dispatch(actFetchCategoryPosts({
         posts,
@@ -66,8 +65,15 @@ export function actFetchCategoryPostsAsync({
         currPage,
       }))
 
-    } catch (er) {
+      return {
+        ok: true,
+        resdata: posts
+      }
 
+    } catch (er) {
+      return {
+        ok: false,
+      }
     }
   }
 }

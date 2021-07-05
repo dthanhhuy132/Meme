@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actDeletePostAsync, actActiveAndDeactivePostAsync, actFetchPostByPostIdAsync } from "../../store/posts/action";
-
+import { actDeletePostAsync, actFetchPostByPostIdAsync } from "../../store/posts/action";
 // antdesign:
 import { notification } from 'antd';
 
@@ -56,14 +55,16 @@ export default function UserSetting({ postid, post }) {
     const bodyEl = document.querySelector('body');
     bodyEl.classList.remove('dth-modal-open');
   }
-  let mounted = true;
-  useEffect(() => {
-    return () => { mounted = false }
-  })
+
+  // useEffect(() => {
+  //   let mounted = true;
+  //   return () => { mounted = false }
+  // })
 
   // EDIT FUNCTION ______________________________________________________ EDIT FUNCTION
   const [isRenderFooter, setIsRenderFooter] = useState(true)
   const categories = useSelector(state => state.Posts.postByPostid.categories);
+
   let categories_index = []
   if (categories) {
     categories.forEach(category => {
@@ -77,11 +78,6 @@ export default function UserSetting({ postid, post }) {
   function setEditOff() {
     setIsEdit(false);
     setIsLoadingForEdit(false)
-  }
-
-  function handleDispatchEdit() {
-    console.log('edit function run')
-    // setIsEdit(false)
   }
 
   function handleClick_Edit() {
@@ -145,21 +141,8 @@ export default function UserSetting({ postid, post }) {
   function handleClick_Delete(postid) {
     setIsRenderFooter(true);
     handleModal()
-    setHeader('Bạn có chắn chắn muốn xóa bài viết này không?');
+    setHeader('Bạn chắn chắn muốn xóa bài viết này?');
     setActAsyncName('delete')
-  }
-
-  // ACTIVE/DEACTIVE FUNCTION______________________________________________ ACTIVE / DEACTIVE FUNCTION
-  function dispatchActivDeactive() {
-    setIsRenderFooter(true);
-    dispatch(actActiveAndDeactivePostAsync(postid))
-    handleModal()
-  }
-
-  function handleClick_ActivDeactive() {
-    setHeader('Bạn có chắc chắn muốn ẩn bài viết này không?');
-    setActAsyncName('active/deactie')
-    handleModal()
   }
 
   //_______________________________________________________________________ FINISH
@@ -172,10 +155,28 @@ export default function UserSetting({ postid, post }) {
 
     actAsyncName,
     dispatchDelete,
-    dispatchActivDeactive,
 
     isEdit,
     setEditOff
+  }
+
+  const [isOpenEdit_responsive, setIsOpenEdit_responsive] = useState(false)
+
+  function handleClick_edit_responsive(e) {
+    e.preventDefault();
+    setIsOpenEdit_responsive(true)
+    dispatch(actFetchPostByPostIdAsync(postid)).then(res => {
+      if (res.ok) {
+        setIsOpenEdit_responsive(false)
+        history.push({
+          pathname: '/edit',
+          editResponsive: {
+            post: post,
+            categories: res.post_category.categories
+          }
+        })
+      }
+    });
   }
 
   return (
@@ -185,21 +186,26 @@ export default function UserSetting({ postid, post }) {
       </p>
       {
         isOpenSetting &&
-        <ul className='user-setting__items user-setting-item__PostDetail'>
+        <ul className='user-setting__items user-setting-item__PostDetail' onClick={e => e.preventDefault()}>
           <li onClick={handleClick_Edit}>
             <div><i className="far dth-far fa-edit"></i></div>
             <p>Chỉnh sửa bài viết</p>
           </li>
+
+          <li className='dth-userSetting-resposive-mobile'
+            onClick={handleClick_edit_responsive}
+          >
+            <div><i className="far dth-far fa-edit"></i></div>
+            <p>Chỉnh sửa bài viết</p>
+          </li>
+
           <li onClick={handleClick_Delete}>
             <div><i className="far dth-far fa-trash-alt"></i></div>
             <p>Xóa bài viết</p>
           </li>
-          <li onClick={handleClick_ActivDeactive}>
-            <div><i className="far dth-far fa-eye-slash"></i></div>
-            <p>Ẩn bài viết</p>
-          </li >
         </ul >
       }
+
       {
         isOpenModal &&
         <Modal
@@ -216,6 +222,7 @@ export default function UserSetting({ postid, post }) {
               post={post}
               categories_index={categories_index}
               handleCloseModal={handleCloseModal}
+              setIsOpenModal={setIsOpenModal}
             />
             :
             isLoadingForEdit
@@ -224,6 +231,10 @@ export default function UserSetting({ postid, post }) {
               : <></>}
         </Modal>
       }
+      {isOpenEdit_responsive &&
+        < div className='loading-edit-page'>
+          <DotLoading />
+        </div>}
     </>
   )
 }

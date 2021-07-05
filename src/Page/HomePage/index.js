@@ -15,8 +15,6 @@ export default function Homepage() {
     // eslint-disable-next-line
   }, [])
 
-  
-
   return (
     <main className='listPost'>
       <div className="container">

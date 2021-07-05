@@ -18,10 +18,16 @@ export default function Information({
   const [isOpenModalChangePassword, setIsPOpenModalChangePassword] = useState(false)
   const currUser = useSelector(state => state.Auth.currentUser);
   const location = useLocation();
+
   const isCurrentUser = location.pathname === '/profile';
 
   const userData = useSelector(state => state.Auth.userData);
-  const defaultAvatar = isCurrentUser ? currUser?.profilepicture : userData?.profilepicture || 'https://i.kym-cdn.com/entries/icons/facebook/000/017/666/avatar_default_big.jpg'
+
+  const defaultAvatar = isCurrentUser && currUser?.profilepicture !== ''
+    ? currUser?.profilepicture
+    : userData?.profilepicture && userData?.profilepicture !== ''
+      ? userData?.profilepicture
+      : 'https://i.kym-cdn.com/entries/icons/facebook/000/017/666/avatar_default_big.jpg';
 
   const currUserId = currUser?.USERID;
   const displayUserSetting = currUserId === slugUserId ? true : false;
@@ -46,6 +52,8 @@ export default function Information({
     setIsOpenModal
   }
 
+  let gender = isCurrentUser ? currUser?.gender : userData?.gender
+
   return (
     <div className="ass1-head-user">
       <div className="ass1-head-user__content">
@@ -63,7 +71,16 @@ export default function Information({
                 <div className="ass1-head-user__info-head">
                   {/* Name */}
                   <div className="ass1-head-user__name">
-                    <span> {isCurrentUser ? currUser?.fullname : userData?.fullname} </span>
+                    <span>
+                      {isCurrentUser ? currUser?.fullname : userData?.fullname}
+                      {gender === 'nam'
+                        ? <i className="fas dth-gender-icon fa-mars"></i>
+                        : gender === ''
+                          ? <></>
+                          : <i className="fas dth-gender-icon fa-venus"></i>
+                      }
+
+                    </span>
                   </div>
 
                   {/* Desc */}
@@ -92,15 +109,22 @@ export default function Information({
                   {/* Follow button */}
                   <div className="ass1-head-user__btn-follow-wrapper" >
                     {
-                      !displayUserSetting && <a href="/" className="ass1-head-user__btn-follow ass1-btn">Theo dõi</a>
+                      !displayUserSetting &&
+                      <>
+                        <a href="/" className="ass1-head-user__btn-follow ass1-btn user-btn-informaion">Theo dõi</a>
+                        {/* <a className="ass1-head-user__btn-follow ass1-btn" onClick={handleProfileClick}>Xem thông tin</a> */}
+                      </>
                     }
-                    <a className="ass1-head-user__btn-follow ass1-btn" onClick={handleProfileClick}>Cập nhật thông tin</a>
+
                     {
                       displayUserSetting &&
-                      <a href="thay-doi-password.html"
-                        className="ass1-head-user__btn-follow ass1-btn"
-                        onClick={handleClickChangePassWord}
-                      >Đổi mật khẩu</a>
+                      <>
+                        <a href='/' className="ass1-head-user__btn-follow ass1-btn user-btn-informaion" onClick={handleProfileClick}>Cập nhật thông tin</a>
+                        <a href="thay-doi-password.html"
+                          className="ass1-head-user__btn-follow ass1-btn user-btn-informaion"
+                          onClick={handleClickChangePassWord}
+                        >Đổi mật khẩu</a>
+                      </>
                     }
                   </div>
                 </div>

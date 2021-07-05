@@ -5,11 +5,13 @@ import Button from "../common/Button";
 import Input from "../common/Input";
 import { actRegisterAsync } from "../../store/auth/action";
 
-
+// antdesign:
+import { notification } from 'antd';
 
 export default function Register({ handleRegister }) {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const [isWarning, setIsWarning] = useState(false);
   const [registerData, setRegisterData] = useState({
     email: 'Meme2@gmail.com',
     fullname: 'Meme2',
@@ -17,19 +19,51 @@ export default function Register({ handleRegister }) {
     repassword: 'Meme@132',
   })
 
+  function handleClickToLogin(e) {
+    e.preventDefault();
+    handleRegister();
+  }
+
 
   function handleClick() {
-    setIsLoading(true)
-    dispatch(
-      actRegisterAsync(registerData)
-    ).then(res => {
-      if (res.ok === 'true') {
-        console.log('tao tai khoan thanh cong')
-      } else {
-        console.log(res.ok)
-      }
-      setIsLoading(false)
-    })
+    if (registerData.password !== registerData.repassword) {
+      setIsWarning(true)
+    }
+    else {
+      setIsLoading(true)
+      dispatch(
+        actRegisterAsync(registerData)
+      ).then(res => {
+        if (res.ok === 'true') {
+          (function openNotification(placement) {
+            notification.success({
+              message: `${placement}`,
+              description: "Đăng nhập lại để cùng chế ảnh",
+              className: 'dth-background-notification',
+              duration: 4,
+              closeIcon: <i className="fas fa-times"></i>,
+              placement,
+            });
+            setIsLoading(false)
+            handleRegister();
+          })('Đăng ký thành công');
+        } else {
+          (function openNotification(placement) {
+            notification.error({
+              message: `${placement}`,
+              description: `${res.error}`,
+              className: 'dth-background-notification',
+              duration: 4,
+              closeIcon: <i className="fas fa-times"></i>,
+              placement,
+            })
+          })('Đăng ký thất bại');
+          setIsLoading(false)
+
+        }
+      })
+    }
+
   }
 
 
@@ -77,14 +111,17 @@ export default function Register({ handleRegister }) {
                 type="password"
                 placeholder="Nhập lại mật khẩu"
                 value={registerData.repassword}
-                onChange={(e) => setRegisterData({
-                  ...registerData,
-                  repassword: e.target.value
-                })}
+                onChange={(e) => {
+                  setRegisterData({
+                    ...registerData,
+                    repassword: e.target.value
+                  });
+                  setIsWarning(false)
+                }}
               />
-
+              {isWarning && <p className='warning-text'>Mật khẩu nhập lại không đúng</p>}
               <div className="ass1-login__send dth-register-btn">
-                <a href='/' onClick={handleRegister} className='btn-login-register'>Đăng nhập</a>
+                <a href='/' onClick={handleClickToLogin} className='btn-login-register'>Đăng nhập</a>
                 <Button isLoading={isLoading} onClick={handleClick}>Đăng ký</Button>
               </div>
             </form>

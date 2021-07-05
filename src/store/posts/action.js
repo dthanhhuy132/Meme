@@ -22,7 +22,7 @@ function actFetchPosts({ posts, pagesize, currPage }) {
 }
 
 export function actFetchPostsAsync({
-  pagesize = 5,
+  pagesize = 3,
   currPage = 1,
   ...restParams
 } = {}) {
@@ -40,7 +40,19 @@ export function actFetchPostsAsync({
         currPage: currPage
       }))
 
-    } catch (err) { }
+
+      const postsRes = res.data.posts
+      return {
+        ok: true,
+        resdata: postsRes
+      }
+
+    } catch (err) {
+      return {
+        ok: false
+
+      }
+    }
   }
 }
 
@@ -60,7 +72,6 @@ export function actFetchPostsByUserIdAsync(userId) {
   return async dispatch => {
     try {
       const res = await postsService.getPostsByUserId(userId)
-
       dispatch(actFetchPostsByUserId(res.data.posts))
       return {
         ok: true
@@ -72,7 +83,6 @@ export function actFetchPostsByUserIdAsync(userId) {
     }
   }
 }
-
 
 //___________________________________________________________________ Get post by postId 
 export function actFetchPostByPostId(post_category) {
@@ -92,6 +102,7 @@ export function actFetchPostByPostIdAsync(postid) {
       dispatch(actFetchPostByPostId(post_category))
 
       return {
+        post_category: post_category,
         ok: true
       }
     } catch (er) {
@@ -118,7 +129,6 @@ export function actSearchPostAsync(query) {
       const res = await postsService.searchPost(query)
       const posts = res.data.posts
       dispatch(actSearchPost(posts))
-      console.log('res trong search Post', res)
       return {
         ok: true
       }
@@ -160,11 +170,30 @@ export function actDeletePostAsync(postid) {
 
 //___________________________________________________________________ EDIT POST
 
-export function editPost() {
+export function actEditPost(editPost) {
+  // console.log('editPost function action', editPost)
   return {
     type: ACT_EDIT_POSTS,
     payload: {
+      editPost
+    }
+  }
+}
 
+
+function fetchFullPost(userId) {
+  return async dispatch => {
+    try {
+      const res = await postsService.getPostsByUserId(userId)
+      const post = res.data.posts;
+      return {
+        ok: true,
+        post: post,
+      }
+    } catch (e) {
+      return {
+        ok: false
+      }
     }
   }
 }
@@ -173,8 +202,19 @@ export function editPostAsync(formData) {
   return async dispatch => {
     try {
       const res = await postsService.editPost(formData)
+      let editPost = res.data.data.post;
+      // console.log('editPost trong action', editPost)
+      const userId = editPost.USERID;
+      const postId = editPost.PID;
+      // console.log('userId trong action', userId)
 
-      console.log('res trong action edit', res)
+      dispatch(fetchFullPost(userId)).then(res => {
+        res.post.forEach(itemPost => {
+          if (itemPost.PID === postId) dispatch(actEditPost(itemPost))
+        })
+      })
+      dispatch(actFetchPostByPostIdAsync(postId))
+
       return {
         ok: true
       }
@@ -213,10 +253,6 @@ export function actActiveAndDeactivePostAsync(postid) {
   }
 }
 
-
-
-
-
 // ___________________________________________________________________ CREATE A NEW POST 
 export function actPostNewPost(newPost) {
   return {
@@ -227,12 +263,12 @@ export function actPostNewPost(newPost) {
   }
 }
 
-
 export function actPostNewPostAsync(formData) {
   return async dispatch => {
     try {
       const res = await postsService.postNewPost(formData)
-
+      const newPost = res.data.data.post;
+      dispatch(actPostNewPost(newPost))
       return {
         ok: true
       }

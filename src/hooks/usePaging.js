@@ -11,6 +11,7 @@ export default function UsePaging({
 } = {}) {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
+  const [postsLength, setPostLength] = useState('')
 
   const {
     posts,
@@ -20,7 +21,7 @@ export default function UsePaging({
 
 
   async function handleLoadMore(e) {
-    e.preventDefault()
+    // e.preventDefault()
 
     if (isLoading) return;
     setIsLoading(true)
@@ -29,7 +30,9 @@ export default function UsePaging({
       pagesize: pagesize,
       currPage: currPage + 1,
       ...extraParams
-    }))
+    })).then(res => {
+      setPostLength(res.resdata.length);
+    })
     setIsLoading(false)
   }
 
@@ -39,6 +42,7 @@ export default function UsePaging({
     pagesize,
     currPage,
     handleLoadMore,
-    isLoading
+    isLoading,
+    postsLength
   }
 }

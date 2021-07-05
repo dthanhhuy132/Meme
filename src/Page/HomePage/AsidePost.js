@@ -5,7 +5,6 @@ import { actFetchPostsByUserIdAsync } from '../../store/posts/action';
 
 import Post from '../../components/PostsItems'
 
-
 export default function AsidePost() {
   const dispatch = useDispatch()
 
@@ -23,6 +22,11 @@ export default function AsidePost() {
     dispatch(actFetchPostsByUserIdAsync(currUserId))
   }, [currUserId, dispatch])
 
+  function handClickOpenLogin(e) {
+    e.preventDefault()
+    const LoginEl = document.querySelector('.dth-btn-login');
+    LoginEl.click();
+  }
 
 
   return (
@@ -34,11 +38,9 @@ export default function AsidePost() {
             <div className="ass1-content-head__t">
               <div>Bài viết của bạn.</div>
             </div>
-            <div>Vui lòng
-              <Link to='/login'> Đăng nhập </Link>
-              hoặc
-              <Link to='/register'> Đăng ký </Link>
-              để xem nội dung này
+            <div className='homepage-aside-login'>Vui lòng
+              <a href='/' onClick={handClickOpenLogin}> Đăng nhập </a>
+              để xem bài viết của bạn
             </div>
           </aside>
           : hasPosts
@@ -57,19 +59,15 @@ export default function AsidePost() {
                 ))
               }
               <div className='center'>
-                {isLoadAllPosts && <Link to='/' >Xem tất cả bài viết của tôi</Link>}
+                {isLoadAllPosts && <Link to='/profile' >Xem tất cả bài viết của tôi</Link>}
               </div>
             </div>
             :
-
             <aside className="ass1-aside">
               <div className="ass1-content-head__t">
                 <div>Bạn chưa có bài viết náo</div>
               </div>
             </aside>
-
-
-
       }
     </div>
   )

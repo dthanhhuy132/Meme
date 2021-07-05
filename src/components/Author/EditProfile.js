@@ -37,6 +37,7 @@ export default function EditProfile({ setIsOpenModal }) {
       if (option.innerText.toLowerCase() === currentUser.gender) option.selected = true;
     })
     initCurrUser = currentUser;
+    // eslint-disable-next-line
   }, [])
 
   // console.log('userInfo', userInfo)
@@ -76,7 +77,6 @@ export default function EditProfile({ setIsOpenModal }) {
 
   // _______________________________________________________________________________________NAME
   const [isNameChange, setIsNameChange] = useState(false)
-  const [subName, setSubName] = useState('')
 
   function handleInputName(e) {
     setUserInfo({
@@ -89,6 +89,7 @@ export default function EditProfile({ setIsOpenModal }) {
     userInfo.fullname !== initCurrUser.fullname && userInfo.fullname !== ''
       ? setIsNameChange(true)
       : setIsNameChange(false)
+    // eslint-disable-next-line
   }, [userInfo.fullname.length])
 
 
@@ -108,6 +109,7 @@ export default function EditProfile({ setIsOpenModal }) {
 
   useEffect(() => {
     userInfo.gender === initCurrUser.gender ? setIsGenderChange(false) : setIsGenderChange(true);
+    // eslint-disable-next-line
   }, [userInfo.gender])
 
   // _______________________________________________________________________________________DECS
@@ -123,10 +125,17 @@ export default function EditProfile({ setIsOpenModal }) {
     userInfo.description !== currentUser.description && userInfo.description !== ''
       ? setIsChangeDesc(true)
       : setIsChangeDesc(false)
+    // eslint-disable-next-line
   }, [userInfo.description.length])
 
-  // _______________________________________________________________________________________UPDATE INFO
+  // _______________________________________________________________________________________Stop memory leak
 
+    // useEffect(() => {
+    //   let unmount = true;
+    //   return () => { unmount = false }
+    // })
+
+  // _______________________________________________________________________________________UPDATE INFO
 
   let formData = new FormData()
   formData.append('fullname', userInfo.fullname);

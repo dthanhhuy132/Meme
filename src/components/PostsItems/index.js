@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 
@@ -20,6 +20,9 @@ export default function PostItem({
   authorInfo,
   commentForPostDetail = false,
 }) {
+
+  // console.log('post', post)
+  // console.log('authorInfo', authorInfo)
 
 
   const dispatch = useDispatch();
@@ -52,11 +55,14 @@ export default function PostItem({
   }
 
   const displayComment = commentCommon || commentForPostDetail
+  const [cmtCount, setCmtCout] = useState(post?.count);
+  function countCmtAddNew() {
+    setCmtCout(Number(cmtCount) + 1)
+  }
 
   if (!post) {
     return null
   }
-
 
   return (
     <div className={classes}>
@@ -71,10 +77,10 @@ export default function PostItem({
           </div>
         </div>
         <ContentImage postContent={post?.post_content} postImage={post?.url_image} postid={post?.PID}></ContentImage>
-        {comment && <CmtStas handleClickCmt={handleClickCmt} >{post?.count || 0}</CmtStas>}
+        {comment && <CmtStas handleClickCmt={handleClickCmt} >{cmtCount || 0}</CmtStas>}
 
         {
-          displayComment && <Comment postid={post?.PID} loadingComment={isLoadingComment} />
+          displayComment && <Comment postid={post?.PID} loadingComment={isLoadingComment} countCmtAddNew={countCmtAddNew} />
         }
       </div>
     </div>

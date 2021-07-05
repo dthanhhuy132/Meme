@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import Header from './components/Header'
+import Header from './components/Header';
+import FooterResponsive from './components/FooterResponsive';
 import UserPosts from "./Page/UserPosts";
 import CategoriesPage from './Page/Category';
 import PostDetail from './Page/PostDetail';
@@ -11,7 +12,7 @@ import SearchPage from './Page/Search';
 import Upload from './Page/Upload';
 import Profile from './Page/ProfilePage';
 import HomePage from './Page/HomePage';
-
+import EditPostResponsive from './Page/EditPostResponsive'
 
 import { actFetchCategoriesAsync } from "./store/categories/actions";
 import { actFechMeInfoAsync, USER_ID } from "./store/auth/action";
@@ -64,7 +65,14 @@ function App() {
           <HomePage />
         </Route>
 
+        <Route path="/edit">
+          <EditPostResponsive />
+        </Route>
+
       </Switch>
+
+      <FooterResponsive />
+
     </BrowserRouter >
   )
 }

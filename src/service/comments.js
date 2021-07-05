@@ -14,7 +14,6 @@ const commentsService = {
     comment,
     postid
   }) {
-    console.log('du lien trong cmt service', comment, postid)
     return api.callWithToken().post('/comment/add_new.php', {
       comment,
       postid

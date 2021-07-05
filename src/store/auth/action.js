@@ -33,7 +33,6 @@ export function actLoginAsync({
         email,
         password
       })
-      console.log('res trong auth', res)
       const token = res.data.token;
       dispatch(actLogin(res.data.user))
       localStorage.setItem(TOKEN_KEY, token)
@@ -43,7 +42,6 @@ export function actLoginAsync({
         data: res.data
       }
     } catch (e) {
-      console.log('run auth catch')
     }
   }
 }
@@ -87,16 +85,9 @@ export function actRegisterAsync({
         repassword
       })
 
-      // console.log('res trong register', res)
-      const token = res.data.token;
-      const userId = res.data.user.USERID
-      localStorage.setItem(TOKEN_KEY, token);
-
-      dispatch(actFechMeInfoAsync(userId))
-
       if (res.data.error) {
         return {
-          ok: res.data.error
+          error: res.data.error
         }
       }
 
@@ -193,7 +184,7 @@ export function actChangePasswordAsync({
         newPassword,
         reNewPassword
       })
-      console.log('res trong change password', res)
+
       return {
         ok: true
       }
