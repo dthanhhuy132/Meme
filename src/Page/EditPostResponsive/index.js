@@ -1,7 +1,7 @@
 import { useHistory } from "react-router";
 
 import Upload from '../Upload';
-import DotLoading from '../../components/common/Loading/DotLoading'
+import DotLoading from '../../components/common/Loading/DotLoading';
 
 export default function EditPostResponsive() {
   const history = useHistory();
@@ -15,6 +15,7 @@ export default function EditPostResponsive() {
   let post = data?.post
   let categories = data?.categories
 
+
   let categories_index = []
   if (categories) {
     categories.forEach(category => {
@@ -25,7 +26,6 @@ export default function EditPostResponsive() {
   function goBack() {
     history.goBack()
   }
-
 
   return (
     <Upload

@@ -2,6 +2,7 @@
 .ass1-logo {
   font-size: 25px;
   font-family: "Press Start 2P", cursive;
+  line-height: 25px !important;
 }
 
 header .ass1-header {
@@ -225,10 +226,6 @@ button:focus {
   margin-top: 15px;
 }
 
-.ass1-add-comment {
-  padding-bottom: 15px;
-}
-
 .ass1-section .ass1-section__footer {
   padding-top: 8px;
   padding-bottom: 12px;
@@ -278,12 +275,15 @@ button:focus {
   overflow: hidden;
 }
 
+.dth-modal-body .dotLoading-cmt {
+  margin-top: 20px;
+}
+
 /*  Comment form:  */
 .ass1-add-comment {
+  margin-top: 5px;
   margin-bottom: 20px;
-  padding-top: 10px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding: 10px 10px 15px 10px;
 }
 
 .ass1-add-comment > form {
@@ -308,7 +308,7 @@ button:focus {
 }
 
 .ass1-add-comment__content {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .warning-text-none {
@@ -449,8 +449,8 @@ button:focus {
 
 .dth-infinity-scroll-endMessage {
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 20px;
+  margin-bottom: 10px;
+  font-size: 17px;
   font-weight: 400;
 }
 /* -------------USER_MENU_SETTING------------ */
@@ -579,6 +579,14 @@ button:focus {
   margin-top: 20px;
 }
 
+.ass1-aside__edit-post > span,
+.ass1-aside__edit-post-head {
+  padding-left: 12.5%;
+}
+.ass1-aside__edit-post-head {
+  border-bottom: none;
+}
+
 /* BtnUpload */
 .ass1-section__image__subClass {
   position: absolute;
@@ -650,7 +658,7 @@ button:focus {
   transition: all 0.1s ease-in;
 }
 
-.dth-upload-img_close:hover .close-btn-background {
+.dth-upload-img:hover .close-btn-background {
   background-color: rgba(231, 231, 231, 0.5);
 }
 .close-btn-background:hover {
@@ -718,6 +726,7 @@ footer {
   .ass1-header .container {
     flex-wrap: nowrap;
     justify-content: space-between;
+    line-height: 25px;
   }
 
   .ass1-header .container > * {
@@ -770,6 +779,7 @@ footer {
   .ass1-header .container {
     flex-wrap: nowrap;
     justify-content: space-between;
+    line-height: 25px;
   }
 
   .ass1-header .container > * {
@@ -1098,6 +1108,7 @@ footer {
   .dth-footer-disable {
     pointer-events: none;
     color: rgb(160, 158, 158);
+    display: none;
   }
 
   /*______________________________________________ post action */
@@ -1140,7 +1151,7 @@ footer {
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
 
-    border-bottom: 10px solid #474646;
+    border-bottom: 9px solid #474646;
   }
 
   /* ________________________________________________ Edit Page */
@@ -1275,6 +1286,11 @@ footer {
   /* _________________________________________________ UPLOAD */
   .dth-upload .col-lg-12 {
     padding: 0 !important;
+  }
+
+  .ass1-aside__edit-post > span,
+  .ass1-aside__edit-post-head {
+    padding-left: 10%;
   }
 
   .dth-upload .ass1-section {

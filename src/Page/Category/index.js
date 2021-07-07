@@ -13,7 +13,6 @@ export default function CategoriesPage() {
   const param = useParams();
 
   const dispatch = useDispatch();
-
   const tagIndex = param.tagIndex;
 
   useEffect(() => {
@@ -34,6 +33,9 @@ export default function CategoriesPage() {
     funcSelector: state => state.Categories.categoryPosts,
     actAsync: actFetchCategoryPostsAsync,
   })
+
+  console.log('posts trong Category', posts)
+
 
   let hasLoadingMore = true
   if (postsLength === 0) hasLoadingMore = false

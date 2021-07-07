@@ -6,11 +6,12 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
 import { actLogout, TOKEN_KEY, USER_ID } from '../../store/auth/action';
 
+// import DarkMode from '../../hooks/useDarkMode'
 
 // antdesign:
 import { notification } from 'antd';
 
-export default function User({ currentUser, handleClickChangePassWord }) {
+export default function User({ currentUser, handleClickChangePassWord, toggleTheme, theme }) {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ export default function User({ currentUser, handleClickChangePassWord }) {
         message: `${placement}`,
         description: 'Hết bình luận và đăng ảnh nhé',
         className: 'dth-background-notification',
-        duration: 2,
+        duration: 0,
         closeIcon: <i className="fas fa-times"></i>,
         placement,
       })
@@ -79,6 +80,13 @@ export default function User({ currentUser, handleClickChangePassWord }) {
   let currUserName = currentUser?.fullname;
   let curruserNameDisplay = currUserName.substring(0, currUserName.indexOf(' '));
 
+  // ______________________________________________________________________________ Dark MODE
+  // const { toggleTheme } = DarkMode();
+  function handleClickChangeDarkMode() {
+    toggleTheme()
+  }
+
+
 
   return (
     <div className={classLogin}>
@@ -92,7 +100,7 @@ export default function User({ currentUser, handleClickChangePassWord }) {
         {
           isOpenSetting &&
           <ul className='user-setting__items dth-user-login__setting'>
-            <li>
+            <li onClick={handleClickChangeDarkMode}>
               <div><i className="fas dth-far fa-adjust"></i></div>
               <p>Giao diện tối</p>
             </li>
@@ -103,7 +111,7 @@ export default function User({ currentUser, handleClickChangePassWord }) {
             </li>
 
             <li onClick={handleLogout}>
-              <div><i class="fas fa-sign-out-alt"></i></div>
+              <div><i className="fas fa-sign-out-alt"></i></div>
               <p>Đăng xuất</p>
             </li >
           </ul >

@@ -164,15 +164,19 @@ export default function UserSetting({ postid, post }) {
 
   function handleClick_edit_responsive(e) {
     e.preventDefault();
-    setIsOpenEdit_responsive(true)
+    setIsLoading(true);
+    setIsOpenEdit_responsive(true);
+
     dispatch(actFetchPostByPostIdAsync(postid)).then(res => {
       if (res.ok) {
         setIsOpenEdit_responsive(false)
+        setIsLoading(false);
+
         history.push({
           pathname: '/edit',
           editResponsive: {
             post: post,
-            categories: res.post_category.categories
+            categories: res.post_category.categories,
           }
         })
       }

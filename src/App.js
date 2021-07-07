@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -12,15 +12,20 @@ import SearchPage from './Page/Search';
 import Upload from './Page/Upload';
 import Profile from './Page/ProfilePage';
 import HomePage from './Page/HomePage';
-import EditPostResponsive from './Page/EditPostResponsive'
+import EditPostResponsive from './Page/EditPostResponsive';
 
 import { actFetchCategoriesAsync } from "./store/categories/actions";
 import { actFechMeInfoAsync, USER_ID } from "./store/auth/action";
 
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme, GlobalStyle } from './theme.js';
+import DarkMode from './hooks/useDarkMode';
+
+
 
 function App() {
   const dispatch = useDispatch();
-
+  let { theme, toggleTheme } = DarkMode();
 
   useEffect(() => {
     dispatch(actFetchCategoriesAsync());
@@ -29,51 +34,53 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
-
   return (
-    <BrowserRouter>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Header toggleTheme={toggleTheme} theme={theme} />
 
-      <Header />
+        <Switch>
 
-      <Switch>
-        <Route path="/upload">
-          <Upload />
-        </Route>
+          <Route path="/upload" >
+            <Upload />
+          </Route>
 
-        <Route path="/user/:slug">
-          <UserPosts />
-        </Route>
+          <Route path="/user/:slug">
+            <UserPosts />
+          </Route>
 
-        <Route path="/profile">
-          <Profile />
-        </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
 
-        <Route path="/category/:tagIndex">
-          <CategoriesPage />
-        </Route>
+          <Route path="/category/:tagIndex">
+            <CategoriesPage />
+          </Route>
 
-        <Route path="/post/:postid">
-          <PostDetail />
-        </Route>
+          <Route path="/post/:postid">
+            <PostDetail />
+          </Route>
 
-        <Route path="/search">
-          <SearchPage />
-        </Route>
+          <Route path="/search">
+            <SearchPage />
+          </Route>
 
 
-        <Route exact path="/">
-          <HomePage />
-        </Route>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
 
-        <Route path="/edit">
-          <EditPostResponsive />
-        </Route>
+          <Route>
+            <EditPostResponsive />
+          </Route>
+        </Switch>
 
-      </Switch>
+        <FooterResponsive toggleTheme={toggleTheme} theme={theme} />
 
-      <FooterResponsive />
+      </BrowserRouter >
 
-    </BrowserRouter >
+    </ThemeProvider >
   )
 }
 

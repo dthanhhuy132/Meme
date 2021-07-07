@@ -49,6 +49,13 @@ jQuery(function ($) {
         }
     });
 
+    $(window).scroll(function () {
+        let userEl = $('.user-option-responsive').hasClass("user-option-responsive-open");
+        let searhEl = $(".header-search-responsive-mobile").hasClass("header-search-responsive-mobile-open");
+        if (userEl) $('.user-option-responsive').removeClass("user-option-responsive-open")
+        if (searhEl) $(".header-search-responsive-mobile").removeClass("header-search-responsive-mobile-open");
+    });
+
 
     // 
     tcl_meme.isotope = function () {

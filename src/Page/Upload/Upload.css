@@ -1,6 +1,13 @@
+.ass1-section__content {
+  border-bottom: none !important;
+  padding-top: 0px;
+}
+
 .ass1-section.ass1-section__edit-post,
 .ass1-aside.ass1-aside__edit-post {
   margin-top: 0px;
+  padding-top: 15px !important;
+  margin-bottom: 0px;
 }
 
 .dth-margin-bottom-description {
@@ -36,9 +43,16 @@
   margin-top: 5px;
 }
 
+.ass1-aside__edit-post {
+  padding-top: 10px;
+}
+.ass1-aside__edit-post span {
+  font-size: 20px;
+}
 .ass1-aside__edit-post > div {
   display: flex;
 }
+
 .warnign-category {
   color: red;
   margin-right: 3px;

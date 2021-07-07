@@ -11,7 +11,7 @@ export default function ContentImage({
     <div className="ass1-section__content">
       <p>{postContent}</p>
       <div className="ass1-section__image">
-        <Link to={postLink}><img src={postImage} alt="" /></Link>
+        <Link to={{ pathname: postLink, imgDetail: postImage }}  ><img src={postImage} alt="" /></Link>
       </div>
     </div>
   )

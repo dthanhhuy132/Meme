@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
+
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import Masonry from 'react-masonry-css'
@@ -14,6 +16,7 @@ import Post from '../../components/PostsItems';
 export default function UserPosts() {
   const param = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const currentUser = useSelector(state => state.Auth.currentUser);
   const userID = currentUser?.USERID;
@@ -23,6 +26,9 @@ export default function UserPosts() {
   const [isLoadingAuthorInfo, setIsLoadingAuthorInfo] = useState(false);
   const userPosts = useSelector(state => state.Posts.userPosts.posts);
   const totalPosts = userPosts?.length || 0;
+
+  console.log('userPosts trong userPosts', userPosts)
+
 
   //________________________________________________________________ Check Login or Not start
 
@@ -34,14 +40,20 @@ export default function UserPosts() {
       actFetchPostsByUserIdAsync(slug)
     ).then(res => {
       if (res.ok) {
-      } else alert('Không hợp lệ')
+      } else {
+        history.push('/');
+      }
     })
+
+
 
     dispatch(
       actGetUserInfoAsync(slug)
     ).then(res => {
       if (res.ok) setIsLoadingAuthorInfo(false)
-      else alert('Không hợp lệ')
+      else {
+        history.push('/');
+      }
     })
 
     // return () => unmounted = false

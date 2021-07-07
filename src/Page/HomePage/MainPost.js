@@ -12,6 +12,8 @@ export default function MainPost() {
     postsLength
   } = UsePaging();
 
+  console.log('post trong Mainpage', posts)
+
   let hasLoadingMore = true
   if (postsLength === 0) hasLoadingMore = false
 

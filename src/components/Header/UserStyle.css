@@ -65,7 +65,7 @@
 }
 .userSettingOpen {
   color: rgb(12, 237, 245);
-  transform: rotate(90deg) translate(-2px, 1px) scale(1.5);
+  transform: rotate(90deg) translate(0px, 1px) scale(1.5);
   display: block;
 }
 

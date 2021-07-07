@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory, useLocation } from "react-router";
 
 import Button from '../../components/common/Button'
 let editDataCategory = [];
@@ -90,6 +91,17 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
     if (!warningDesc && !warningPicture && !warningCategory && isEdit) postEditPost()
   }
 
+
+  // Click CancelBtn for responsive
+  const history = useHistory();
+  const location = useLocation();
+  const isEditPage = location.pathname.indexOf('/edit') !== -1;
+
+  function handleClickCancelBtn() {
+    if (isEditPage) history.goBack()
+    else handleCloseModal()
+  }
+
   return (
     <>
       <div className="col-lg-2"></div>
@@ -131,7 +143,7 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
         <div className='col-lg-12' style={{ paddingRight: '2px' }}>
           <div className='dth-modal-footer-editInUpload'>
             <div className='dth-modal-footer__btn-editInUpload'>
-              <Button type='modal-btn' onClick={handleCloseModal}>Cancel</Button>
+              <Button type='modal-btn' onClick={handleClickCancelBtn}>Cancel</Button>
               <Button type='modal-btn' active={true} onClick={handleClickPost} disable={isEdited} isLoading={isLoading}>Lưu thay đổi</Button>
             </div>
           </div>

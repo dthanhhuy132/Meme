@@ -12,7 +12,7 @@ import ChangePassword from '../Author/ChangePassword'
 // antdesign:
 import { notification } from 'antd';
 
-export default function Header() {
+export default function Header({ toggleTheme, theme }) {
   const currentUser = useSelector(state => state.Auth.currentUser);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
@@ -74,7 +74,6 @@ export default function Header() {
   let previousScrollTop = 0;
   window.addEventListener('scroll', function () {
     let currentScrollTop = window.scrollY;
-
     // Xử lý 
     if (currentScrollTop > previousScrollTop) {
       // Scroll Down 
@@ -110,7 +109,7 @@ export default function Header() {
             {
               currentUser
                 ?
-                < User currentUser={currentUser} handleClickChangePassWord={handleClickChangePassWord} />
+                < User currentUser={currentUser} handleClickChangePassWord={handleClickChangePassWord} toggleTheme={toggleTheme} theme={theme} />
                 :
                 < a
                   href='/'

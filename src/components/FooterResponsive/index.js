@@ -12,7 +12,7 @@ import Modal from '../Modal';
 import ChangePassword from '../Author/ChangePassword';
 
 
-export default function FooteResponsive() {
+export default function FooteResponsive({ toggleTheme, theme }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [headerModal, setHeaderModal] = useState('')
 
@@ -71,6 +71,11 @@ export default function FooteResponsive() {
     'dth-footer-disable': iscurrentUser === false
   })
 
+  //_______________________________________________________  DarkMode
+  function handleClickChangeDarkMode() {
+    toggleTheme()
+  }
+
   return (
     <>
       <footer>
@@ -97,7 +102,7 @@ export default function FooteResponsive() {
         </div>
         <div className='user-option-responsive'>
           <ul>
-            <li>
+            <li onClick={handleClickChangeDarkMode}>
               <div><i className="fas dth-far fa-adjust"></i></div>
               <p>Giao diện tối</p>
             </li>
