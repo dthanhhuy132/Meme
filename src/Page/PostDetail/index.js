@@ -59,7 +59,7 @@ export default function PostDetail({ comment = true }) {
   }
 
   const currentUser = useSelector(state => state.Auth.currentUser)
-  const linkToUser = currentUser.USERID === data.USERID ? '/profile' : `/user/${data.USERID}`;
+  const linkToUser = currentUser?.USERID === data.USERID ? '/profile' : `/user/${data.USERID}`;
 
   useEffect(() => {
     window.scrollTo(0, 0)
