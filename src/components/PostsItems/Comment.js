@@ -13,6 +13,7 @@ export default function Comment({ postid, loadingComment, countCmtAddNew }) {
     LoginEl.click();
   }
 
+
   const LoginComponet = () => (
     <div className='comment-login'>Vui lòng
       <a href='/' onClick={handClickOpenLogin}> Đăng nhập/Đăng ký </a>

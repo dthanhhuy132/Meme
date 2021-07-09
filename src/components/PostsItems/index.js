@@ -20,10 +20,7 @@ export default function PostItem({
   authorInfo,
   commentForPostDetail = false,
 }) {
-
-  // console.log('post', post)
-  // console.log('authorInfo', authorInfo)
-
+  // console.log('post trong post item', post)
 
   const dispatch = useDispatch();
   const [commentCommon, setCommentCommon] = useState(false);
@@ -76,7 +73,7 @@ export default function PostItem({
             <PostTime>{post?.time_added}</PostTime>
           </div>
         </div>
-        <ContentImage postContent={post?.post_content} postImage={post?.url_image} postid={post?.PID}></ContentImage>
+        <ContentImage postContent={post?.post_content} postImage={post?.url_image} postid={post?.PID} post={post}></ContentImage>
         {comment && <CmtStas handleClickCmt={handleClickCmt} >{cmtCount || 0}</CmtStas>}
 
         {

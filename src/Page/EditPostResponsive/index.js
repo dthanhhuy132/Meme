@@ -5,7 +5,7 @@ import DotLoading from '../../components/common/Loading/DotLoading';
 
 export default function EditPostResponsive() {
   const history = useHistory();
-
+  
   let data = history.location.editResponsive;
   if (!data) {
     history.push('/');

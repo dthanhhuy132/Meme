@@ -82,3 +82,43 @@
 .ass1-header__btn-upload:hover {
   color: #3482e2 !important;
 }
+
+.dth-user-login__setting li:first-child {
+  padding-left: 0 !important;
+}
+
+.interface-mode-wrapper {
+  position: relative;
+  width: 100% !important;
+  height: 24px !important;
+  overflow: hidden;
+}
+
+.interface-mode {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  width: 150px !important;
+
+  margin: 0;
+  padding: 0;
+}
+
+/* 5 px */
+.dark-mode {
+  left: -150px;
+  transition: all 0.2s ease;
+}
+
+.display-light .dark-mode {
+  left: 4px;
+}
+
+.light-mode {
+  left: 200px;
+  transition: all 0.2s ease;
+}
+.display-dark .light-mode {
+  left: 12px;
+}

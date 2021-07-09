@@ -86,6 +86,11 @@ export default function User({ currentUser, handleClickChangePassWord, toggleThe
     toggleTheme()
   }
 
+  let interfaceMode = classNames('interface-mode-wrapper', {
+    'display-dark': theme === 'dark',
+    'display-light': theme === 'light',
+  })
+
 
 
   return (
@@ -101,8 +106,19 @@ export default function User({ currentUser, handleClickChangePassWord, toggleThe
           isOpenSetting &&
           <ul className='user-setting__items dth-user-login__setting'>
             <li onClick={handleClickChangeDarkMode}>
-              <div><i className="fas dth-far fa-adjust"></i></div>
-              <p>Giao diện tối</p>
+
+              <div className={interfaceMode}>
+                <div className='interface-mode light-mode'>
+                  <div><i className="fas dth-far fa-sun"></i></div>
+                  <p>Giao diện sáng</p>
+                </div>
+
+                <div className='interface-mode dark-mode'>
+                  <div><i className="fas dth-far fa-moon"></i></div>
+                  <p>Giao diện tối</p>
+                </div>
+              </div>
+
             </li>
 
             <li onClick={clickChangePassword}>
@@ -118,6 +134,6 @@ export default function User({ currentUser, handleClickChangePassWord, toggleThe
         }
 
       </div>
-    </div>
+    </div >
   )
 }

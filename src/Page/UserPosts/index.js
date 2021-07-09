@@ -27,8 +27,7 @@ export default function UserPosts() {
   const userPosts = useSelector(state => state.Posts.userPosts.posts);
   const totalPosts = userPosts?.length || 0;
 
-  console.log('userPosts trong userPosts', userPosts)
-
+  // console.log('userPosts trong userPosts', userPosts)
 
   //________________________________________________________________ Check Login or Not start
 
@@ -65,6 +64,11 @@ export default function UserPosts() {
     1100: totalPosts === 1 ? 1 : 2,
     900: 1,
   };
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
 
   return (

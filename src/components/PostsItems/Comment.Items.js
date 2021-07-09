@@ -1,23 +1,21 @@
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
 import DotLoading from '../common/Loading/DotLoading';
 
 
 
 export default function CommentItems({ postid, loadingComment, currentUser }) {
   const comments = useSelector(state => state.Comments.comments);
-  // console.log('loadingComment truyen toi', loadingComment)
+  const location = useLocation();
 
   const key = `postCmt-${postid}`
   const commentsForPostId = comments[key];
-
   const hasComment = commentsForPostId?.length > 0 ? true : false;
-  // console.log('hasComment', hasComment)
-
 
   return (
     <div className="ass1-comments">
       {
-        loadingComment
+        loadingComment || !commentsForPostId
           ? <DotLoading />
           : hasComment
             ? commentsForPostId?.map((comment, index) => {
@@ -37,7 +35,7 @@ export default function CommentItems({ postid, loadingComment, currentUser }) {
               )
             })
             :
-            <div>Không có bình luận nào</div>
+            <div> Không có bình luận nào</div>
       }
     </div >
   )

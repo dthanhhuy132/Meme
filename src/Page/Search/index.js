@@ -15,7 +15,7 @@ export default function SearchPage() {
   const cmtStr = queryString.parse(location.search).q;
 
   const searchPosts = useSelector(state => state.Posts.searchPosts);
-  console.log('searchPosts', searchPosts)
+  // console.log('searchPosts', searchPosts)
 
   useEffect(() => {
     setIsLoading(true)

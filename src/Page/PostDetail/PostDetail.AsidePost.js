@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
+import DotLoading from '../../components/common/Loading/DotLoading'
+
 
 export default function PostDetailAsidePost({
-  postAside
+  postAside,
+  isLoadingCategory
 }) {
-
-  console.log('postAside', postAside);
-
 
 
   return (
@@ -18,16 +18,19 @@ export default function PostDetailAsidePost({
           </div>
 
           {
-            postAside?.map((postCategory, index) => (
-              <div className='category-section' key={index}>
-                <Link
-                  to={`/category/${postCategory.tag_index}`}
-                  className="ass1-head-user__btn-follow ass1-btn category-btn"
-                >
-                  {postCategory.tag_value}
-                </Link>
-              </div>
-            ))
+            !isLoadingCategory
+              ?
+              postAside?.map((postCategory, index) => (
+                <div className='category-section' key={index}>
+                  <Link
+                    to={`/category/${postCategory.tag_index}`}
+                    className="ass1-head-user__btn-follow ass1-btn category-btn"
+                  >
+                    {postCategory.tag_value}
+                  </Link>
+                </div>
+              ))
+              : <DotLoading />
           }
         </aside>
       </div >

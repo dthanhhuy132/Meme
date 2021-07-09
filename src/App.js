@@ -34,14 +34,15 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
+
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyle />
       <BrowserRouter>
+
         <Header toggleTheme={toggleTheme} theme={theme} />
 
         <Switch>
-
           <Route path="/upload" >
             <Upload />
           </Route>
@@ -66,18 +67,18 @@ function App() {
             <SearchPage />
           </Route>
 
-
           <Route exact path="/">
             <HomePage />
           </Route>
 
           <Route>
-            <EditPostResponsive />
+            <EditPostResponsive theme={theme} />
           </Route>
+
+
         </Switch>
 
         <FooterResponsive toggleTheme={toggleTheme} theme={theme} />
-
       </BrowserRouter >
 
     </ThemeProvider >

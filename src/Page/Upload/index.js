@@ -8,7 +8,8 @@ import { useHistory, useLocation } from 'react-router';
 // antdesign:
 import { notification } from 'antd';
 
-import CategoriesAndPostBtn from './CategoriesAndPostBtn'
+import CategoriesAndPostBtn from './CategoriesAndPostBtn';
+import { motion } from 'framer-motion'
 
 let editData = {}
 export default function Upload({
@@ -236,8 +237,29 @@ export default function Upload({
     setIsEdited
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
-    <main>
+    <motion.main
+      initial={{
+        y: '100vh'
+      }}
+
+      animate={{
+        y: 0
+      }}
+
+      exit={{
+        y: '100vh'
+      }}
+
+      transition={{
+        duration: 0.3
+      }}
+
+    >
       <div className="container dth-upload">
         {/*sections*/}
         <div className="row">
@@ -261,7 +283,7 @@ export default function Upload({
                       target='_blank'
                       rel="noreferrer"
                       className="ass1-btn ass1-btn-meme"
-                    >GRIPHY.net</a>
+                    >GRIPHY</a>
                   </div>
                   {waningLinkImg &&
                     <p className='warning-link-img'>Đường dẫn phải kết thúc bằng ký tự <span>'.gif ', '.png', 'jpg'</span></p>
@@ -321,6 +343,6 @@ export default function Upload({
             handleCloseModal={handleCloseModal} />
         </div>
       </div >
-    </main >
+    </motion.main >
   )
 }

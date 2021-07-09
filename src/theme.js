@@ -17,6 +17,7 @@ export const darkTheme = {
   commentColor: '#393939',
   areaTextColor: '#242526',
   areaTextFocus: '#707070',
+  textColorRed: '#f2ff00',
 
 
   modalOpacity: 'rgba(0, 0, 0, 0.88)',
@@ -50,6 +51,10 @@ export const GlobalStyle = createGlobalStyle`
   .ass1-header, .dth-footer {
     background: ${props => props.theme.bodyPost};
     border-bottom: ${props => props.theme.borderWidthSolid};
+    
+  }
+
+  .dth-footer {
     border-top: ${props => props.theme.borderWidthSolid};
   }
 
@@ -136,7 +141,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   // _______________________________________________________________________ Comment
-  .ass1-add-comment {
+  .ass1-add-comment,
+  .ass1-comments__section {
     background: ${props => props.theme.commentColor}
   }
 
@@ -192,4 +198,10 @@ export const GlobalStyle = createGlobalStyle`
   .ass1-aside__edit-post {
     color: ${props => props.theme.fontColor}
   }  
+
+  .warning-description p, 
+  .warning-img, 
+  .warnign-category {
+    color: ${props => props.theme.textColorRed} !important;
+  }
 `

@@ -1,10 +1,11 @@
+
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { actLogout, TOKEN_KEY, USER_ID } from '../../store/auth/action';
 import { useDispatch, useSelector } from 'react-redux';
-
 import classNames from 'classnames';
+
 // antdesign:
 import { notification } from 'antd';
 
@@ -15,7 +16,7 @@ import ChangePassword from '../Author/ChangePassword';
 export default function FooteResponsive({ toggleTheme, theme }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [headerModal, setHeaderModal] = useState('')
-
+  console.log('theme trong responsive', theme)
   // 1. Category
   function handleClickCategory(e) {
     e.preventDefault()
@@ -76,6 +77,7 @@ export default function FooteResponsive({ toggleTheme, theme }) {
     toggleTheme()
   }
 
+
   return (
     <>
       <footer>
@@ -103,8 +105,22 @@ export default function FooteResponsive({ toggleTheme, theme }) {
         <div className='user-option-responsive'>
           <ul>
             <li onClick={handleClickChangeDarkMode}>
-              <div><i className="fas dth-far fa-adjust"></i></div>
-              <p>Giao diện tối</p>
+
+
+              {theme === 'light'
+                ?
+                <div className='responsive-interface-mode responsive-dark-mode'>
+                  <div><i className="fas dth-far fa-moon"></i></div>
+                  <p>Giao diện tối</p>
+                </div>
+                :
+                <div className='responsive-interface-mode responsive-light-mode'>
+                  <div><i className="fas dth-far fa-sun"></i></div>
+                  <p>Giao diện sáng</p>
+                </div>
+              }
+
+
             </li>
 
             <li onClick={handleClickChangePassWord} className={disableClass}>
