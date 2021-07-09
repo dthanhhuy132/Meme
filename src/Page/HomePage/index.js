@@ -27,9 +27,9 @@ export default function Homepage() {
         x: 0
       }}
 
-    // transition={{
-    //   // ease: "easeOut",
-    // }}
+      transition={{
+        // ease: "easeOut",
+      }}
 
     >
       <div className="container">
