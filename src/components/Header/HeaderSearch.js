@@ -20,21 +20,23 @@ export default function HeaderSearch() {
 
 
   return (
-    <div className="ass1-header__search header-search-responsive-mobile">
-      <form action="/" onSubmit={handleSubmit}>
-        <label>
-          <i className="fas fa-search icon-Search"></i>
-          <input
-            type="search"
-            name="search-text"
-            className="form-control"
-            placeholder="Nhập từ khóa ..."
-            value={searchStr}
-            onChange={(e) => setSearchStr(e.target.value)}
-          />
-          <i className="fas fa-search icon-Search"></i>
-        </label>
-      </form>
+    <div className='header-for-responsive'>
+      <div className="ass1-header__search header-search-responsive-mobile">
+        <form action="/" onSubmit={handleSubmit}>
+          <label>
+            <i className="fas fa-search icon-Search"></i>
+            <input
+              type="search"
+              name="search-text"
+              className="form-control"
+              placeholder="Nhập từ khóa ..."
+              value={searchStr}
+              onChange={(e) => setSearchStr(e.target.value)}
+            />
+            <i className="fas fa-search icon-Search"></i>
+          </label>
+        </form>
+      </div>
     </div>
   )
 }

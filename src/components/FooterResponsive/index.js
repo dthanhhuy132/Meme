@@ -16,7 +16,6 @@ import ChangePassword from '../Author/ChangePassword';
 export default function FooteResponsive({ toggleTheme, theme }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [headerModal, setHeaderModal] = useState('')
-  console.log('theme trong responsive', theme)
   // 1. Category
   function handleClickCategory(e) {
     e.preventDefault()
@@ -105,8 +104,6 @@ export default function FooteResponsive({ toggleTheme, theme }) {
         <div className='user-option-responsive'>
           <ul>
             <li onClick={handleClickChangeDarkMode}>
-
-
               {theme === 'light'
                 ?
                 <div className='responsive-interface-mode responsive-dark-mode'>
@@ -119,7 +116,6 @@ export default function FooteResponsive({ toggleTheme, theme }) {
                   <p>Giao diện sáng</p>
                 </div>
               }
-
 
             </li>
 

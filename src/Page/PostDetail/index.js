@@ -12,7 +12,6 @@ import PostDetailAside from './PostDetail.AsidePost'
 
 import ContentImage from "../../components/PostsItems/ContentImage";
 import PostTime from "../../components/PostsItems/PostTime";
-import Author from "../../components/PostsItems/Author";
 import UserSetting from '../../components/PostsItems/UserSetting'
 import Avatar from "../../components/PostsItems/Avartar";
 import CmtStas from "../../components/PostsItems/CmtStas";
@@ -25,10 +24,18 @@ export default function PostDetail({ comment = true }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const post_category = useSelector(state => state.Posts.postByPostid);
-  console.log('post_category trong postdetail', post_category)
 
-  const data = location.post;
   const postid = param?.postid;
+
+  const DATA_RELOAD = 'DATA_RELOAD'
+  useEffect(() => {
+    localStorage.setItem(DATA_RELOAD, JSON.stringify(data))
+  }, [postid])
+
+
+  const dataReload = JSON.parse(localStorage.getItem(DATA_RELOAD));
+  const data = location.post || dataReload;
+
 
   const category = post_category?.categories;
 
@@ -61,8 +68,11 @@ export default function PostDetail({ comment = true }) {
   const currentUser = useSelector(state => state.Auth.currentUser)
   const linkToUser = currentUser?.USERID === data.USERID ? '/profile' : `/user/${data.USERID}`;
 
+
+  let pathname = location.pathname
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (pathname.indexOf('/post') !== -1)
+      window.scrollTo(0, 0)
   }, [])
 
   return (
@@ -76,10 +86,6 @@ export default function PostDetail({ comment = true }) {
         x: 0,
         y: 0,
         scale: 1
-      }}
-
-      exit={{
-        scale: 0.9
       }}
 
       transition={{

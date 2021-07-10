@@ -23,12 +23,12 @@ jQuery(function ($) {
         $(".user-option-responsive").toggleClass("user-option-responsive-open");
     });
 
-    // $(document).on("click", function (event) {
-    //     var $trigger = $(".dth-responsive-logout-icon, .dth-responsive-logout-icon > li");
-    //     if ($trigger !== event.target && !$trigger.has(event.target).length) {
-    //         $(".user-option-responsive").removeClass("user-option-responsive-open");
-    //     }
-    // });
+    $(document).on("click", function (event) {
+        var $trigger = $(".dth-responsive-logout-icon, .dth-responsive-logout-icon > li");
+        if ($trigger !== event.target && !$trigger.has(event.target).length) {
+            $(".user-option-responsive").removeClass("user-option-responsive-open");
+        }
+    });
 
     $(document).click(function (event) {
         if (!$(event.target).closest(".dth-responsive-logout-icon").length) {
@@ -38,6 +38,8 @@ jQuery(function ($) {
 
     // Seach-icon - responsive
     $('.dth-responsive-search-icon').click(function () {
+        console.log('chay trong main')
+
         $(".header-search-responsive-mobile").toggleClass("header-search-responsive-mobile-open");
         $(".header-search-responsive-mobile input").focus()
 

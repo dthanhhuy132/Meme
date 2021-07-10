@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 export default function ContentImage({
   postContent,
@@ -7,13 +7,30 @@ export default function ContentImage({
   post
 }) {
 
+  const location = useLocation();
+  const path = location.pathname;
+  const history = useHistory();
+
+
+  function handleClick(e) {
+    e.preventDefault();
+    if (path.indexOf('/post') !== -1) return null;
+    else {
+      history.push({
+        pathname: postLink,
+        post: post
+      })
+    }
+  }
+
+
   const postLink = `/post/${postid}`
   return (
     <div className="ass1-section__content">
       <p>{postContent}</p>
       <div className="ass1-section__image">
-        <Link to={{ pathname: postLink, post: post }}  ><img src={postImage} alt="" /></Link>
+        <a href='/' onClick={handleClick}><img src={postImage} alt="" /></a>
       </div>
-    </div>
+    </div >
   )
 }

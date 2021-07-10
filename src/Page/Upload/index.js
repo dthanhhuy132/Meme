@@ -241,24 +241,37 @@ export default function Upload({
     window.scrollTo(0, 0)
   }, [])
 
+
+  const pathname = location.pathname;
+  console.log('pathname la gi', pathname)
+  let uploadMotionVariant = pathname !== '/upload'
+    ?
+    {
+
+    }
+
+    : {
+      initial: { y: '100vh' },
+      animate: {
+        y: 0,
+        transition: {
+          duration: 0.3
+        }
+      },
+      exit: {
+        y: '100vh',
+        transition: {
+          duration: 0.3
+        }
+      }
+    }
+
   return (
     <motion.main
-      initial={{
-        y: '100vh'
-      }}
-
-      animate={{
-        y: 0
-      }}
-
-      exit={{
-        y: '100vh'
-      }}
-
-      transition={{
-        duration: 0.3
-      }}
-
+      variants={uploadMotionVariant}
+      initial='initial'
+      animate='animate'
+      exit='exit'
     >
       <div className="container dth-upload">
         {/*sections*/}

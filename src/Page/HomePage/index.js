@@ -11,11 +11,11 @@ import { motion } from 'framer-motion'
 export default function Homepage() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(actFetchPostsAsync())
-    window.scrollTo(0, 0)
-    // eslint-disable-next-line
-  }, [])
+  // useEffect(() => {
+  //   dispatch(actFetchPostsAsync())
+  //   window.scrollTo(0, 0)
+  //   // eslint-disable-next-line
+  // }, [])
 
 
   return (
