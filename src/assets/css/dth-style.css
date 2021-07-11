@@ -259,7 +259,7 @@ button:focus {
 }
 
 .ass1-comments__content p {
-  margin-top: 5px;
+  margin-top: -3px;
 }
 
 .comment-login {
@@ -898,6 +898,12 @@ footer {
   .ass1-header .container > * {
     margin-left: 0px;
     margin-right: 0px;
+    flex-grow: 0;
+  }
+
+  .ass1-header .container nav {
+    flex-grow: 0;
+    width: 0;
   }
 
   .container .ass1-header__menu {
@@ -932,6 +938,18 @@ footer {
   .ass1-header .container {
     position: relative;
   }
+
+  .ass1-header .container .header-for-responsive {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    height: 35px;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
   .ass1-header__search {
     max-width: unset;
     padding-left: 15px;
@@ -951,13 +969,13 @@ footer {
 
   .header-search-responsive-mobile {
     position: absolute;
-    max-width: 55%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-150%);
+    max-width: 100%;
+    left: 0;
+    transform: translateY(-150%);
     transition: all 0.2s ease-in-out;
   }
   .header-search-responsive-mobile-open {
-    transform: translateX(-50%) translateY(0%);
+    transform: translateY(0%);
   }
   /* ______________________________________________ Upload */
   .ass1-header__btn-upload {

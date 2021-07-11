@@ -18,6 +18,7 @@ export const darkTheme = {
   areaTextColor: '#242526',
   areaTextFocus: '#707070',
   textColorRed: '#f2ff00',
+  commentTextColor: '#c1bebe',
 
 
   modalOpacity: 'rgba(0, 0, 0, 0.88)',
@@ -122,6 +123,9 @@ export const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.fontColor} !important;
   }
 
+  .ass1-comments__content p {
+    color: ${props => props.theme.commentTextColor} !important;
+  }
   
   .dth-user-login__text-in-profile {
     color: rgb(12, 237, 245)

@@ -9,7 +9,8 @@ export default function Author({
   const currentUser = useSelector(state => state.Auth.currentUser);
   const userProfile = currentUser?.USERID;
   const history = useHistory();
-  const slugUserID = userProfile === userid ? '/profile' : `/user/${userid}`
+  const slugUserID = userProfile === userid ? '/profile' : `/user/${userid}`;
+  // console.log('slugUserID', slugUserID)
 
   // ________________________________________________________ Check Login
   function handClickOpenLogin(e) {

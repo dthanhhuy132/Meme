@@ -43,12 +43,15 @@ export default function FooteResponsive({ toggleTheme, theme }) {
     setHeaderModal('Đăng xuất thiệt hả Bro')
   }
 
+  let body = document.querySelector('body');
+
   function handleLogout() {
     dispatch(actLogout())
     history.push('/')
     localStorage.removeItem(USER_ID);
     localStorage.removeItem(TOKEN_KEY);
     setIsOpenModal(false);
+    body.classList.remove('dth-modal-open');
 
     (function openNotification(placement) {
       notification.warning({
@@ -59,7 +62,7 @@ export default function FooteResponsive({ toggleTheme, theme }) {
         closeIcon: <i className="fas fa-times"></i>,
         placement,
       })
-    })(`Bái bai ${currentUser.fullname}`)
+    })(`Bái bai ${currentUser.fullname}`);
   }
 
   let modalProps = {

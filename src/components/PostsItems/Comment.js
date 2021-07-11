@@ -4,7 +4,7 @@ import CommentForm from './Comment.Form';
 import CommentItems from './Comment.Items';
 
 
-export default function Comment({ postid, loadingComment, countCmtAddNew }) {
+export default function Comment({ postid, loadingComment, countCmtAddNew, userID }) {
   const currentUser = useSelector(state => state.Auth.currentUser);
 
   function handClickOpenLogin(e) {
@@ -28,7 +28,7 @@ export default function Comment({ postid, loadingComment, countCmtAddNew }) {
         : <CommentForm currentUser={currentUser} postid={postid} countCmtAddNew={countCmtAddNew} />
       }
 
-      <CommentItems postid={postid} loadingComment={loadingComment} currentUser={currentUser} />
+      <CommentItems postid={postid} loadingComment={loadingComment} currentUser={currentUser} userID={userID} />
       <div className='comment-footer-space'></div>
     </>
   )

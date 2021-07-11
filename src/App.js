@@ -13,6 +13,7 @@ import Upload from './Page/Upload';
 import Profile from './Page/ProfilePage';
 import HomePage from './Page/HomePage';
 import EditPostResponsive from './Page/EditPostResponsive';
+import ProfilePicture from './Page/UserPosts/ProfilePicture'
 
 import { actFetchCategoriesAsync } from "./store/categories/actions";
 import { actFechMeInfoAsync, USER_ID } from "./store/auth/action";
@@ -20,7 +21,6 @@ import { actFechMeInfoAsync, USER_ID } from "./store/auth/action";
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme, GlobalStyle } from './theme.js';
 import DarkMode from './hooks/useDarkMode';
-
 
 
 function App() {
@@ -33,6 +33,8 @@ function App() {
     if (userId && userId !== '') dispatch(actFechMeInfoAsync(userId));
     // eslint-disable-next-line
   }, [])
+
+
 
 
   return (
@@ -67,6 +69,10 @@ function App() {
             <SearchPage />
           </Route>
 
+          <Route path='/ProfilePicture'>
+            <ProfilePicture />
+          </Route>
+
           <Route exact path="/">
             <HomePage />
           </Route>
@@ -74,6 +80,7 @@ function App() {
           <Route>
             <EditPostResponsive theme={theme} />
           </Route>
+
 
 
         </Switch>

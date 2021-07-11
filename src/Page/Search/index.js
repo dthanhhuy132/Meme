@@ -15,18 +15,17 @@ export default function SearchPage() {
   const cmtStr = queryString.parse(location.search).q;
 
   const searchPosts = useSelector(state => state.Posts.searchPosts);
-  // console.log('searchPosts', searchPosts)
 
   useEffect(() => {
     setIsLoading(true)
     dispatch(
       actSearchPostAsync(cmtStr)
     ).then(res => {
-      setIsLoading(false)
+      if (res.ok) {
+        setIsLoading(false)
+      }
     })
-
   }, [cmtStr, dispatch])
-
 
   return (
     <main className='listPost'>
@@ -46,12 +45,17 @@ export default function SearchPage() {
                   <div className='count-posts'>Có {searchPosts?.length} bài viết liên quan</div>
                   <div className="ass1-section__list">
                     {
-                      searchPosts.map(post => (
-                        <Post
-                          key={post.PID}
-                          post={post}
-                        ></Post>
-                      ))
+                      searchPosts.map(post => {
+
+                        console.log('post trong search', post)
+
+                        return (
+                          <Post
+                            key={post.PID}
+                            post={post}
+                          ></Post>
+                        )
+                      })
                     }
                   </div>
                 </>

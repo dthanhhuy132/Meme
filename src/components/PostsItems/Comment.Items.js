@@ -1,16 +1,22 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
+import { Link } from 'react-router-dom';
+
 import DotLoading from '../common/Loading/DotLoading';
 
 
 
-export default function CommentItems({ postid, loadingComment, currentUser }) {
+export default function CommentItems({ postid, loadingComment, currentUser, userID }) {
   const comments = useSelector(state => state.Comments.comments);
+
   const location = useLocation();
 
   const key = `postCmt-${postid}`
   const commentsForPostId = comments[key];
   const hasComment = commentsForPostId?.length > 0 ? true : false;
+
+  let slugLink = currentUser?.USERID === userID ? '/profile' : `/user/${userID}`
+
 
   return (
     <div className="ass1-comments">
@@ -25,9 +31,11 @@ export default function CommentItems({ postid, loadingComment, currentUser }) {
               if (!cmtFullName) cmtFullName = currentUser?.fullname || comment.fullname;
               return (
                 < div className="ass1-comments__section" key={index} >
-                  <a href="/" className="ass1-comments__avatar ass1-avatar"><img src={avatar} alt="" /></a>
+                  <a href="/" className="ass1-comments__avatar ass1-avatar" onClick={e => e.preventDefault()}>
+                    <img src={avatar} alt="" onClick={e => e.preventDefault()} />
+                  </a>
                   <div className="ass1-comments__content">
-                    <a href="/" className="ass1-comments__name">{cmtFullName}</a>
+                    <Link to={slugLink} className="ass1-comments__name" >{cmtFullName}</Link>
                     <span className="ass1-comments__passed">12 giờ</span>
                     <p>{comment.comment}</p>
                   </div>

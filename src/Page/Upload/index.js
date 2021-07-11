@@ -119,10 +119,8 @@ export default function Upload({
 
   /// ________________________________________________________________________________________ FUNCTION POST A NEW POST
   const [isLoading, setIsLoading] = useState(false);
-
   const [isEdited, setIsEdited] = useState(true) //________________ Props for edit
 
-  // console.log('formData', formData)
   let formDataFinal = new FormData();
   formDataFinal.append('obj_image', formData.obj_image)
   formDataFinal.append('url_image', formData.url_image)
@@ -167,7 +165,6 @@ export default function Upload({
             closeIcon: <i className="fas fa-times"></i>,
             placement,
           });
-
         })('Thay đổi bài viết thất bại')
       }
     })
@@ -241,24 +238,31 @@ export default function Upload({
     window.scrollTo(0, 0)
   }, [])
 
+  let path = location.pathname;
+  const uploadMotionVariants = path !== '/upload' ? {} : {
+    initial: { y: '100vh' },
+    animate: {
+      y: 0,
+      transition: {
+        duration: 0.3
+      }
+    },
+    exit: {
+      y: '100vh',
+      transition: {
+        duration: 0.3
+      }
+    }
+  }
+
+
+
   return (
     <motion.main
-      initial={{
-        y: '100vh'
-      }}
-
-      animate={{
-        y: 0
-      }}
-
-      exit={{
-        y: '100vh'
-      }}
-
-      transition={{
-        duration: 0.3
-      }}
-
+      variants={uploadMotionVariants}
+      initial='initial'
+      animate='animate'
+      exit='exit'
     >
       <div className="container dth-upload">
         {/*sections*/}

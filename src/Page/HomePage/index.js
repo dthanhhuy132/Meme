@@ -13,22 +13,24 @@ export default function Homepage() {
 
   useEffect(() => {
     dispatch(actFetchPostsAsync())
-    window.scrollTo(0, 0)
     // eslint-disable-next-line
   }, [])
 
 
   return (
     <motion.main className='listPost'
-      // initial={{
-      //   x: '-100vw'
-      // }}
-      // animate={{
-      //   x: 0
-      // }}
+      initial={{
+        opacity: 0.5,
+        scale: 0.9
+      }}
+      animate={{
+        opacity: 1,
+        scale: 1
+      }}
 
       transition={{
-        // ease: "easeOut",
+        type: "spring",
+        duration: 0.3
       }}
 
     >

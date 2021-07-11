@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 import { actFechCommentsAsync } from "../../store/comments/action";
 
+
 import ContentImage from "./ContentImage";
 import PostTime from "./PostTime";
 import Author from "./Author";
@@ -37,7 +38,6 @@ export default function PostItem({
     'col-lg-6': classCol === '6'
   })
 
-
   function handleClickCmt(e) {
     e.preventDefault();
     setCommentCommon(!commentCommon);
@@ -61,6 +61,7 @@ export default function PostItem({
     return null
   }
 
+  
   return (
     <div className={classes}>
       <div className="ass1-section" >
@@ -77,7 +78,7 @@ export default function PostItem({
         {comment && <CmtStas handleClickCmt={handleClickCmt} >{cmtCount || 0}</CmtStas>}
 
         {
-          displayComment && <Comment postid={post?.PID} loadingComment={isLoadingComment} countCmtAddNew={countCmtAddNew} />
+          displayComment && <Comment postid={post?.PID} loadingComment={isLoadingComment} countCmtAddNew={countCmtAddNew} userID={post?.USERID} />
         }
       </div>
     </div>

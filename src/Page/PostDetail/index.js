@@ -25,11 +25,15 @@ export default function PostDetail({ comment = true }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const post_category = useSelector(state => state.Posts.postByPostid);
-  console.log('post_category trong postdetail', post_category)
-
-  const data = location.post;
   const postid = param?.postid;
 
+  const DATA_RELOAD = 'DATA_RELOAD'
+  useEffect(() => {
+    localStorage.setItem(DATA_RELOAD, JSON.stringify(data))
+  }, [postid])
+
+  const dataReload = JSON.parse(localStorage.getItem(DATA_RELOAD));
+  const data = location.post || dataReload;
   const category = post_category?.categories;
 
   const [isLoadingCategory, setIsLoadingCategory] = useState(true);
@@ -104,7 +108,7 @@ export default function PostDetail({ comment = true }) {
                   <ContentImage postContent={data.post_content} postImage={data.url_image} postid={data.PID}></ContentImage>
                   {comment && <CmtStas handleClickCmt={handleClickCmt} >{cmtCount || 0}</CmtStas>}
 
-                  <Comment postid={data.PID} countCmtAddNew={countCmtAddNew} />
+                  <Comment postid={data.PID} countCmtAddNew={countCmtAddNew} userID={data.USERID} />
 
                 </div>
               </div>

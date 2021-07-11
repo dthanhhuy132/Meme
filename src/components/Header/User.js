@@ -78,7 +78,7 @@ export default function User({ currentUser, handleClickChangePassWord, toggleThe
 
   // str.substr(0,str.indexOf(' '));
   let currUserName = currentUser?.fullname;
-  let curruserNameDisplay = currUserName.substring(0, currUserName.indexOf(' '));
+  let curruserNameDisplay = currentUser?.fullname.trim().indexOf(' ') === -1 ? currentUser?.fullname : currUserName.substring(0, currUserName.indexOf(' '));
 
   // ______________________________________________________________________________ Dark MODE
   // const { toggleTheme } = DarkMode();
