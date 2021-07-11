@@ -166,8 +166,8 @@ export default function EditProfile({ setIsOpenModal }) {
             closeIcon: <i className="fas fa-times"></i>,
             placement,
           });
-        })('Yeah!!!')
-
+        })('Yeah!!!');
+        
         setIsLoading(false);
 
       } else {
