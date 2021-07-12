@@ -28,7 +28,7 @@ export default function Comment({ postid, loadingComment, countCmtAddNew, userID
         : <CommentForm currentUser={currentUser} postid={postid} countCmtAddNew={countCmtAddNew} />
       }
 
-      <CommentItems postid={postid} loadingComment={loadingComment} currentUser={currentUser} userID={userID} />
+      <CommentItems postid={postid} loadingComment={loadingComment} currentUser={currentUser} userID={userID} countCmtAddNew={countCmtAddNew}/>
       <div className='comment-footer-space'></div>
     </>
   )

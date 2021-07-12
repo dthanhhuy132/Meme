@@ -235,6 +235,15 @@ button:focus {
   padding-bottom: 12px;
 }
 
+.ass1-section__name {
+  display: flex;
+  min-width: 350px;
+}
+.loading-user-page {
+  width: 36%;
+  margin-top: 2px;
+}
+
 /* ---------------------------COMMENT_SECTION----------------------- */
 .ass1-comments {
   margin-bottom: 15px;
@@ -242,12 +251,20 @@ button:focus {
 
 .ass1-comments__section {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   margin-top: 20px;
 
   padding: 5px 10px;
   border-radius: 7px;
   background: #eef3f6;
+}
+
+.ass1-comments__avatar {
+  margin-top: 4px;
+}
+
+.ass1-comments__passed {
+  margin-left: 10px;
 }
 
 .ass1-section__footer {
@@ -258,8 +275,27 @@ button:focus {
   padding-bottom: 0px;
 }
 
+.ass1-comments__content {
+  position: relative;
+}
+
+.dth-comment-reply {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  cursor: pointer;
+}
+
+.dth-comment-reply:hover {
+  color: #007bff !important;
+}
+
+.dth-comment-form-reply {
+  margin-left: 50px;
+}
+
 .ass1-comments__content p {
-  margin-top: -3px;
+  margin-top: 0px;
 }
 
 .comment-login {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { actFechCommentsAsync } from "../../store/comments/action";
 
@@ -13,6 +14,8 @@ import Avatar from "./Avartar";
 import CmtStas from "./CmtStas";
 import Comment from "./Comment";
 
+import useTimeCalculation from '../../hooks/useTimeCalculation.js'
+import { actFetchPostByPostIdAsync } from "../../store/posts/action";
 
 export default function PostItem({
   post,
@@ -28,6 +31,8 @@ export default function PostItem({
   const [isLoadingComment, setIsLoadingComment] = useState(false);
 
   const currentUser = useSelector(state => state.Auth.currentUser);
+
+  const { relativeTimeStr } = useTimeCalculation(post.time_added);
 
   let displayUserSetting = false;
   if (currentUser?.USERID === post?.USERID || currentUser?.fullname === post?.fullname) {
@@ -57,11 +62,32 @@ export default function PostItem({
     setCmtCout(Number(cmtCount) + 1)
   }
 
+
+  const location = useLocation();
+  const history = useHistory();
+
+  function handleFromSearchPage() {
+    console.log('post.PID al gi', post.PID)
+    dispatch(
+      actFetchPostByPostIdAsync(post.PID)
+    ).then(res => {
+      console.log('res la gi', res)
+      const userIDsearch = res.userID
+      if (res.ok) {
+        console.log('userIDsearch', userIDsearch)
+        const userProfile = currentUser?.USERID;
+        const slugUserID = userProfile === userIDsearch ? '/profile' : `/user/${userIDsearch}`;
+        history.push(slugUserID)
+      }
+    })
+
+  }
+
+
   if (!post) {
     return null
   }
 
-  
   return (
     <div className={classes}>
       <div className="ass1-section" >
@@ -70,8 +96,8 @@ export default function PostItem({
           {displayUserSetting && < UserSetting postid={post?.PID} post={post} />}
 
           <div>
-            <Author userid={post?.USERID}>{post.fullname || authorInfo?.fullname}</Author>
-            <PostTime>{post?.time_added}</PostTime>
+            <Author userid={post?.USERID} handleFromSearchPage={handleFromSearchPage}>{post.fullname || authorInfo?.fullname}</Author>
+            <PostTime>{relativeTimeStr}</PostTime>
           </div>
         </div>
         <ContentImage postContent={post?.post_content} postImage={post?.url_image} postid={post?.PID} post={post}></ContentImage>
