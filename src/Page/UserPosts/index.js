@@ -45,7 +45,6 @@ export default function UserPosts() {
     })
 
 
-
     dispatch(
       actGetUserInfoAsync(slug)
     ).then(res => {

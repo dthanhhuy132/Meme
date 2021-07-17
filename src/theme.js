@@ -119,8 +119,13 @@ export const GlobalStyle = createGlobalStyle`
   textarea,
   h3,
   select,
-  ::placeholder {
+  .dth-no-comment
+   {
     color: ${props => props.theme.fontColor} !important;
+  }
+
+  ::placeholder {
+    color: ${props => props.theme.commentTextColor} !important;
   }
 
   .ass1-comments__content p {

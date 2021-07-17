@@ -53,7 +53,7 @@ export default function User({ currentUser, handleClickChangePassWord, toggleThe
         message: `${placement}`,
         description: 'Hết bình luận và đăng ảnh nhé',
         className: 'dth-background-notification',
-        duration: 0,
+        duration: 3,
         closeIcon: <i className="fas fa-times"></i>,
         placement,
       })

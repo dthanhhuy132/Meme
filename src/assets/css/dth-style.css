@@ -260,11 +260,15 @@ button:focus {
 }
 
 .ass1-comments__avatar {
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .ass1-comments__passed {
   margin-left: 10px;
+}
+
+.dth-no-comment {
+  margin-bottom: 10px;
 }
 
 .ass1-section__footer {
@@ -277,6 +281,9 @@ button:focus {
 
 .ass1-comments__content {
   position: relative;
+}
+.ass1-comments__content div {
+  display: flex;
 }
 
 .dth-comment-reply {
@@ -296,6 +303,12 @@ button:focus {
 
 .ass1-comments__content p {
   margin-top: 0px;
+}
+
+.dth-tag-user {
+  position: absolute;
+  top: 6px;
+  left: 40px;
 }
 
 .comment-login {
@@ -349,8 +362,12 @@ button:focus {
 }
 
 .ass1-add-comment > form textarea {
+  /* padding-top: 10px; */
   padding-left: 40px;
-  line-height: 1.3;
+  line-height: 1.3 !important;
+  overflow: hidden;
+  box-sizing: border-box;
+  /* min-height: 100px; */
 }
 
 .ass1-add-comment__content {

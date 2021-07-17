@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
+import React, { createContext } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -22,6 +22,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme, GlobalStyle } from './theme.js';
 import DarkMode from './hooks/useDarkMode';
 
+export const ThemeContext = createContext('')
 
 function App() {
   const dispatch = useDispatch();
@@ -34,9 +35,6 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
-
-
-
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyle />
@@ -45,43 +43,44 @@ function App() {
         <Header toggleTheme={toggleTheme} theme={theme} />
 
         <Switch>
-          <Route path="/upload" >
-            <Upload />
-          </Route>
+          <ThemeContext.Provider value={theme}>
+            <Route path="/upload" >
+              <Upload />
+            </Route>
 
-          <Route path="/user/:slug">
-            <UserPosts />
-          </Route>
+            <Route path="/user/:slug">
+              <UserPosts />
+            </Route>
 
-          <Route path="/profile">
-            <Profile />
-          </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
 
-          <Route path="/category/:tagIndex">
-            <CategoriesPage />
-          </Route>
+            <Route path="/category/:tagIndex">
+              <CategoriesPage />
+            </Route>
 
-          <Route path="/post/:postid">
-            <PostDetail />
-          </Route>
+            <Route path="/post/:postid">
+              <PostDetail />
+            </Route>
 
-          <Route path="/search">
-            <SearchPage />
-          </Route>
+            <Route path="/search">
+              <SearchPage />
+            </Route>
 
-          <Route path='/ProfilePicture'>
-            <ProfilePicture />
-          </Route>
+            <Route path='/ProfilePicture'>
+              <ProfilePicture />
+            </Route>
 
-          <Route exact path="/">
-            <HomePage />
-          </Route>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
 
-          <Route>
-            <EditPostResponsive theme={theme} />
-          </Route>
+            <Route>
+              <EditPostResponsive theme={theme} />
+            </Route>
 
-
+          </ThemeContext.Provider>
 
         </Switch>
 

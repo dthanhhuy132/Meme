@@ -115,15 +115,14 @@ export function actGetUserInfo(userData) {
 
 export function actGetUserInfoAsync(userid) {
   return async dispatch => {
-    // console.log('userid for postDetail', userid)
     try {
       const res = await AuthService.getMeInfo(userid);
       const userData = res.data.user;
-      // console.log('action fetch user post info run', userid)
       dispatch(actGetUserInfo(userData));
 
       return {
-        ok: true
+        ok: true,
+        userData
       }
     } catch (er) {
       return {

@@ -65,14 +65,16 @@ export function actPostNewCommentAsync({
       });
       // console.log('res trong new comment', res);
       const newComment = res.data.body;
-      // console.log('newComment', newComment)
+      const cmtId = newComment.CID;
+      console.log('newComment', newComment)
       dispatch(actPostNewComment({
         newComment,
         postid
       }))
 
       return {
-        ok: true
+        ok: true,
+        cmtId
       }
     } catch (er) {
 

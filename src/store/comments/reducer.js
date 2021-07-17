@@ -2,7 +2,8 @@ import { ACT_FETCH_COMMENTS, ACT_POST_NEW_COMMENT, ACT_RESET_COMMENT } from "./a
 
 
 const initState = {
-  comments: {}
+  comments: {},
+  commentsReply: {}
 }
 
 
@@ -10,10 +11,6 @@ export default function CommentsReducer(state = initState, action) {
   switch (action.type) {
     case ACT_FETCH_COMMENTS:
 
-      // comments: {
-      // key - 1: [{},{}]
-      // key - 2: [{},{}]
-      // }
       const comments = action.payload.comments;
       const postid = action.payload.postid;
 

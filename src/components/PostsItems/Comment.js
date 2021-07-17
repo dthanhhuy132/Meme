@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux';
 import CommentForm from './Comment.Form';
 import CommentItems from './Comment.Items';
 
+import DotLoading from '../common/Loading/DotLoading';
+import { useState } from 'react';
+
+import { motion } from 'framer-motion';
 
 export default function Comment({ postid, loadingComment, countCmtAddNew, userID }) {
   const currentUser = useSelector(state => state.Auth.currentUser);
@@ -21,14 +25,55 @@ export default function Comment({ postid, loadingComment, countCmtAddNew, userID
     </div>
   )
 
+  const comments = useSelector(state => state.Comments.comments);
+  const key = `postCmt-${postid}`
+  const commentsForPostId = comments[key];
+  let hasComment = commentsForPostId?.length > 0 ? true : false;
+
+  const [hasNewComment, setHasNewComment] = useState(false);
+  const [commentID, getCommentID] = useState('');
+
+
   return (
     <>
       {!currentUser
         ? <LoginComponet />
-        : <CommentForm currentUser={currentUser} postid={postid} countCmtAddNew={countCmtAddNew} />
+        : <CommentForm
+          currentUser={currentUser}
+          postid={postid}
+          countCmtAddNew={countCmtAddNew}
+
+          hasNewComment={hasNewComment}
+          setHasNewComment={setHasNewComment}
+
+          commentID={commentID}
+          getCommentID={getCommentID}
+        />
       }
 
-      <CommentItems postid={postid} loadingComment={loadingComment} currentUser={currentUser} userID={userID} countCmtAddNew={countCmtAddNew}/>
+      {loadingComment || !commentsForPostId
+        ? <DotLoading />
+        : hasComment
+          ? (
+            commentsForPostId.map((comment, index) => (
+              < CommentItems
+                key={index}
+                postid={postid}
+                currentUser={currentUser}
+                userID={userID}
+                comment={comment}
+
+                countCmtAddNew={countCmtAddNew}
+                hasNewComment={hasNewComment}
+                setHasNewComment={setHasNewComment}
+
+                commentID={commentID}
+                getCommentID={getCommentID}
+              />
+            )))
+          :
+          <div className='dth-no-comment'> Không có bình luận nào</div>
+      }
       <div className='comment-footer-space'></div>
     </>
   )

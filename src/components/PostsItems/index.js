@@ -104,7 +104,13 @@ export default function PostItem({
         {comment && <CmtStas handleClickCmt={handleClickCmt} >{cmtCount || 0}</CmtStas>}
 
         {
-          displayComment && <Comment postid={post?.PID} loadingComment={isLoadingComment} countCmtAddNew={countCmtAddNew} userID={post?.USERID} />
+          displayComment &&
+          <Comment
+            postid={post?.PID}
+            loadingComment={isLoadingComment}
+            countCmtAddNew={countCmtAddNew}
+            userID={post?.USERID}
+          />
         }
       </div>
     </div>
