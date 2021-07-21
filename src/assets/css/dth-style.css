@@ -282,8 +282,8 @@ button:focus {
 .ass1-comments__content {
   position: relative;
 }
-.ass1-comments__content div {
-  display: flex;
+.ass1-comments__content div > a {
+  float: left;
 }
 
 .dth-comment-reply {
@@ -293,13 +293,82 @@ button:focus {
   cursor: pointer;
 }
 
+/* _______________________________________________________REPLY COMMENT PART START */
 .dth-comment-reply:hover {
   color: #007bff !important;
 }
 
 .dth-comment-form-reply {
-  margin-left: 50px;
+  position: relative;
+  margin-left: 40px;
 }
+
+.dth-comment-reply-item {
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.dth-comment-reply-item .ass1-comments,
+.dth-comment-reply-item .ass1-comments__section {
+  position: relative;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+.dth-comment-form-reply.only-form-comment::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 0px;
+
+  height: 120%;
+  border-left: 1px solid #aba9a9;
+}
+
+.dth-comment-form-reply.only-form-comment:last-child:before {
+  border-left: 1px solid transparent;
+}
+
+.dth-comment-reply-item .ass1-comments::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 0px;
+
+  height: 27px;
+  width: 50px;
+
+  border-left: 1px solid #aba9a9;
+  border-bottom: 1px solid #aba9a9;
+  border-bottom-left-radius: 15px;
+}
+
+.dth-comment-reply-item .ass1-comments::after {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 8px;
+
+  height: 110%;
+  width: 50px;
+
+  border-left: 1px solid #aba9a9;
+}
+
+.dth-comment-reply-item .ass1-comments:last-child::after {
+  border-left: 1px solid transparent;
+}
+
+.dth-comment-reply-item .dth-comment-form-reply {
+  margin-left: 0px;
+}
+
+.dth-comment-reply__btn-see-more {
+  margin-left: -40px;
+}
+
+/* _______________________________________________________REPLY COMMENT PART END */
 
 .ass1-comments__content p {
   margin-top: 0px;

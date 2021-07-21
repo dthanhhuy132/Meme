@@ -23,7 +23,8 @@ export default function CommentForm({
 
   renderTagName = null,
 
-  userID
+  userID = '',
+  commentID = ''
 }) {
 
 
@@ -108,7 +109,11 @@ export default function CommentForm({
     setHasNewComment(true);
 
     dispatch(actPostNewCommentAsync({
-      comment: displayRenderTagUser && replyUser !== '' ? replyUser + '###---###' + userID + '$$$---$$$' + cmtStr : cmtStr,
+      comment: replyUser !== ''
+        ? displayRenderTagUser
+          ? userID + 'CodeCommentID-Start' + commentID + 'CodeCommentID-End' + cmtStr
+          : 'CodeCommentID-Start' + commentID + 'CodeCommentID-End' + cmtStr
+        : cmtStr,
       postid,
     })).then(res => {
       if (res.ok) {
@@ -116,17 +121,16 @@ export default function CommentForm({
         setIsLoading(false);
         setCmtStr('');
         setIsShowFormReply(false);
-
         getCommentID(res.cmtId)
-
         changeBackgroundCmt();
       } else {
+
         setIsLoading(false);
         setHasNewComment(false);
         (function openNotification(placement) {
           notification.error({
             message: `${placement}`,
-            description: "Vui lòng không bình luận nữa=))!!!",
+            description: "Vui lòng không bình luận nữa=))",
             className: 'dth-background-notification',
             duration: 4,
             closeIcon: <i className="fas fa-times"></i>,

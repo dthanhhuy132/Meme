@@ -165,6 +165,14 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
+  .dth-comment-reply-item .ass1-comments::before,
+  .dth-comment-form-reply.only-form-comment::before {
+    border-color: ${props => props.theme.areaTextFocus}
+  }
+  .dth-comment-reply-item .ass1-comments::after {
+    border-color: ${props => props.theme.areaTextFocus}
+  }
+
   //________________________________________________________________________ Login form  && Footer
   .ass1-login__form,
   .ass1-login__form .form-checkbox {

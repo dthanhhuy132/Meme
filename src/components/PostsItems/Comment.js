@@ -55,22 +55,29 @@ export default function Comment({ postid, loadingComment, countCmtAddNew, userID
         ? <DotLoading />
         : hasComment
           ? (
-            commentsForPostId.map((comment, index) => (
-              < CommentItems
-                key={index}
-                postid={postid}
-                currentUser={currentUser}
-                userID={userID}
-                comment={comment}
+            commentsForPostId.map((comment, index) => {
+              return (
+                (
+                  < CommentItems
+                    key={index}
+                    postid={postid}
+                    currentUser={currentUser}
+                    userID={userID}
+                    comment={comment}
 
-                countCmtAddNew={countCmtAddNew}
-                hasNewComment={hasNewComment}
-                setHasNewComment={setHasNewComment}
+                    countCmtAddNew={countCmtAddNew}
+                    hasNewComment={hasNewComment}
+                    setHasNewComment={setHasNewComment}
 
-                commentID={commentID}
-                getCommentID={getCommentID}
-              />
-            )))
+                    commentID={commentID}
+                    getCommentID={getCommentID}
+                    commentIDforReplyCommentLevel2={comment.CID}
+
+                    isParentComment={true}
+                  />
+                )
+              )
+            }))
           :
           <div className='dth-no-comment'> Không có bình luận nào</div>
       }
