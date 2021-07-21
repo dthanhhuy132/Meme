@@ -15,12 +15,12 @@ export default function Information({
 }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenModalEdit, setIsOpenModalEdit] = useState(false)
-  const [isOpenModalChangePassword, setIsPOpenModalChangePassword] = useState(false)
+  const [isOpenModalChangePassword, setIsPOpenModalChangePassword] = useState(false);
+  const [isOpenModalAvatar, setIsOpenModalAvatar] = useState(false);
   const currUser = useSelector(state => state.Auth.currentUser);
   const location = useLocation();
 
   const isCurrentUser = location.pathname === '/profile';
-
   const userData = useSelector(state => state.Auth.userData);
 
   const defaultAvatar = isCurrentUser && currUser?.profilepicture !== ''
@@ -37,7 +37,7 @@ export default function Information({
     setIsOpenModal(true);
     setIsPOpenModalChangePassword(false);
     setIsOpenModalEdit(true)
-
+    setIsOpenModalAvatar(false)
   }
 
   function handleClickChangePassWord(e) {
@@ -45,6 +45,15 @@ export default function Information({
     setIsOpenModal(true);
     setIsOpenModalEdit(false)
     setIsPOpenModalChangePassword(true);
+    setIsOpenModalAvatar(false)
+  }
+
+  function handleClickAvatar(e) {
+    e.preventDefault()
+    setIsOpenModal(true);
+    setIsOpenModalEdit(false);
+    setIsPOpenModalChangePassword(false);
+    setIsOpenModalAvatar(true);
   }
 
   let modalProps = {
@@ -53,7 +62,7 @@ export default function Information({
   }
 
   let gender = isCurrentUser ? currUser?.gender : userData?.gender
-
+  let userName = isCurrentUser ? currUser?.fullname : userData?.fullname
   return (
     <div className="ass1-head-user">
       <div className="ass1-head-user__content">
@@ -64,7 +73,7 @@ export default function Information({
             :
             <>
               <div className="ass1-head-user__image">
-                <a href="/"><img src={defaultAvatar} alt="" /></a>
+                <a href="/" onClick={handleClickAvatar}><img src={defaultAvatar} alt="" /></a>
               </div>
 
               <div className="ass1-head-user__info">
@@ -72,7 +81,7 @@ export default function Information({
                   {/* Name */}
                   <div className="ass1-head-user__name">
                     <span>
-                      {isCurrentUser ? currUser?.fullname : userData?.fullname}
+                      {userName}
                       {gender === 'nam'
                         ? <i className="fas dth-gender-icon fa-mars"></i>
                         : gender === ''
@@ -136,6 +145,14 @@ export default function Information({
                   <Modal modalProps={modalProps} isRenderFooter={false} header='Thay đổi mật khẩu'>
                     <ChangePassword setIsPOpenModalChangePassword={setIsPOpenModalChangePassword} />
                   </Modal>}
+
+                {isOpenModal && isOpenModalAvatar &&
+                  <Modal modalProps={modalProps} isRenderFooter={false} header={userName}>
+                    <div>
+                      <img src={defaultAvatar}></img>
+                    </div>
+                  </Modal>}
+
               </div>
             </>
         }

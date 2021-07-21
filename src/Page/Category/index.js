@@ -51,37 +51,36 @@ export default function CategoriesPage() {
         <div className="row">
           <div className="col-lg-2"></div>
           <div className="col-lg-8">
-
-
             <div className="ass1-section__list">
               {
                 !isLoadingCategory
-                  ?
-                  <InfiniteScroll
-                    dataLength={posts.length}
-                    next={handleLoadMore}
-                    hasMore={hasLoadingMore}
-                    loader={<div style={{ marginBottom: '25px' }}>
-                      <DotLoading />
-                    </div>
-                    }
-                    endMessage={
-                      <p style={{ textAlign: 'center', marginBottom: '25px', fontSize: '20px', fontWeight: '400' }}>
-                        <b>HẾT RỒI HYHY</b>
-                      </p>
-                    }
-                  >
-                    {
+                  ? posts.length === 0
+                    ? <div className='count-posts' style={{ textAlign: 'center' }}>Không có bài viết liên quan</div>
+                    : <InfiniteScroll
+                      dataLength={posts.length}
+                      next={handleLoadMore}
+                      hasMore={hasLoadingMore}
+                      loader={<div style={{ marginBottom: '25px' }}>
+                        <DotLoading />
+                      </div>
+                      }
+                      endMessage={
+                        <p style={{ textAlign: 'center', marginBottom: '25px', fontSize: '20px', fontWeight: '400' }}>
+                          <b>HẾT RỒI HYHY</b>
+                        </p>
+                      }
+                    >
+                      {
 
-                      posts.map(post => (
-                        <Post
-                          key={post.PID}
-                          post={post}
-                        ></Post>
-                      ))
+                        posts.map(post => (
+                          <Post
+                            key={post.PID}
+                            post={post}
+                          ></Post>
+                        ))
 
-                    }
-                  </InfiniteScroll>
+                      }
+                    </InfiniteScroll>
                   : <DotLoading />
               }
             </div>

@@ -7,7 +7,7 @@ export const ACT_RESET_COMMENT = 'ACT_RESET_COMMENT';
 
 /////////////// Get comments by postId
 export function actFetchComments({ comments, postid }) {
-  // console.log('postid trong action', postid)
+
   return {
     type: ACT_FETCH_COMMENTS,
     payload: {
@@ -22,7 +22,6 @@ export function actFechCommentsAsync(postid) {
     try {
       const res = await commentsService.getComments(postid)
       const comments = res.data.comments;
-      // console.log('res trong action async', comments)
 
       dispatch(actFetchComments({
         comments,
@@ -63,16 +62,18 @@ export function actPostNewCommentAsync({
         comment,
         postid
       });
-      // console.log('res trong new comment', res);
+      console.log('res trong new comment', res);
       const newComment = res.data.body;
-      // console.log('newComment', newComment)
+      const cmtId = newComment.CID;
+
       dispatch(actPostNewComment({
         newComment,
         postid
       }))
 
       return {
-        ok: true
+        ok: true,
+        cmtId
       }
     } catch (er) {
 

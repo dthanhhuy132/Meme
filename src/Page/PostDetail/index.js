@@ -18,13 +18,17 @@ import CmtStas from "../../components/PostsItems/CmtStas";
 import Comment from "../../components/PostsItems/Comment";
 
 import { motion } from 'framer-motion'
+import useTimeCalculation from '../../hooks/useTimeCalculation';
 
 export default function PostDetail({ comment = true }) {
   const param = useParams();
   const location = useLocation();
   const dispatch = useDispatch();
   const post_category = useSelector(state => state.Posts.postByPostid);
+<<<<<<< HEAD
 
+=======
+>>>>>>> Final1
   const postid = param?.postid;
 
   const DATA_RELOAD = 'DATA_RELOAD'
@@ -32,11 +36,16 @@ export default function PostDetail({ comment = true }) {
     localStorage.setItem(DATA_RELOAD, JSON.stringify(data))
   }, [postid])
 
+<<<<<<< HEAD
 
   const dataReload = JSON.parse(localStorage.getItem(DATA_RELOAD));
   const data = location.post || dataReload;
 
 
+=======
+  const dataReload = JSON.parse(localStorage.getItem(DATA_RELOAD));
+  const data = location.post || dataReload;
+>>>>>>> Final1
   const category = post_category?.categories;
 
   const [isLoadingCategory, setIsLoadingCategory] = useState(true);
@@ -68,8 +77,14 @@ export default function PostDetail({ comment = true }) {
   const currentUser = useSelector(state => state.Auth.currentUser)
   const linkToUser = currentUser?.USERID === data.USERID ? '/profile' : `/user/${data.USERID}`;
 
+<<<<<<< HEAD
 
   let pathname = location.pathname
+=======
+  const { } = useTimeCalculation()
+
+
+>>>>>>> Final1
   useEffect(() => {
     if (pathname.indexOf('/post') !== -1)
       window.scrollTo(0, 0)
@@ -110,7 +125,7 @@ export default function PostDetail({ comment = true }) {
                   <ContentImage postContent={data.post_content} postImage={data.url_image} postid={data.PID}></ContentImage>
                   {comment && <CmtStas handleClickCmt={handleClickCmt} >{cmtCount || 0}</CmtStas>}
 
-                  <Comment postid={data.PID} countCmtAddNew={countCmtAddNew} />
+                  <Comment postid={data.PID} countCmtAddNew={countCmtAddNew} userID={data.USERID} />
 
                 </div>
               </div>

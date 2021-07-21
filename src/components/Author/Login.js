@@ -23,14 +23,15 @@ export default function Login({ setIsOpenModal, refreshPage = () => { } }) {
     password: "Meme@132"
   });
 
+  let body = document.querySelector('body');
   function handleSaveLogin() {
     setSaveLogin(!saveLogin)
   }
 
   function handleCloseModal() {
     setIsOpenModal(false)
+    body.classList.remove('dth-modal-open');
   }
-
 
   function handleSubmit(evt) {
     if (isLoading) return;
@@ -47,12 +48,13 @@ export default function Login({ setIsOpenModal, refreshPage = () => { } }) {
             localStorage.setItem(USER_ID, userId)
           };
           handleCloseModal();
+
           (function openNotification(placement) {
             notification.success({
               message: `${placement}`,
               description: "Cùng chế ảnh và bình luận truất'sssss nào",
               className: 'dth-background-notification',
-              duration: 4,
+              duration: 3.5,
               closeIcon: <i className="fas fa-times"></i>,
               placement,
             })
@@ -66,7 +68,7 @@ export default function Login({ setIsOpenModal, refreshPage = () => { } }) {
               message: `${placement}`,
               description: 'Xem lại Tài khoản hoặc mật khẩu cái nào!!!',
               className: 'dth-background-notification',
-              duration: 4,
+              duration: 3.5,
               closeIcon: <i className="fas fa-times"></i>,
               placement,
             })

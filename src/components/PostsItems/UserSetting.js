@@ -124,7 +124,7 @@ export default function UserSetting({ postid, post }) {
       } else {
         setIsLoading(false);
         (function openNotification(placement) {
-          notification.success({
+          notification.error({
             message: `${placement}`,
             description: "Kiểm tra lại thật kĩ nào",
             className: 'dth-background-notification',

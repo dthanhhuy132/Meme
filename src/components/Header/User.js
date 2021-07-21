@@ -57,7 +57,7 @@ export default function User({ currentUser, handleClickChangePassWord, toggleThe
         message: `${placement}`,
         description: 'Hết bình luận và đăng ảnh nhé',
         className: 'dth-background-notification',
-        duration: 0,
+        duration: 3,
         closeIcon: <i className="fas fa-times"></i>,
         placement,
       })
@@ -82,7 +82,11 @@ export default function User({ currentUser, handleClickChangePassWord, toggleThe
 
   // str.substr(0,str.indexOf(' '));
   let currUserName = currentUser?.fullname;
+<<<<<<< HEAD
   let curruserNameDisplay = currUserName.trim().indexOf(' ') === -1 ? currUserName : currUserName.substring(0, currUserName.indexOf(' '));
+=======
+  let curruserNameDisplay = currentUser?.fullname.trim().indexOf(' ') === -1 ? currentUser?.fullname : currUserName.substring(0, currUserName.indexOf(' '));
+>>>>>>> Final1
 
   // ______________________________________________________________________________ Dark MODE
   // const { toggleTheme } = DarkMode();

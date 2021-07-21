@@ -18,6 +18,7 @@ export const darkTheme = {
   areaTextColor: '#242526',
   areaTextFocus: '#707070',
   textColorRed: '#f2ff00',
+  commentTextColor: '#c1bebe',
 
 
   modalOpacity: 'rgba(0, 0, 0, 0.88)',
@@ -118,10 +119,18 @@ export const GlobalStyle = createGlobalStyle`
   textarea,
   h3,
   select,
-  ::placeholder {
+  .dth-no-comment
+   {
     color: ${props => props.theme.fontColor} !important;
   }
 
+  ::placeholder {
+    color: ${props => props.theme.commentTextColor} !important;
+  }
+
+  .ass1-comments__content p {
+    color: ${props => props.theme.commentTextColor} !important;
+  }
   
   .dth-user-login__text-in-profile {
     color: rgb(12, 237, 245)
@@ -151,10 +160,24 @@ export const GlobalStyle = createGlobalStyle`
     border: ${props => props.theme.borderWidthSolid};
     color: ${props => props.theme.fontColor};
   }
+
+  .comment-login,
+  .ass1-section .ass1-section__footer {
+    border-color: ${props => props.theme.borderColor};
+  }
+
   .ass1-add-comment .form-control:focus {
     background-color: ${props => props.theme.areaTextFocus};
   }
 
+
+  .dth-comment-reply-item .ass1-comments::before,
+  .dth-comment-form-reply.only-form-comment::before {
+    border-color: ${props => props.theme.areaTextFocus}
+  }
+  .dth-comment-reply-item .ass1-comments::after {
+    border-color: ${props => props.theme.areaTextFocus}
+  }
 
   //________________________________________________________________________ Login form  && Footer
   .ass1-login__form,

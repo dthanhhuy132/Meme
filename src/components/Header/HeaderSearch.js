@@ -12,12 +12,16 @@ export default function HeaderSearch() {
 
   useEffect(() => {
     if (searchStr) history.push('/search?q=' + searchStr)
-    if (searchStr === '' & location.pathname.indexOf('/search') !== -1) history.push('/');
-
+    if (searchStr === '' && location.pathname.indexOf('/search') !== -1) {
+      history.push('/');
+    }
     return () => { }
     // eslint-disable-next-line
   }, [searchStr])
 
+  // useEffect(() => {
+  //   if (location.pathname.indexOf('/search') === -1) setSearchStr('')
+  // }, [location.pathname])
 
   return (
     <div className='header-for-responsive'>
@@ -38,5 +42,6 @@ export default function HeaderSearch() {
         </form>
       </div>
     </div>
+
   )
 }

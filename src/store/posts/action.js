@@ -103,7 +103,8 @@ export function actFetchPostByPostIdAsync(postid) {
 
       return {
         post_category: post_category,
-        ok: true
+        ok: true,
+        userID: post_category.post.USERID
       }
     } catch (er) {
       return {
@@ -127,7 +128,7 @@ export function actSearchPostAsync(query) {
   return async dispatch => {
     try {
       const res = await postsService.searchPost(query)
-      const posts = res.data.posts
+      const posts = res.data.posts;
       dispatch(actSearchPost(posts))
       return {
         ok: true

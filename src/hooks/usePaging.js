@@ -31,7 +31,7 @@ export default function UsePaging({
       currPage: currPage + 1,
       ...extraParams
     })).then(res => {
-      setPostLength(res.resdata.length);
+      setPostLength(res.resdata?.length);
     })
     setIsLoading(false)
   }
