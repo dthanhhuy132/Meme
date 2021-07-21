@@ -231,8 +231,10 @@ button:focus {
 }
 
 .ass1-section .ass1-section__footer {
-  padding-top: 8px;
+  margin-top: 5px;
+  padding-top: 12px;
   padding-bottom: 12px;
+  border-top: 1px solid #e2e1e1;
 }
 
 .ass1-section__name {
@@ -368,6 +370,28 @@ button:focus {
   margin-left: -40px;
 }
 
+.ass1-section__btn-comment {
+  margin-top: 0px !important  ;
+}
+.dth-footer-comment {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.dth-facebook-share {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out !important ;
+  right: -120px;
+}
+
+.dth-facebook-share:hover {
+  right: 0;
+}
+
 /* _______________________________________________________REPLY COMMENT PART END */
 
 .ass1-comments__content p {
@@ -381,8 +405,8 @@ button:focus {
 }
 
 .comment-login {
-  padding-bottom: 10px;
   padding-top: 10px;
+  border-top: 1px solid #c2c2c2;
 }
 
 .comment-footer-space {
@@ -503,6 +527,7 @@ button:focus {
 
 .ass1-avatar {
   overflow: hidden;
+  border-radius: 45%;
 }
 .ass1-avatar img {
   height: 100%;

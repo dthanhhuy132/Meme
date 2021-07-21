@@ -11,12 +11,12 @@ export default function Author({
   handleFromSearchPage,
   ...restProps
 }) {
+
   const currentUser = useSelector(state => state.Auth.currentUser);
   const userProfile = currentUser?.USERID;
   const history = useHistory();
   const location = useLocation();
   const slugUserID = userProfile === userid ? '/profile' : `/user/${userid}`;
-  // console.log('slugUserID', slugUserID)
 
   const [isLoadingUserPage, setIsLoadingUserPage] = useState(false);
 

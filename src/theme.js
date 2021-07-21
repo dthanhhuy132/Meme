@@ -160,6 +160,12 @@ export const GlobalStyle = createGlobalStyle`
     border: ${props => props.theme.borderWidthSolid};
     color: ${props => props.theme.fontColor};
   }
+
+  .comment-login,
+  .ass1-section .ass1-section__footer {
+    border-color: ${props => props.theme.borderColor};
+  }
+
   .ass1-add-comment .form-control:focus {
     background-color: ${props => props.theme.areaTextFocus};
   }

@@ -22,7 +22,6 @@ dayjs.extend(relativeTime);
 
 export default function CommentItems({
   postid,
-  currentUser,
   userID,
   countCmtAddNew,
   comment,
@@ -36,7 +35,12 @@ export default function CommentItems({
 
   isParentComment = false,
 }) {
+  console.log('comment co gi nao', comment)
+  console.log('userID al cái gì nào', userID)
+
   const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.Auth.currentUser);
+  console.log('currentUser trong comment items có gì nào', currentUser)
 
   let slugLink = currentUser?.USERID === userID ? '/profile' : `/user/${userID}`
   const { relativeTimeStr } = useTimeCalculation(comment.time_added)
@@ -152,7 +156,7 @@ export default function CommentItems({
         <div className="ass1-comments__content">
           <Link to={slugLink} className="ass1-comments__name" >{comment?.fullname ? comment?.fullname : fullNameAfterAddNewCmt}</Link>
           <span className="ass1-comments__passed">{relativeTimeStr}</span>
-          <i className="fas fa-reply dth-comment-reply" onClick={(e) => handleOnclickReply(e, comment)}></i>
+          {currentUser && <i className="fas fa-reply dth-comment-reply" onClick={(e) => handleOnclickReply(e, comment)}></i>}
           <div>
             {replyCmt && <Link to={currentUser?.USERID === tagNameId ? '/profile' : `user/${tagNameId}`} style={{ marginRight: '4px' }}>{tagName}</Link>}
             <p>{replyCmt ? cmtReplyStr : comment?.comment}</p>
@@ -200,8 +204,8 @@ export default function CommentItems({
                     comment={comment}
 
                     postid={postid}
-                    currentUser={currentUser}
 
+                    userID={comment.USERID}
                     countCmtAddNew={countCmtAddNew}
                     hasNewComment={hasNewComment}
                     setHasNewComment={setHasNewComment}
@@ -210,7 +214,6 @@ export default function CommentItems({
                     commentID={commentParentID}
 
                     isReplyComment={true}
-
                     isParentComment={false}
                   />
                 )

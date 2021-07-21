@@ -61,8 +61,8 @@ export default function Comment({ postid, loadingComment, countCmtAddNew, userID
                   < CommentItems
                     key={index}
                     postid={postid}
-                    currentUser={currentUser}
-                    userID={userID}
+
+                    userID={comment.USERID}
                     comment={comment}
 
                     countCmtAddNew={countCmtAddNew}
