@@ -7,6 +7,7 @@ import Loading from '../common/Loading'
 import { notification } from 'antd';
 // import { MentionsInput, Mention } from 'react-mentions'
 // import { Link } from "react-router-dom";
+// OK het roi
 
 export default function CommentForm({
   currentUser,
