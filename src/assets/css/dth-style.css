@@ -270,6 +270,7 @@ button:focus {
 }
 
 .dth-no-comment {
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -341,8 +342,8 @@ button:focus {
   height: 27px;
   width: 50px;
 
-  border-left: 1px solid #aba9a9;
-  border-bottom: 1px solid #aba9a9;
+  border-left: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
   border-bottom-left-radius: 15px;
 }
 
@@ -355,7 +356,7 @@ button:focus {
   height: 110%;
   width: 50px;
 
-  border-left: 1px solid #aba9a9;
+  border-left: 1px solid #d6d6d6;
 }
 
 .dth-comment-reply-item .ass1-comments:last-child::after {
@@ -420,6 +421,7 @@ button:focus {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  margin-top: 10px;
 }
 
 .dotLoading-cmt .dotLoading-svg {
