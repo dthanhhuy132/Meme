@@ -2,7 +2,7 @@
   "name": "meme",
   "version": "0.1.0",
   "engines": {
-    "node": "v14.15.4"
+    "node": "14.x"
   },
   "private": true,
   "dependencies": {
