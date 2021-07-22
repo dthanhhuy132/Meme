@@ -156,7 +156,6 @@ export function actDeletePostAsync(postid) {
   return async dispatch => {
     try {
       const res = await postsService.deletePost(postid)
-      console.log('res tra ve tu xoa bai', res)
       dispatch(actDeletePost(postid))
       return {
         ok: true
@@ -269,9 +268,10 @@ export function actPostNewPostAsync(formData) {
     try {
       const res = await postsService.postNewPost(formData)
       const newPost = res.data.data.post;
+      console.log('newPost có gì nào', newPost)
       dispatch(actPostNewPost(newPost))
       return {
-        ok: true
+        ok: true,
       }
 
     } catch (err) {

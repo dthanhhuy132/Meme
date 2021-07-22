@@ -29,8 +29,8 @@ export default function CmtStas({
 
       <FacebookShareButton
         url={post?.url_image}
-        quote={post?.post_content}
-        hashtag='#QuẩyMeMeCùngReactJS'
+        quote='Vào đây: https://hd-meme.herokuapp.com/ để cùng vui nào'
+        hashtag='#MemeReactJS'
       >
         <FacebookIcon className='dth-fb-share-icon' style={{ display: 'none' }} />
       </FacebookShareButton>

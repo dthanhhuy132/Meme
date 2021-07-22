@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import { useHistory } from "react-router-dom";
 
 import { actFechCommentsAsync } from "../../store/comments/action";
+import { actGetUserInfoAsync } from "../../store/auth/action";
+
 
 
 import ContentImage from "./ContentImage";
@@ -24,7 +26,6 @@ export default function PostItem({
   authorInfo,
   commentForPostDetail = false,
 }) {
-  // console.log('post trong post item', post)
 
   const dispatch = useDispatch();
   const [commentCommon, setCommentCommon] = useState(false);
@@ -42,6 +43,20 @@ export default function PostItem({
   const classes = classNames('ass1-section__item', {
     'col-lg-6': classCol === '6'
   })
+
+
+  let [fullNameNewPost, setFullNameNewPost] = useState('');
+  if (!post.fullname && !authorInfo?.fullname) {
+    dispatch(
+      actGetUserInfoAsync(post.USERID)
+    ).then(res => {
+      if (res.ok) {
+        setFullNameNewPost(res?.userData?.fullname)
+      }
+    })
+  }
+
+
 
   function handleClickCmt(e) {
     e.preventDefault();
@@ -65,14 +80,11 @@ export default function PostItem({
   const history = useHistory();
 
   function handleFromSearchPage() {
-    console.log('post.PID al gi', post.PID)
     dispatch(
       actFetchPostByPostIdAsync(post.PID)
     ).then(res => {
-      console.log('res la gi', res)
       const userIDsearch = res.userID
       if (res.ok) {
-        console.log('userIDsearch', userIDsearch)
         const userProfile = currentUser?.USERID;
         const slugUserID = userProfile === userIDsearch ? '/profile' : `/user/${userIDsearch}`;
         history.push(slugUserID)
@@ -86,6 +98,7 @@ export default function PostItem({
     return null
   }
 
+
   return (
     <div className={classes}>
       <div className="ass1-section" >
@@ -94,7 +107,7 @@ export default function PostItem({
           {displayUserSetting && < UserSetting postid={post?.PID} post={post} />}
 
           <div>
-            <Author userid={post?.USERID} handleFromSearchPage={handleFromSearchPage}>{post.fullname || authorInfo?.fullname}</Author>
+            <Author userid={post?.USERID} handleFromSearchPage={handleFromSearchPage}>{post.fullname || authorInfo?.fullname || fullNameNewPost}</Author>
             <PostTime>{relativeTimeStr}</PostTime>
           </div>
         </div>

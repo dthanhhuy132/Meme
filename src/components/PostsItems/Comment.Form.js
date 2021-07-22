@@ -87,7 +87,6 @@ export default function CommentForm({
         && cmtStr === ''
         && replyUser !== ''
       ) {
-        console.log('ua sao tu nhien chay luon day')
         setDisplayTagUser(false)
         setTextIndentForCmt('')
       }

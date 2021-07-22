@@ -62,7 +62,6 @@ export function actPostNewCommentAsync({
         comment,
         postid
       });
-      console.log('res trong new comment', res);
       const newComment = res.data.body;
       const cmtId = newComment.CID;
 
