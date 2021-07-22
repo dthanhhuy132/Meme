@@ -131,10 +131,8 @@ export default function Upload({
   // ____________________________________________________________ EDIT POST A NEW POST FOR EDIT
   const location = useLocation();
   const searchPage = location.pathname.indexOf('/search') !== -1;
-  console.log('searchPage laf chuan', searchPage)
 
   function postEditPost() {
-    console.log('run ham dispatch edit')
     setIsLoading(true)
     dispatch(
       editPostAsync(formDataFinal)

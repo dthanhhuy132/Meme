@@ -92,6 +92,7 @@ export default function CommentForm({
         setTextIndentForCmt('')
       }
     })
+    // eslint-disable-next-line
   }, [cmtStr])
 
   // _____________________________________________________________________________________ Post New Comment

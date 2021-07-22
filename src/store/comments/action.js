@@ -73,7 +73,8 @@ export function actPostNewCommentAsync({
 
       return {
         ok: true,
-        cmtId
+        cmtId,
+        newComment
       }
     } catch (er) {
 

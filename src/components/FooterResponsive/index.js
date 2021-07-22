@@ -16,7 +16,6 @@ import ChangePassword from '../Author/ChangePassword';
 export default function FooteResponsive({ toggleTheme, theme }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [headerModal, setHeaderModal] = useState('')
-  console.log('theme trong responsive', theme)
   // 1. Category
   function handleClickCategory(e) {
     e.preventDefault()

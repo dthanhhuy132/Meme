@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { actFechCommentsAsync } from "../../store/comments/action";
 
@@ -62,8 +62,6 @@ export default function PostItem({
     setCmtCout(Number(cmtCount) + 1)
   }
 
-
-  const location = useLocation();
   const history = useHistory();
 
   function handleFromSearchPage() {
@@ -101,7 +99,7 @@ export default function PostItem({
           </div>
         </div>
         <ContentImage postContent={post?.post_content} postImage={post?.url_image} postid={post?.PID} post={post}></ContentImage>
-        {comment && <CmtStas handleClickCmt={handleClickCmt} >{cmtCount || 0}</CmtStas>}
+        {comment && <CmtStas handleClickCmt={handleClickCmt} post={post}>{cmtCount || 0}</CmtStas>}
 
         {
           displayComment &&

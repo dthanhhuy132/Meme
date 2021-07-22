@@ -149,7 +149,7 @@ export default function Information({
                 {isOpenModal && isOpenModalAvatar &&
                   <Modal modalProps={modalProps} isRenderFooter={false} header={userName}>
                     <div>
-                      <img src={defaultAvatar}></img>
+                      <img src={defaultAvatar} alt=''></img>
                     </div>
                   </Modal>}
 

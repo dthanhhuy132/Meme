@@ -12,14 +12,12 @@ import PostDetailAside from './PostDetail.AsidePost'
 
 import ContentImage from "../../components/PostsItems/ContentImage";
 import PostTime from "../../components/PostsItems/PostTime";
-import Author from "../../components/PostsItems/Author";
 import UserSetting from '../../components/PostsItems/UserSetting'
 import Avatar from "../../components/PostsItems/Avartar";
 import CmtStas from "../../components/PostsItems/CmtStas";
 import Comment from "../../components/PostsItems/Comment";
 
 import { motion } from 'framer-motion'
-import useTimeCalculation from '../../hooks/useTimeCalculation';
 
 export default function PostDetail({ comment = true }) {
   const param = useParams();
@@ -31,6 +29,7 @@ export default function PostDetail({ comment = true }) {
   const DATA_RELOAD = 'DATA_RELOAD'
   useEffect(() => {
     localStorage.setItem(DATA_RELOAD, JSON.stringify(data))
+    // eslint-disable-next-line
   }, [postid])
 
   const dataReload = JSON.parse(localStorage.getItem(DATA_RELOAD));
@@ -49,7 +48,8 @@ export default function PostDetail({ comment = true }) {
     });
   }
   useEffect(() => {
-    dispatchAction()
+    dispatchAction();
+    // eslint-disable-next-line
   }, [postid, dispatch])
 
   let displayUserSetting = false;
@@ -66,12 +66,13 @@ export default function PostDetail({ comment = true }) {
   const currentUser = useSelector(state => state.Auth.currentUser)
   const linkToUser = currentUser?.USERID === data.USERID ? '/profile' : `/user/${data.USERID}`;
 
-  const { } = useTimeCalculation()
-
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  useEffect(() => {
+    return () => { }
+  })
 
   return (
     <motion.main className='dth-post-detail'
@@ -110,7 +111,7 @@ export default function PostDetail({ comment = true }) {
                     </div>
                   </div>
                   <ContentImage postContent={data.post_content} postImage={data.url_image} postid={data.PID}></ContentImage>
-                  {comment && <CmtStas handleClickCmt={handleClickCmt} >{cmtCount || 0}</CmtStas>}
+                  {comment && <CmtStas handleClickCmt={handleClickCmt} post={data}>{cmtCount || 0}</CmtStas>}
 
                   <Comment postid={data.PID} countCmtAddNew={countCmtAddNew} userID={data.USERID} />
 

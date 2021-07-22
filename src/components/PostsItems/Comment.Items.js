@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
 import { Link } from 'react-router-dom';
 
 import { motion } from 'framer-motion';
@@ -35,12 +34,9 @@ export default function CommentItems({
 
   isParentComment = false,
 }) {
-  console.log('comment co gi nao', comment)
-  console.log('userID al cái gì nào', userID)
 
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.Auth.currentUser);
-  console.log('currentUser trong comment items có gì nào', currentUser)
 
   let slugLink = currentUser?.USERID === userID ? '/profile' : `/user/${userID}`
   const { relativeTimeStr } = useTimeCalculation(comment.time_added)
@@ -55,10 +51,9 @@ export default function CommentItems({
 
   const commentStr = comment?.comment;
   const replyCmt = commentStr?.indexOf('CodeCommentID-Start') !== -1;
-  let idNe;
   useEffect(() => {
     if (replyCmt) {
-      idNe = commentStr?.slice(0, commentStr.indexOf('CodeCommentID-Start'));
+      let idNe = commentStr?.slice(0, commentStr.indexOf('CodeCommentID-Start'));
       dispatch(
         actGetUserInfoAsync(idNe)
       ).then(res => {
@@ -67,13 +62,14 @@ export default function CommentItems({
         }
       })
     }
-  }, [idNe])
+  })
 
   useEffect(() => {
     if (replyCmt) {
       setTagNameId(commentStr?.slice(0, 3));
       setCmtReplyStr(commentStr.slice(commentStr.indexOf('CodeCommentID-End') + 17, commentStr?.length))
     }
+    // eslint-disable-next-line
   }, [])
 
 
@@ -90,6 +86,7 @@ export default function CommentItems({
         }
       })
     }
+    // eslint-disable-next-line
   }, [comment])
 
   function renderTagName() {
@@ -109,11 +106,9 @@ export default function CommentItems({
   const placeholder = `Trả lời bình luận của ${comment.fullname}`;
   const motionVariant = !hasNewComment ? '' : {
     initial: {
-      scale: 0.7,
-      opacity: 0.5,
+      opacity: 0.2,
     },
     animate: {
-      scale: 1,
       opacity: 1,
       transition: {
         duration: 0.3,

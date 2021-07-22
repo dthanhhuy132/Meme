@@ -31,8 +31,9 @@ export default function UserPosts() {
 
   //________________________________________________________________ Check Login or Not start
 
+
   useEffect(() => {
-    // let unmounted = true;
+
     setIsLoadingAuthorInfo(true);
 
     dispatch(
@@ -54,7 +55,7 @@ export default function UserPosts() {
       }
     })
 
-    // return () => unmounted = false
+    return () => { }
     // eslint-disable-next-line
   }, [slug]);
 

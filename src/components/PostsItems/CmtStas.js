@@ -3,12 +3,12 @@ import { FacebookShareButton, FacebookIcon } from "react-share";
 
 export default function CmtStas({
   children,
-  handleClickCmt
+  handleClickCmt,
+  post
 }) {
 
   function handleClickFbShare(e) {
     e.preventDefault()
-    console.log('e.target', e.target)
     let fbIcon = e.target.parentElement.nextElementSibling;
     fbIcon.click()
   }
@@ -28,8 +28,8 @@ export default function CmtStas({
       </a>
 
       <FacebookShareButton
-        url='www.youtube.com'
-        quote='Tới Meme và cùng nhau quẩy nào các bạn ơi'
+        url={post?.url_image}
+        quote={post?.post_content}
         hashtag='#QuẩyMeMeCùngReactJS'
       >
         <FacebookIcon className='dth-fb-share-icon' style={{ display: 'none' }} />

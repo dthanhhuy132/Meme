@@ -294,6 +294,7 @@ button:focus {
   top: 2px;
   right: 1px;
   cursor: pointer;
+  color: grey;
 }
 
 /* _______________________________________________________REPLY COMMENT PART START */
@@ -337,10 +338,10 @@ button:focus {
   content: "";
   position: absolute;
   left: -30px;
-  top: 0px;
+  top: -10px;
 
-  height: 27px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
 
   border-left: 1px solid #d6d6d6;
   border-bottom: 1px solid #d6d6d6;

@@ -6,8 +6,6 @@ import CommentItems from './Comment.Items';
 import DotLoading from '../common/Loading/DotLoading';
 import { useState } from 'react';
 
-import { motion } from 'framer-motion';
-
 export default function Comment({ postid, loadingComment, countCmtAddNew, userID }) {
   const currentUser = useSelector(state => state.Auth.currentUser);
 

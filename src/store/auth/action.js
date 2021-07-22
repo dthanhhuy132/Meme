@@ -185,7 +185,8 @@ export function actChangePasswordAsync({
       })
 
       return {
-        ok: true
+        ok: true,
+        data: res
       }
 
     } catch (err) {

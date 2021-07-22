@@ -17,6 +17,7 @@ export default function SearchPage() {
   const searchPosts = useSelector(state => state.Posts.searchPosts);
 
   useEffect(() => {
+
     setIsLoading(true)
     dispatch(
       actSearchPostAsync(cmtStr)
@@ -25,7 +26,12 @@ export default function SearchPage() {
         setIsLoading(false)
       }
     })
+
   }, [cmtStr, dispatch])
+
+  useEffect(() => {
+    return () => { }
+  })
 
   return (
     <main className='listPost'>
@@ -46,8 +52,6 @@ export default function SearchPage() {
                   <div className="ass1-section__list">
                     {
                       searchPosts.map(post => {
-
-                        console.log('post trong search', post)
 
                         return (
                           <Post
