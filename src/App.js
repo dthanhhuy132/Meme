@@ -36,9 +36,10 @@ function App() {
     const userId = localStorage.getItem(USER_ID);
     if (userId && userId !== '') {
       dispatch(actFechMeInfoAsync(userId))
-    } else {
-      setTimeout(() => {
+    }
 
+    if (!userId && theme === 'light') {
+      setTimeout(() => {
         (function openNotification(placement) {
           notification.success({
             message: `${placement}`,
@@ -51,6 +52,22 @@ function App() {
         })('Đăng nhập để trải nghiệm giao diện tối')
       }, 10000)
     }
+
+    if (userId && theme === 'light') {
+      setTimeout(() => {
+        (function openNotification(placement) {
+          notification.success({
+            message: `${placement}`,
+            description: "",
+            className: 'dth-background-notification',
+            duration: 4.5,
+            closeIcon: <i className="fas fa-times"></i>,
+            placement,
+          });
+        })('Thử trải nghiệm giao diện tối nào!!!')
+      }, 10000)
+    }
+
     // eslint-disable-next-line
   }, [])
 

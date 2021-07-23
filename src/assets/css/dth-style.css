@@ -223,7 +223,7 @@ button:focus {
 }
 
 .col-lg-4 .ass1-section .ass1-section__content {
-  padding-bottom: 30px !important;
+  padding-bottom: 16px !important;
 }
 
 .ass1-section .ass1-section__content .ass1-section__image {
@@ -370,6 +370,9 @@ button:focus {
 
 .dth-comment-reply__btn-see-more {
   margin-left: -40px;
+}
+.ass1-section {
+  padding: 17px 17px 2px 17px;
 }
 
 .ass1-section__btn-comment {
