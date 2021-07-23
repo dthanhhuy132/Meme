@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from './components/Header';
 import FooterResponsive from './components/FooterResponsive';
@@ -22,7 +22,10 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme, GlobalStyle } from './theme.js';
 import DarkMode from './hooks/useDarkMode';
 
-export const ThemeContext = createContext('')
+import { notification } from 'antd';
+
+
+export const ThemeContext = createContext('');
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +34,23 @@ function App() {
   useEffect(() => {
     dispatch(actFetchCategoriesAsync());
     const userId = localStorage.getItem(USER_ID);
-    if (userId && userId !== '') dispatch(actFechMeInfoAsync(userId));
+    if (userId && userId !== '') {
+      dispatch(actFechMeInfoAsync(userId))
+    } else {
+      setTimeout(() => {
+
+        (function openNotification(placement) {
+          notification.success({
+            message: `${placement}`,
+            description: "",
+            className: 'dth-background-notification',
+            duration: 4.5,
+            closeIcon: <i className="fas fa-times"></i>,
+            placement,
+          });
+        })('Đăng nhập để trải nghiệm giao diện tối')
+      }, 10000)
+    }
     // eslint-disable-next-line
   }, [])
 
