@@ -25,15 +25,16 @@ export default function PostDetail({ comment = true }) {
   const dispatch = useDispatch();
   const post_category = useSelector(state => state.Posts.postByPostid);
   const postid = param?.postid;
+  const currentUser = useSelector(state => state.Auth.currentUser);
 
   const DATA_RELOAD = 'DATA_RELOAD'
-  useEffect(() => {
-    localStorage.setItem(DATA_RELOAD, JSON.stringify(data))
-    // eslint-disable-next-line
-  }, [postid])
+  const getData = location.post
+  if (getData) localStorage.setItem(DATA_RELOAD, JSON.stringify(getData))
+
+
 
   const dataReload = JSON.parse(localStorage.getItem(DATA_RELOAD));
-  const data = location.post || dataReload;
+  const data = getData || dataReload;
   const category = post_category?.categories;
 
   const [isLoadingCategory, setIsLoadingCategory] = useState(true);
@@ -53,6 +54,8 @@ export default function PostDetail({ comment = true }) {
   }, [postid, dispatch])
 
   let displayUserSetting = false;
+  if (data?.USERID === currentUser?.USERID) displayUserSetting = true;
+
 
   function handleClickCmt(e) {
     e.preventDefault();
@@ -63,7 +66,6 @@ export default function PostDetail({ comment = true }) {
     setCmtCout(Number(cmtCount) + 1)
   }
 
-  const currentUser = useSelector(state => state.Auth.currentUser)
   const linkToUser = currentUser?.USERID === data.USERID ? '/profile' : `/user/${data.USERID}`;
 
   useEffect(() => {

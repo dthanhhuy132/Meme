@@ -87,12 +87,8 @@ export default function postsReducer(state = initState, action) {
     case ACT_EDIT_POSTS:
       let postid = action.payload.editPost.PID;
       let editPost = action.payload.editPost;
-      console.log('editPost trong reducer', editPost)
 
       let copyState = { ...state };
-      console.log('copyState', copyState)
-      console.log('state', state)
-
 
       let indexPostsInPostPaging;
       copyState.postPaging.posts && copyState.postPaging.posts.forEach((post, index) => {

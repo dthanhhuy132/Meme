@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Header from './components/Header';
 import FooterResponsive from './components/FooterResponsive';
@@ -65,7 +65,7 @@ function App() {
             placement,
           });
         })('Thử trải nghiệm giao diện tối nào!!!')
-      }, 10000)
+      }, 5000)
     }
 
     // eslint-disable-next-line
@@ -108,13 +108,15 @@ function App() {
               <ProfilePicture />
             </Route>
 
+            <Route path='/edit'>
+              <EditPostResponsive theme={theme} />
+            </Route>
+
             <Route exact path="/">
               <HomePage />
             </Route>
 
-            <Route>
-              <EditPostResponsive theme={theme} />
-            </Route>
+
 
           </ThemeContext.Provider>
 

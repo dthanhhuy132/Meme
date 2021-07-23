@@ -64,7 +64,7 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
     //_______________________________________________________________________________ for editData start
     if (isEdit) {
       let editDataCategorySort = editDataCategory.slice().sort();
-      let editOrNot = categoryValue.length === editDataCategory.length && categoryValue.slice().sort().every((cateValue, index) => {
+      let editOrNot = categoryValue.length === editDataCategory.length && categoryValue?.slice().sort().every((cateValue, index) => {
         return cateValue === editDataCategorySort[index];
       })
       setIsEdited(editOrNot)
@@ -98,7 +98,9 @@ export default function CategoriesAndPostBtn({ propsPass, categories_index, isEd
   const isEditPage = location.pathname.indexOf('/edit') !== -1;
 
   function handleClickCancelBtn() {
-    if (isEditPage) history.goBack()
+    if (isEditPage) {
+      history.goBack()
+    }
     else handleCloseModal()
   }
 

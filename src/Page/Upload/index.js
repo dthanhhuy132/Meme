@@ -44,7 +44,7 @@ export default function Upload({
         post_content: post?.post_content,
         category: ''
       })
-      setUploadPictureRev(post.url_image)
+      setUploadPictureRev(post?.url_image)
     }
 
     editData['url_image'] = post?.url_image;
@@ -126,7 +126,7 @@ export default function Upload({
   formDataFinal.append('url_image', formData.url_image)
   formDataFinal.append('post_content', formData.post_content)
   formDataFinal.append('category', formData.category)
-  isEdit && formDataFinal.append('postid', post.PID)
+  isEdit && formDataFinal.append('postid', post?.PID)
 
   // ____________________________________________________________ EDIT POST A NEW POST FOR EDIT
   const location = useLocation();

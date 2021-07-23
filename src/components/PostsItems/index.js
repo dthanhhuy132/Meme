@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import { useHistory } from "react-router-dom";
@@ -72,8 +72,10 @@ export default function PostItem({
   }
 
   const displayComment = commentCommon || commentForPostDetail
-  const [cmtCount, setCmtCout] = useState(post?.count);
+  const [cmtCount, setCmtCout] = useState(post?.count || 0);
+
   function countCmtAddNew() {
+    console.log('chay vao day chu chay vao dau nwxa')
     setCmtCout(Number(cmtCount) + 1)
   }
 

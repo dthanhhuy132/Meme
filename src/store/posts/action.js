@@ -22,7 +22,7 @@ function actFetchPosts({ posts, pagesize, currPage }) {
 }
 
 export function actFetchPostsAsync({
-  pagesize = 3,
+  pagesize = 5,
   currPage = 1,
   ...restParams
 } = {}) {
@@ -158,7 +158,8 @@ export function actDeletePostAsync(postid) {
       const res = await postsService.deletePost(postid)
       dispatch(actDeletePost(postid))
       return {
-        ok: true
+        ok: true,
+        response: res
       }
     } catch (er) {
       return {
@@ -268,7 +269,6 @@ export function actPostNewPostAsync(formData) {
     try {
       const res = await postsService.postNewPost(formData)
       const newPost = res.data.data.post;
-      console.log('newPost có gì nào', newPost)
       dispatch(actPostNewPost(newPost))
       return {
         ok: true,

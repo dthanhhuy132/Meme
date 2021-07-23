@@ -19,9 +19,9 @@ export default function HeaderSearch() {
     // eslint-disable-next-line
   }, [searchStr])
 
-  // useEffect(() => {
-  //   if (location.pathname.indexOf('/search') === -1) setSearchStr('')
-  // }, [location.pathname])
+  useEffect(() => {
+    if (location.pathname.indexOf('/search') === -1) setSearchStr('')
+  }, [location.pathname])
 
   return (
     <div className='header-for-responsive'>
