@@ -239,7 +239,7 @@ button:focus {
 
 .ass1-section__name {
   display: flex;
-  min-width: 350px;
+  min-width: 250px;
 }
 .loading-user-page {
   width: 36%;
