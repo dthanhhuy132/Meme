@@ -141,7 +141,7 @@ export default function UserSetting({ postid, post }) {
   function handleClick_Delete(postid) {
     setIsRenderFooter(true);
     handleModal()
-    setHeader('Bạn chắn chắn muốn xóa bài viết này?');
+    setHeader('Bạn có muốn xóa bài viết');
     setActAsyncName('delete')
   }
 
